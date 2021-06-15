@@ -1,0 +1,96 @@
+{% extends "PTs/layout.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+
+<div>
+<form action="/login" name="LoginForm" id="LoginForm" method="post" class="row g-3 needs-validation" novalidate >
+  {% csrf_token %}
+    <div class="col-md-4">
+      <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control {{username_validation}}" placeholder="Username"  autocomplete="username" id="username" aria-describedby="inputGroupPrepend" name="username" required>
+        <div class="invalid-feedback">
+          {% if username_validation %}
+              Username Doesn't exist!.
+          {% else %}
+              Username can not be blank!.
+          {% endif %}
+        </div>
+        </div>
+        <div class="col-md-4">
+          <label for="password1" class="form-label">Password</label>
+          <input type="password" class="form-control {{password_validation}}" aria-describedby="pass1Help" placeholder="Password"  autocomplete="current-password" id="password1" name="password1" required>
+          <div class="invalid-feedback">
+            {% if password_validation %}
+                Password invalid!<br>
+                 <a href="/recover">Forgot password?</a>
+            {% else %}
+                Password can not be blank!.
+            {% endif %}
+          </div>
+          <input type="checkbox" class="form-check-input" id="s_pass">
+          <label class="form-check-label" for="exampleCheck1">Show Password</label>
+        </div>
+        <p>{{error}}</p>
+        <button class="g-recaptcha"
+                data-sitekey="6LfY6YwaAAAAABa3tnWetKPhDnVrz9Wqk6tWaBNd"
+                data-callback='onSubmit'
+                data-action='submit'>Submit</button>
+        <br>
+</form>
+<a href="reset_password/">Forgot your password?</a>
+
+<p><strong>-- OR --</strong></p>
+<a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+<p><strong>-- OR --</strong></p>
+<a href="{% url "social:begin" "google-oauth2" %}">Google+</a>
+</div>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        };
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+document.addEventListener('DOMContentLoaded',() => {
+
+    document.querySelector('#s_pass').onclick = () => {
+      if (document.querySelector('#password1').type === "password") {
+          document.querySelector('#password1').type = Text
+        }
+      else {
+          document.querySelector('#password1').type = "password"
+      }
+    };
+  });
+
+
+
+</script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+  function onSubmit(token) {
+    document.getElementById("LoginForm").submit();
+  }
+</script>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "PTs/layout.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+{% if logged %}
+<div>
+  <a href="/login_i">Home</a>
+</div>
+
+{% else %}
+    <div>
+      <h1>Enter your email in the input bellow and we will send you a email with the recover instructions</h1>
+      <h3>Note: The email must be the same of your account</h3>
+      <form>
+        {% csrf_token %}
+          <div class="col-md-4">
+            <label for="email" class="form-label">Email</label>
+              <input type="text" class="form-control " placeholder="Email"  autocomplete="email" id="email" aria-describedby="inputGroupPrepend" name="email" required>
+              <div class="invalid-feedback">
+                  Email can not be blank!.
+              </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      </div>
+{% endif %}
+
+{% endblock %}
