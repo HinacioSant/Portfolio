@@ -1,0 +1,19 @@
+{% extends "PTs/layout.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+
+<h1>Index</h1>
+
+<form action="/msa" name="InputName" id="InputName" method="post" class="row g-3">
+  {% csrf_token %}
+    <div class="col-md-4">
+      <label for="iname" class="form-label">Name</label>
+      <input type="text" class="form-control" placeholder="Name" id="iname" aria-describedby="inputGroupPrepend" name="iname" required>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>
+{% endblock %}
