@@ -21,7 +21,7 @@ def register(request): # Register page
         try:
             if User.objects.get(username=form['username']):  # Checks if the username already exist
                 return render(request, "login/register.html", {'username_validation': "is-invalid"})# if so, show a error message. (message on the html side)
-        except ObjectDoesNotExist:              # if not, just pass.
+        except ObjectDoesNotExist:              # if not, just continue.
             pass
 
         try:
