@@ -1,0 +1,75 @@
+{% extends "PTs/layout.html" %}
+
+{% block title %}Index{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+{% block content %}
+
+<h1>Chat{{id1}}{{id2}}</h1>
+<form id='form1' action="" method="post" class="row g-3">
+  {% csrf_token %}
+    <div class="col-md-4">
+      <label for="iname" class="form-label">Name</label>
+      <input type="text" class="form-control" placeholder="Name" id="content" aria-describedby="inputGroupPrepend" name="content" required>
+      <input type="hidden" id="time" name="time" value="{{time}}">
+      <input type="hidden" id="name" name="name" value="{{name}}">
+      <input type="submit" >
+    </div>
+
+</form>
+
+<div id="display"></div>
+
+
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+  $(document).on('submit','#form1',function(e){
+    e.preventDefault();
+
+          $.ajax({
+              type: 'POST',
+              url: '/messages/{{id1}}/{{id2}}',
+              data: {
+                      name:$('#name').val(),
+                      content:$('#content').val(),
+                      csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                      time:$('#time').val(),
+                    }
+          });
+          var name= document.getElementById('name').value
+          var content= document.getElementById('content').value
+          var time= document.getElementById('time').value
+          const li = document.createElement('h1')
+          li.innerHTML = name+": "+content+" -"+time
+          document.querySelector('#display').append(li)
+        document.getElementById('content').value = ''
+
+      });
+
+
+
+$(document).ready(function(){
+setInterval(function(){
+    $.ajax({
+        type: 'GET',
+        url : "/messages/{{id1}}/{{id2}}",
+        success: function(response){
+
+            $("#display").empty();
+            for (var key in response.messages)
+            {
+                var temp="<div class='container darker'><b>"+response.messages[key].user+": "+response.messages[key].content+" -"+response.messages[key].time+"</div>";
+
+                $("#display").append(temp);
+            }
+        },
+    });
+},4000);
+})
+</script>
+
+{% endblock %}

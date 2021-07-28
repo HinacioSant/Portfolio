@@ -4,7 +4,38 @@
 
 {% block content %}
 
-<h1>Hello {{msa_name}}!</h1>
-
+<h1>Hello {{user1}}!</h1>
+<div id="display"></div>
 <h3> Search planceholder !!--!!</h3>
+<ul>
+  {% for user in list %}
+    <li><a href="/chat/{{user1.id}}/{{user.id}}">{{user}}</a></li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+
+$(document).ready(function(){
+setInterval(function(){
+    $.ajax({
+        type: 'GET',
+        url : "/room_request",
+        success: function(response){
+
+            $("#display").empty();
+            for (var key in response.requests)
+            {
+                var temp="<a href=/chat/"+response.requests[key].request_from+"/"+response.requests[key].request_to+">Room:"+response.requests[key].room+" </a>";
+
+                $("#display").append(temp);
+            }
+        },
+    });
+},4000);
+})
+
+</script>
 {% endblock %}
