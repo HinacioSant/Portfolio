@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'messageapp.apps.MessageappConfig',
     'crispy_forms',
     'social_django',
+    'django_apscheduler',
 
 ]
 
@@ -163,6 +164,8 @@ STATICFILES_DIRS = [
 
 CRISPY_TEMPLATE_PACK="bootstrap4"
 
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'

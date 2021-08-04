@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block javascript %}
-<script>
+<script> // Post the form and display the message
   $(document).on('submit','#form1',function(e){
     e.preventDefault();
 
@@ -51,7 +51,7 @@
       });
 
 
-
+// Query for new messages every 4 seconds
 $(document).ready(function(){
 setInterval(function(){
     $.ajax({

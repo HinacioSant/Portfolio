@@ -5,18 +5,30 @@
 {% block content %}
 
 <h1>Hello {{user1}}!</h1>
-<div id="display"></div>
-<h3> Search planceholder !!--!!</h3>
-<ul>
-  {% for user in list %}
-    <li><a href="/chat/{{user1.id}}/{{user.id}}">{{user}}</a></li>
-  {% endfor %}
-</ul>
+<h4> Room requests:<h4>
+<div id="rooms"></div>
+<h4>--------</h4>
+
+<h3> Search for a user!</h3>
+<form action="/search" method="post" name="list_users">
+  {% csrf_token %}
+  <div class="form-group mt-3">
+    <input type="hidden" name="id1" value="{{user1.id}}">
+    <input class="form-control" list="l_user" required name="id2" placeholder="Find a user">
+    <datalist id="l_user">
+      {% for u in list %}
+        <option value="{{u.id}}">{{u}}</option>
+      {% endfor %}
+    </datalist>
+    <button type="submit" class="mt-1 btn btn-lg btn-secondary"> Start Chat! </button>
+  </div>
+</form>
+
 
 {% endblock %}
 
 {% block javascript %}
-<script>
+<script> // Every 4 seconds query for new room invites 
 
 $(document).ready(function(){
 setInterval(function(){
@@ -25,12 +37,12 @@ setInterval(function(){
         url : "/room_request",
         success: function(response){
 
-            $("#display").empty();
+            $("#rooms").empty();
             for (var key in response.requests)
             {
                 var temp="<a href=/chat/"+response.requests[key].request_from+"/"+response.requests[key].request_to+">Room:"+response.requests[key].room+" </a>";
 
-                $("#display").append(temp);
+                $("#rooms").append(temp);
             }
         },
     });
