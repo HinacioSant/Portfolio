@@ -1,0 +1,241 @@
+{% extends "PTs/layout.html" %}
+
+
+{% block title %}TDV{% endblock %}
+
+
+{% block content %}
+
+<nav class="navbar sticky-top navbar-dark bg-dark" id="top_nav">
+  <ul class="nav justify-content-center">
+    <span style="font-size:20px; cursor:pointer; color:white; margin:auto; padding:3px" onclick="openNav()">&#9776;</span>
+
+    <a class="navbar-brand" style=" padding: 2px; font-size: 22px; font-weight:bold" href="/TDV">TDV</a>
+    <li class="nav-item">
+      <a class="nav-link" href="/TDV/notes_page">Notes</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/TDV/add_notes">Add note</a>
+    </li>
+
+  </ul>
+<div style="float:right;">
+  <div class="container-fluid">
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</div>
+
+</nav>
+
+
+<div id="n_div">
+
+  <div class="tab-content" id="tabs-list">
+    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+    {% for content in notes_list %}
+    <div class="tab-pane fade" id="n{{content.id}}" role="tabpanel" aria-labelledby="n{{content.id}}-tab">
+      <div id="title_n"><p>{{content.title}}</p>
+        <p>{{content.subject}}</p>
+        <h4 id="content_n">{{content.content |safe }}</h4><br></div>
+        <p id="bottom_p">{{content.time}}</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+        <div id="bottom_p" style="top: 60px;">
+        <form action="/TDV/add_notes" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="del_n" value="{{content.id}}">
+          <button type="submit" class="btn btn-outline-light">Delete note</button>
+        </form>
+        </div>
+      </div>
+    {% endfor %}
+
+
+    <div class="tab-pane fade" id="bullet" role="tabpanel" aria-labelledby="bullet-tab">
+      <div class="main col-lg-10 col-md-9" style="margin-bottom: 200px;">
+
+
+      <br>
+
+      <table class="table table-dark table-hover">
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Subject</th>
+          <th>Finished</th>
+          <th>Time</th>
+        </tr>
+        </thead>
+      <form action="/TDV/notes_page" method="post">
+        {% csrf_token %}
+
+      <tbody>
+      {% for item in bullet_list %}
+        <tr>
+          <td>{{item.title}}</td>
+          <td>{{item.subject}}</td>
+
+          <td>
+            <div class="form-check form-switch">
+              {% if item.finished %}
+                <input type="hidden" name="{{item.id}}" value='off'>
+                <input class="form-check-input" checked type="checkbox" id="checkbox_checked" name="{{item.id}}" value="">
+              {% else %}
+                <input class="form-check-input" type="checkbox" id="checkbox" name="{{item.id}}">
+              {% endif %}
+            </div>
+          </td>
+
+          <td>{{item.time}}</td>
+        </tr>
+
+      {% endfor %}
+      <div id="button_p" style="right:0">
+      <button type="submit" class="btn btn-outline-light"> Save </button>
+      </div>
+
+      </tbody>
+      </form>
+
+      <div id="button_p">
+      <form action="/TDV/notes_page" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="del_b" value="delete_finished_bullets">
+        <button type="submit" class="btn btn-outline-light">Delete</button>
+      </form>
+      </div>
+
+      </table>
+
+
+    </div>
+    <div style="position:fixed; bottom: 10px; width: 60%;">
+    <h1>Add Bullet</h1>
+
+    <form action="/TDV/add_notes" method="post">
+      {% csrf_token %}
+      <input style="width: 28%; float: left;margin: 10px" type="text" class="form-control" placeholder="Title" id="title" name="title" required>
+      <input style="width: 28%; float: left;margin: 10px" type="text" class="form-control" placeholder="Subject" id="subject" name="subject" required>
+      <input type="hidden" value="bullet" id="type" name="type">
+      <button type="submit" style="margin: 10px" class="btn btn-secondary">Submit</button>
+    </form>
+    </div>
+  </div>
+
+
+
+
+
+</div>
+
+
+
+
+<div id="mySidenav" class="sidenav">
+
+<div style="padding: 5px;border-left: 2px solid white; border-right: 2px solid white">
+  <ul class="navbar-nav">
+    <li><h1 id="title_s">Notes:</h1></li>
+
+        <a class="nav-item dropdown" >
+          <ul>
+            <div class="d-flex align-items-start">
+            <div class="nav flex-column " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <li><a class="nav-link active" id="home-tab" name="notes" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</a></li>
+
+            {% for content in notes_list %}
+              <li><a class="nav-link" id="n{{content.id}}-tab" name="notes" data-bs-toggle="tab" data-bs-target="#n{{content.id}}" type="button" role="tab" aria-controls="n{{content.id}}" aria-selected="false">{{content.title}}</a></li>
+
+            {% endfor %}
+          </div>
+          </div>
+
+          </ul>
+
+        </a>
+      </ul>
+      <hr class="dropdown-divider"  style="color:white; width:100%">
+
+
+</div>
+<div id="title_s">
+  <ul class="navbar-nav" >
+    <div class="d-flex align-items-start">
+    <div class="nav flex-column " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <li><h1 class="nav-link " id="bullet" name="notes" data-bs-toggle="tab" data-bs-target="#bullet" type="button" role="tab" aria-controls="bullet" aria-selected="false">Bullets</h1></li>
+
+    </ul>
+    <hr class="dropdown-divider"  style="color:white; width:100%">
+
+  </div>
+</div>
+</div>
+
+
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+{% endblock %}
+{% block javascript %}
+<script>
+  /* Set the width of the side navigation to 230px and the left margin of the page content to 230px */
+  function openNav() {
+    if (document.getElementById("mySidenav").style.width === "230px") {
+      closeNav()
+    }
+    else {
+      document.getElementById("mySidenav").style.width = "230px";
+      document.getElementById("n_div").style.marginLeft = "230px";
+
+
+    };
+  }
+
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("n_div").style.marginLeft = "0";
+
+
+  }
+
+  var triggerTabList = [].slice.call(document.getElementsByName('notes'))
+  triggerTabList.forEach(function (triggerEl) {
+
+
+    triggerEl.addEventListener('click', function (event) {
+      $(triggerEl).removeClass("show active");
+    })
+  });
+
+  $(document).ready(function(){
+      $('[data-bs-toggle="tab"]').on('show.bs.tab', function(e) {
+          localStorage.setItem('activeTab', $(e.target).attr('data-bs-target'));
+
+
+      });
+
+      var activeTab = localStorage.getItem('activeTab');
+      if(activeTab != null){
+          $(activeTab).addClass("show active")
+      }
+      else {
+        $("#home").addClass("show active")
+      }
+  });
+</script>
+
+
+{% endblock %}

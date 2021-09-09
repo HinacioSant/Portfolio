@@ -18,3 +18,7 @@
 maybe: An analogue clock.
 
 thrid project focus on backend data usage database and shit
+
+FILES MANAGMENT App
+display/managment of all databases app
+note litewrite better 
