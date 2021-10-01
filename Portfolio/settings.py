@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'TDV.apps.TdvConfig',
     'crispy_forms',
     'social_django',
-    'django_apscheduler',
+    'django_apscheduler',    
 
 ]
 

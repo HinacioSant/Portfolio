@@ -1,11 +1,12 @@
-{% extends "PTs/layout.html" %}
+{% extends "TDV/base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}TDV{% endblock %}
 
 {% block content %}
-
-<h1>TDV</h1>
-<h1>User: {{request.user}}</h1>
-<a href="TDV/add_notes">Add</a><br>
-<a href="TDV/notes_page">Notes</a>
+<div id="n_div">
+  <h1>TDV</h1>
+  <h1>User: {{request.user}}</h1>
+  <a href="TDV/add_notes">Add</a><br>
+  <a href="TDV/notes_page">Notes</a>
+</div>
 {% endblock %}

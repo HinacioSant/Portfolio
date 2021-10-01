@@ -1,47 +1,32 @@
-{% extends "PTs/layout.html" %}
+{% extends "TDV/base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Add Note{% endblock %}
 
 {% block content %}
+<div id="n_div">
 
-<h1>TDV</h1>
+  <h1>TDV</h1>
 
 
-<form action="/TDV/add_notes" method="post">
-{% csrf_token %}
-<div class="form-group">
-  <input type="text" class="form-control" placeholder="Title" id="title" name="title" required>
-  <input type="text" class="form-control" placeholder="Subject" id="subject" name="subject" required>
-  <input type="hidden" value="note" id="type" name="type">
+  <form action="/TDV/add_notes" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Title" id="title" name="title" required>
+    <input type="text" class="form-control" placeholder="Subject" id="subject" name="subject" required>
+    <input type="hidden" value="note" id="type" name="type">
 
-  <div id="bottom_p" class="btn-group dropdown">
-  <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-    Font size
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" name="font_s" id="f1" onclick="otest('10')">10</a></li>
-    <li><a class="dropdown-item" name="font_s" id="f2" onclick="otest('20')">20</a></li>
-    <li><a class="dropdown-item" name="font_s" id="f3" onclick="otest('30')">30</a></li>
-  </ul>
-</div>
+  </div>
+    <textarea class="form-control" id="text" required name="content" rows="28" cols="50">{{ content }}</textarea>
+
+
+  <button type="submit" class="btn btn-secondary">Submit</button>
+  </form>
 
 </div>
-  <textarea class="form-control" id="text" required name="content" rows="28" cols="50">{{ content }}</textarea>
-
-
-<button type="submit" class="btn btn-secondary">Submit</button>
-</form>
-
-
 
 {% endblock %}
 
 {% block javascript %}
 <script>
-function otest(size) {
-  console.log(size)
-  $("#text").css("font-size",size + "px")
-}
-
 </script>
 {% endblock %}

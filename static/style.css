@@ -1,14 +1,15 @@
 body {
   background-color: black;
+
 }
 
 #n_div {
     position:relative;
-    padding:0;
 
 
     top:0;
     left:0;
+
 
     height:100%;
     width:auto;
@@ -17,6 +18,7 @@ body {
     transition: margin-left .5s;
     padding: 16px;
     color:white;
+
 
     }
 
@@ -28,6 +30,18 @@ body {
   position:fixed;
   bottom:0;
   right:0;
+
+}
+
+#b_style {
+  background-color: transparent;
+  border: black;
+
+}
+
+#b_style :hover{
+  color:blue;
+
 }
 
 #content_n {
@@ -43,17 +57,23 @@ body {
 #title_s {
   padding: 5px;
   color:white;
+  padding-bottom: 17px;
+  font-family: 'Courier New', monospace;
+
 }
 
 #title_s h1:hover{
-  color:red;
+  color:gray;
 }
+
+
 
 #button_p {
   position:fixed;
   bottom: 10px;
-  right:5%;
+  right:30px;
   margin: 10px;
+
 
 }
 
@@ -61,6 +81,12 @@ body {
   width: 100%;
   margin: auto;
   border: 2px solid black;
+}
+
+#add_n {
+  position:fixed;
+  bottom: 10px;
+  width: 60%;
 }
 
 .sidenav {
@@ -74,7 +100,9 @@ body {
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 10px;
-  border: 2px solid black;
+
+
+
 }
 
 .sidenav a {
@@ -90,16 +118,32 @@ body {
   color: #f1f1f1;
 }
 
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
+
 
 @media screen and (max-width: 968px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
-  #button_p {right:13%;}
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
 }
