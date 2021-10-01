@@ -91,7 +91,7 @@ def messages(request, id1, id2): # Message page(add/query and deploy of messages
 
     try: # Checks if the user is on the database
         user = User.objects.get(username=request.session['name'])
-        if str(user.id) != id1 and str(user.id) != id2:: # Checks if user is one of the user on the room.
+        if str(user.id) != id1 and str(user.id) != id2: # Checks if user is one of the user on the room.
             return redirect('msa_menu') # If not redirect
 
 

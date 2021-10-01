@@ -1,0 +1,149 @@
+body {
+  background-color: black;
+
+}
+
+#n_div {
+    position:relative;
+
+
+    top:0;
+    left:0;
+
+
+    height:100%;
+    width:auto;
+
+
+    transition: margin-left .5s;
+    padding: 16px;
+    color:white;
+
+
+    }
+
+#title_n {
+    text-align:center;
+}
+
+#bottom_p {
+  position:fixed;
+  bottom:0;
+  right:0;
+
+}
+
+#b_style {
+  background-color: transparent;
+  border: black;
+
+}
+
+#b_style :hover{
+  color:blue;
+
+}
+
+#content_n {
+   font-family: karma;
+   line-height: 2em;
+   font-size: 21.3px;
+   text-align: center;
+   margin: 8px 20%;
+   color: white;
+
+}
+
+#title_s {
+  padding: 5px;
+  color:white;
+  padding-bottom: 17px;
+  font-family: 'Courier New', monospace;
+
+}
+
+#title_s h1:hover{
+  color:gray;
+}
+
+
+
+#button_p {
+  position:fixed;
+  bottom: 10px;
+  right:30px;
+  margin: 10px;
+
+
+}
+
+#top_nav {
+  width: 100%;
+  margin: auto;
+  border: 2px solid black;
+}
+
+#add_n {
+  position:fixed;
+  bottom: 10px;
+  width: 60%;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 58px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 10px;
+
+
+
+}
+
+.sidenav a {
+  padding: 1px 1px 1px 12px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+
+
+@media screen and (max-width: 968px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}

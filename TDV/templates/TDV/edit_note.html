@@ -1,0 +1,34 @@
+{% extends "TDV/base.html" %}
+
+
+{% block title %}Edit {{title}}{% endblock %}
+
+{% block content %}
+<div id="n_div">
+
+  <h1>Edit</h1>
+
+
+  <form action="/TDV/{{id_n}}/edit" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <input type="text" class="form-control" id="title" value="{{title}}" name="title" required>
+    <input type="text" class="form-control" id="subject" value="{{subject}}" name="subject" required>
+    <input type="hidden" value="note" id="type" name="type">    
+
+
+  </div>
+    <textarea class="form-control" id="text" required name="content" rows="28" cols="50">{{ content }}</textarea>
+
+    <br>
+    <button type="submit" class="btn btn-outline-light">Submit</button>
+  </form>
+
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+</script>
+{% endblock %}

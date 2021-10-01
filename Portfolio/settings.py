@@ -40,9 +40,10 @@ INSTALLED_APPS = [
     'Main.apps.MainConfig',
     'login.apps.LoginConfig',
     'messageapp.apps.MessageappConfig',
+    'TDV.apps.TdvConfig',
     'crispy_forms',
     'social_django',
-    'django_apscheduler',
+    'django_apscheduler',    
 
 ]
 

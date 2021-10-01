@@ -1,0 +1,306 @@
+{% extends "TDV/base.html" %}
+
+
+{% block title %}Notes{% endblock %}
+
+{% block sidebutton %}
+<span style="font-size:20px; cursor:pointer; color:white; margin:auto; padding:6px" onclick="openNav()">&#9776;</span>
+{% endblock %}
+
+{% block content %}
+
+
+<div id="n_div">
+  <div class="tab-content" id="tabs-list">
+    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+    {% for content in notes_list %}
+    <div class="tab-pane fade" id="n{{content.id}}" role="tabpanel" aria-labelledby="n{{content.id}}-tab">
+      <div id="title_n"><p>{{content.title}}</p>
+        <p>{{content.subject}}</p>
+        <h4 id="content_n">{{content.get_markdown|safe}}</h4><br></div>
+        <p id="bottom_p">{{content.time}}</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+        <div id="bottom_p" style="top: 71px;">
+        <form action="/TDV/add_notes" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="del_n" value="{{content.id}}" >
+          <button type="submit" id="b_style" class="btn btn-outline-light"><i class="material-icons">delete</i></button>
+        </form>
+        </div>
+
+        <div id="bottom_p" style="top: 71px; right:30px;">
+        <form action="/TDV/{{content.id}}/edit" method="post">
+          {% csrf_token %}
+
+
+          <input type="hidden" name="type" value="fill" >
+
+          <input type="hidden" name="title_n" value="{{content.title}}" >
+          <input type="hidden" name="subject_n" value="{{content.subject}}" >
+          <input type="hidden" name="content_n" value="{{content.content}}" >
+
+          <button type="submit" id="b_style" class="btn btn-outline-light"><i class="material-icons">edit</i></button>
+        </form>
+        </div>
+      </div>
+    {% endfor %}
+
+
+    <div class="tab-pane fade" id="bullet" role="tabpanel" aria-labelledby="bullet-tab">
+      <div class="main col-lg-10 col-md-9" style="padding-bottom: 100px;">
+
+
+      <br>
+
+      <table class="table table-dark table-hover">
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Subject</th>
+          <th>Finished</th>
+          <th>Time</th>
+        </tr>
+        </thead>
+      <form action="/TDV/notes_page" method="post">
+        {% csrf_token %}
+
+      <tbody>
+      {% for item in bullet_list %}
+        <tr>
+          {% if item.finished %}
+
+          <td style="color:gray">{{item.title}}</td>
+          <td style="color:gray">{{item.subject}}</td>
+
+          <td>
+            <div class="form-check form-switch">
+                <input type="hidden" name="{{item.id}}" value='off'>
+                <input class="form-check-input" checked type="checkbox" id="checkbox_checked" name="{{item.id}}" value="">
+              </div>
+            </td>
+              {% else %}
+                <td>{{item.title}}</td>
+                <td>{{item.subject}}</td>
+
+                <td>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="checkbox" name="{{item.id}}">
+                  </div>
+              </td>
+              {% endif %}
+
+
+          <td>{{item.time}}</td>
+        </tr>
+
+      {% endfor %}
+      <div id="button_p" style="right:0">
+      <button type="submit" id="b_style" class="btn btn-dark"><i class="material-icons">save</i></button>
+      </div>
+
+      </tbody>
+      </form>
+
+      <div id="button_p">
+      <form action="/TDV/notes_page" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="del_b" value="delete_finished_bullets">
+        <button type="submit" id="b_style" class="btn btn-outline-light"><i class="material-icons">delete</i></button>
+      </form>
+      </div>
+
+      <div id="button_p" style="right:60px">
+        <button type="submit" id="b_style" class="btn btn-outline-light" onclick="Add_toggle()"><i class="material-icons">add</i></button>
+      </div>
+
+      </table>
+
+
+    </div>
+  <div id="add_n">
+    <h1>Add Bullet</h1>
+
+    <form action="/TDV/add_notes" method="post">
+      {% csrf_token %}
+      <input style="width: 28%; float: left;margin: 10px" type="text" class="form-control" placeholder="Title" id="title" name="title" required>
+      <input style="width: 28%; float: left;margin: 10px" type="text" class="form-control" placeholder="Subject" id="subject" name="subject" required>
+      <input type="hidden" value="bullet" id="type" name="type">
+      <button type="submit" style="margin: 10px" class="btn btn-secondary">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+<div id="mySidenav" class="sidenav">
+  <div id="title_s">
+    <ul class="navbar-nav" >
+      <div class="d-flex align-items-start">
+      <div class="nav flex-column " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <li><h1 class="nav-link" style="font-size: 35px" id="bullet" name="notes" data-bs-toggle="tab" data-bs-target="#bullet" type="button" role="tab" aria-controls="bullet" aria-selected="false"><i class="bi bi-card-checklist"></i> Bullet</h1></li>
+        <p style="color:gray; font-size: 12px">Use the save button to save alterations  and the delete button to delete finished bullets. </p>
+
+        </div>
+        </div>
+      </ul>
+
+
+
+    </div>
+<hr>
+
+<div id="title_s">
+  <ul class="navbar-nav">
+    <div class="nav flex-column " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+    <li><h1 class="nav-link" style="font-size: 35px" id="home" name="notes" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="false"><i class="bi bi-file-text"> Notes:</i></h1></li>
+
+    <p style="color:gray; font-size: 12px">Delete note and edit note buttons will delete/edit the respective note.</p>
+
+      </div>
+          <ul>
+            <div class="d-flex align-items-start">
+            <div class="nav flex-column" style="padding-bottom:10px" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+
+            {% for content in notes_list %}
+              <li><a class="nav-link" id="n{{content.id}}-tab" name="notes" data-bs-toggle="tab" data-bs-target="#n{{content.id}}" type="button" role="tab" aria-controls="n{{content.id}}" aria-selected="false">{{content.title}}</a></li>
+
+            {% endfor %}
+          </div>
+          </div>
+
+          </ul>
+
+
+      </ul>
+
+
+
+</div>
+
+</div>
+</div>
+
+
+
+
+{% endblock %}
+{% block javascript %}
+<script>
+  /* Set the width of the side navigation to 230px and the left margin of the page content to 230px */
+  function openNav() {
+    if (document.getElementById("mySidenav").style.width === "230px") {
+      closeNav()
+    }
+    else {
+      document.getElementById("mySidenav").style.width = "230px";
+      document.getElementById("n_div").style.marginLeft = "230px";
+      document.getElementById("mySidenav").style.borderRight = "1px solid gray";
+
+
+
+
+
+    };
+  }
+
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("n_div").style.marginLeft = "0";
+    document.getElementById("mySidenav").style.borderRight = "";
+
+
+
+
+  }
+
+// On click of the add button will show/hide the add bullet div.
+function Add_toggle(){
+    if ($("#add_n").is(":hidden")){
+      $("#add_n").show()
+      localStorage.setItem('add_n', "show")
+    }
+
+
+    else {
+      $("#add_n").hide()
+      localStorage.setItem('add_n', "hide")
+
+    }
+
+
+}
+
+
+// When changing tabs will remove the "show active" class from the previous tab.
+  var triggerTabList = [].slice.call(document.getElementsByName('notes'))
+  triggerTabList.forEach(function (triggerEl) {
+
+
+    triggerEl.addEventListener('click', function (event) {
+      $(triggerEl).removeClass("show active");
+    })
+  });
+
+
+  // Local storage of the active tab.
+  $(document).ready(function(){
+      $('[data-bs-toggle="tab"]').on('show.bs.tab', function(e) {
+          localStorage.setItem('activeTab', $(e.target).attr('data-bs-target'));
+
+
+      });
+
+
+      // On first use the "activeTap" variable will be null so set home as active tab.
+      var activeTab = localStorage.getItem('activeTab');
+      // On delete will return undefined as the respective tab was deleted so set home as active tab.
+      if ($(activeTab).attr("class") === undefined){
+        $("#home").addClass("show active")
+      }
+      if(activeTab != null){
+        $(activeTab).addClass("show active")
+      }
+      else {
+        $("#home").addClass("show active")
+      }
+
+      // Local storage if the add bullet div was hidden or not.
+      var add_v = localStorage.getItem('add_n');
+      // Default is hidden.
+      if (add_v === null){
+        $("#add_n").hide()
+      }
+
+
+      if (add_v === "show") {
+        $("#add_n").show()
+      }
+
+      else {
+        $("#add_n").hide()
+
+      }
+  });
+</script>
+
+
+{% endblock %}
