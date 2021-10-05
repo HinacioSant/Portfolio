@@ -22,5 +22,6 @@ urlpatterns = [
     path("", include("login.urls")),
     path("", include("messageapp.urls")),
     path("", include("TDV.urls")),
+    path("", include("TG2A.urls")),
 
 ]
