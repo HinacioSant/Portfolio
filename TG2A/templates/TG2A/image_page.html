@@ -1,0 +1,27 @@
+{% extends "TG2A/base.html" %}
+
+{% block title %}{{image.image.name}}{% endblock %}
+
+{% block content %}
+<style>
+  img {
+    max-width:99%;
+    max-heitght:99%;
+    margin-left:auto;
+    margin-right:auto;
+
+  }
+</style>
+
+
+<h1>{{image.image.name}}</h1>
+
+<div >
+<img class="rounded d-block" src="{{image.image.url}}">
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+</script>
+{% endblock %}

@@ -37,12 +37,14 @@ body {
   background-color: transparent;
   border: black;
 
+
 }
 
 #b_style :hover{
   color:blue;
 
 }
+
 
 #content_n {
    font-family: karma;

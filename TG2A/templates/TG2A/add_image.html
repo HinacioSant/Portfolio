@@ -1,0 +1,23 @@
+{% extends "TG2A/base.html" %}
+
+{% block title %}Add image{% endblock %}
+
+{% block content %}
+
+<h1>TG2A</h1>
+
+<form action="/TG2A/add" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <h4>User: {{request.user}}</h4>
+  {{ form.as_p }}
+  {{ form.media }}
+  <button type="submit" class="btn btn-secondary">Submit</button>
+</form>
+
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+</script>
+{% endblock %}
