@@ -7,45 +7,31 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <style>
-  body{
-    background-color:black
-  }
 
-  #gallery_content {
-     /* Prevent vertical gaps */
-     width:98%;
+  .gallery_content {
+     width:33%;
      margin-left:auto;
      margin-right:auto;
-     line-height: 0;
+     float:left;
+     overflow-x:hidden;
 
 
-     -webkit-column-count: 3;
-     -webkit-column-gap:   2px;
-     -moz-column-count:    3;
-     -moz-column-gap:      2px;
-     column-count:         3;
-     column-gap:           2px;
+
+
   }
 
-  #gallery_content img {
-    /* Just in case there are inline attributes */
+
+
+  .infinite-item img {
     padding:2px;
     width: 100% !important;
     height: auto !important;
-
-
+    max-height:600px;
+    max-width:730px;
 
   }
 
-  #center {
-    display:none;
-    width:40%;
-    position:fixed;
-    right:25%;
-    left:25%;
-    bottom:47%;
-    margin:auto;
-  }
+
 
   #add_image {
     display:none;
@@ -84,6 +70,22 @@
 
   }
 
+  #images:hover {
+    opacity: 0.9;
+    margin: 0.9px;
+
+  }
+
+  #next_page_num{
+    display:flex;
+    justify-content:center;
+    color:red;
+    position:relative;
+    bottom:0;
+
+  }
+
+
   .blur {
   width:100%;
   height:100%;
@@ -97,49 +99,43 @@
   }
 
 
-  @media (max-width: 1200px) {
-    #gallery_content {
-    -moz-column-count:    2;
-    -webkit-column-count: 2;
-    column-count:         2;
-    }
-  }
 
-  @media (max-width: 700px) {
-    #gallery_content {
-    -moz-column-count:    1;
-    -webkit-column-count: 1;
-    column-count:         1;
-    }
-  }
+
 
 
 </style>
 
 <div style="color:white" id="page_content">
-<h1>TG2A</h1>
-<div id="gallery_content">
-{% for image in gallery_content %}
-<div id="test">
-  <a id="image_link" href="gallery/{{image.id}}">
-    <img id="images" class="rounded d-block" src="{{image.get_thumbnail}}">
-  </a>
+
+<div class="gallery_content">
+  <div id="column-1" class="infinite-item">
+
+  </div>
 </div>
-{% endfor %}
-<br>
-<br>
-<br>
+<div class="gallery_content">
+  <div id="column-2" class="infinite-item">
+
+  </div>
+
 </div>
-<button type="button" class="btn btn-dark" onclick="add_form()">Add</button>
+<div class="gallery_content">
+  <div id="column-3" class="infinite-item">
+
+  </div>
 </div>
 
+</div>
 
+<div>
+  <hr style="width:100%; color:white;">
+</div>
 
 <div id="add_image2">
 <button style="position:absolute; right:0" id="b_style" onclick="add_form()"><i class="material-icons">close</i></button>
 </div>
+
 <div id="add_image">
-  <form action="/TG2A/add" method="post" enctype="multipart/form-data">
+  <form action="/TG2A/add" id="add_form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <h4>User: {{request.user}}</h4>
     {{ form.as_p }}
@@ -149,51 +145,12 @@
 
 </div>
 
+
+<span id="next_page_num"></span>
 {% endblock %}
+
+
 {% block javascript %}
-<script>
-$(document).ready(function(){
-
-  $("div[id^='test']").each(function(){
-    $(this).hover(function() {
-      $(this).css("margin","0.5px")
-      $(this).css("opacity","0.9")
-
-
-    },
-      function() {
-        $(this).css("margin","0")
-        $(this).css("opacity","1.0")
-
-
-      })
-  })
-
-
-
-})
-
-function add_form() {
-  if ($("#add_image").is(":hidden")){
-    $("#add_image").show()
-    $("#add_image2").show()
-
-    $("#page_content").addClass("blur")
-  }
-
-
-  else {
-    $("#add_image").hide()
-    $("#add_image2").hide()
-
-    $("#page_content").removeClass("blur")
-
-}
-}
-
-
-
-</script>
-
-
+{% load static %}
+<script src="{% static 'js/tg2a.js' %}"></script>
 {% endblock %}

@@ -33,4 +33,21 @@ note litewrite better
   fav content
   share it and shit
 
+  TEST THAT IMAGE !!!!!!!!!!!!!!!!!!
+  DOWNLOAD BUTTON AS WELL !!!!!!!!!
   }}
+
+Login:
+1 {}
+Chat:
+2 {}
+Notes:
+3 {
+  do error messages and stop access propl through template
+}
+Gallery:
+4 {
+  TEST THAT IMAGE !!!!!!!!!!!!!!!!!!
+  DOWNLOAD BUTTON AS WELL !!!!!!!!!
+  maybe set stuff to cache as well for performance
+}

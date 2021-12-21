@@ -1,0 +1,33 @@
+{% extends "TG2A/base.html" %}
+
+{% block title %}{{user_profile}} Profile's{% endblock %}
+
+{% block content %}
+<style>
+  .rounded{
+    height:150px;
+    width:200px;
+  }
+</style>
+
+<h1>Uploads</h1>
+<ul>
+{% for upload in all_uploads %}
+  <li><a href="{% url 'image_page' upload.id %}">{{upload.title}}</a></li>
+{% endfor %}
+</ul>
+
+<h1>Favorites</h1>
+<ul>
+{% for f in fav %}
+  <li><a href="{% url 'image_page' f.image.id %}">{{f.image.title}}</a></li>
+{% endfor %}
+</ul>
+
+
+<h1>{{user_profile}}</h1>
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

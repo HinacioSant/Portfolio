@@ -9,7 +9,7 @@ class notes(models.Model):
     subject = models.CharField(max_length=64)
     type = models.CharField(max_length=32)
     content = models.TextField(blank=True)
-    time = models.DateTimeField(default=timezone.now(), blank=True)
+    time = models.DateTimeField(default=timezone.now, blank=True)
     finished = models.BooleanField()
 
     def __str__(self):

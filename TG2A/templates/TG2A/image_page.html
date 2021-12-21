@@ -1,6 +1,6 @@
 {% extends "TG2A/base.html" %}
 
-{% block title %}{{image.image.name}}{% endblock %}
+{% block title %}{{image.title}}{% endblock %}
 
 {% block content %}
 <style>
@@ -9,6 +9,17 @@
     max-heitght:99%;
     margin-left:auto;
     margin-right:auto;
+  }
+
+  #b_style {
+    background-color: transparent;
+    border: black;
+
+
+  }
+
+  #b_style :hover{
+    color:blue;
 
   }
 </style>
@@ -16,12 +27,32 @@
 
 <h1>{{image.image.name}}</h1>
 
-<div >
+<div>
 <img class="rounded d-block" src="{{image.image.url}}">
 </div>
+
+<div id="button_p">
+<form action="" id="fav_form" method="post">
+  {% csrf_token %}
+  {% if fav == 'yes' %}
+    <button id="b_style" class="btn btn-outline-light"><i class="material-icons">favorite</i></button>
+  {% else %}
+    <button id="b_style" class="btn btn-outline-light"><i class="material-icons">favorite_border</i></button>
+  {% endif %}
+</form>
+</div>
+
+<div>
+  <h1>Posted by:<a href="{% url 'profile' image.user %}">{{image.user}}</a></h1>
+
+</div>
+
+<p style="display:none" id="image_id">{{image.id}}</p>
+
+
 {% endblock %}
 
 {% block javascript %}
-<script>
-</script>
+{% load static %}
+<script src="{% static 'js/image_page.js' %}"></script>
 {% endblock %}
