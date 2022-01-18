@@ -1,8 +1,15 @@
-{% extends "PTs/layout.html" %}
+{% extends "login/base.html" %}
 
-{% block title %} Login {% endblock %}
+{% block title %} Password Recover {% endblock %}
 
 {% block content %}
+<div class="blur" id="background_home_image">
+</div>
+
+<div class="background_content">
+
+<div class="style_content">
+
 {% if logged %}
 <div>
   <a href="/login_i">Home</a>
@@ -24,5 +31,8 @@
       </form>
       </div>
 {% endif %}
+
+</div>
+</div>
 
 {% endblock %}

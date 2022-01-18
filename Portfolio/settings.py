@@ -175,7 +175,7 @@ APSCHEDULER_RUN_NOW_TIMEOUT = 25
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'login_i'
+LOGIN_REDIRECT_URL = 'home'
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

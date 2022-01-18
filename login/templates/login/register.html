@@ -1,105 +1,69 @@
-{% extends "PTs/layout.html" %}
+{% extends "login/base.html" %}
 
 {% block title %} Register {% endblock %}
 
 
 
 {% block content %}
+<div class="blur" id="background_register_image">
+</div>
 
-    <form action="/register" name="RegistForm" method="post" class="row g-3 needs-validation" novalidate >
-      {% csrf_token %}
-      <div class="col-md-4">
-        <label for="username" class="form-label">Username</label>
-          <input type="text" class="form-control {{username_validation}}"  autocomplete="username" id="username" aria-describedby="inputGroupPrepend" name="username" required>
-          <div class="invalid-feedback">
-            {% if username_validation %}
-                Username already exist.
-            {% else %}
-                Please choose a username.
-            {% endif %}
-          </div>
-        </div>
-      <div class="col-md-4">
-        <label for="email" class="form-label">Email</label>
-          <input type="text" class="form-control {{email_validation}}" id="email" aria-describedby="emailHelp" name="email" required>
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-          <div class="invalid-feedback">
-            {% if email_validation %}
-                Email already exist.
-            {% else %}
-                Please choose a email.
-            {% endif %}
-          </div>
-        </div>
-      <div class="col-md-3">
-        <label for="password1" class="form-label">Password</label>
-        <input type="password" class="form-control {{password_validation}}" aria-describedby="pass1Help" placeholder="Password"  autocomplete="new-password" id="password1" name="password1" required>
-        <div id="pass1Help" class="form-text">Passwords must have more than 6 characteres and less than 64!</div>
-        <div id="pass1Help" class="form-text">Passwords must have at least a letter and a number </div>
-        <div class="invalid-feedback">
-          {% if s %}
-              Password too short.
-          {% elif l %}
-              Password too long
-          {% else %}
-              Please choose a valid password.
-          {% endif %}
-        </div>
-      </div>
-      <div class="col-md-3">
-        <label for="password2" class="form-label">Password Verification</label>
-        <input type="password" class="form-control {{password_validation}}" aria-describedby="pass2Help" placeholder="Password verification" autocomplete="new-password" id="password2" name="password2" required>
-        <div id="pass2Help" class="form-text">Passwords must match!</div>
-        <div class="invalid-feedback">
-          {% if m %}
-              Password don't match.
-          {% else %}
-              Please choose a valid password.
-          {% endif %}
-        </div>
+<div class="background_content">
+  
+<div class="style_content">
+  <h4 style="text-align:center">Register</h4>
+<form action="/register" name="RegisterForm" id="RegisterForm" method="post" class="row g-3 needs-validation" novalidate >
+{% csrf_token %}
+<div>
+  <label for="username" class="form-label">Username</label>
+    <input type="text" class="form-control {{validation_username}}"  placeholder="Username"  autocomplete="username" id="username" aria-describedby="usernameHelp" name="username" required>
+    <div id="usernameHelp" class="form-text">Choose your username</div>
+    <div class="invalid-feedback" id="feedback-username">
+      {% if validation_username%}
+        Username already exist!
+      {% endif %}
+    </div>
+  </div>
+<div>
+  <label for="email" class="form-label">Email</label>
+    <input type="text" class="form-control {{validation_email}}" id="email" aria-describedby="emailHelp"  placeholder="Email" name="email" required>
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    <div class="invalid-feedback" id="feedback-email">
+      {% if validation_email%}
+        Email already in use!
+      {% endif %}
+    </div>
+  </div>
+<div>
+  <label for="password1" class="form-label">Password</label>
+  <input type="password" class="form-control" aria-describedby="pass1Help" placeholder="Password"  autocomplete="new-password" id="password1" name="password1" required>
+  <div id="pass1Help" class="form-text">Passwords must have at least a letter and a number!. </div>
+  <div class="invalid-feedback" id="feedback-pass1">
+
+  </div>
+</div>
+<div>
+  <label for="password2" class="form-label">Password Verification</label>
+  <input type="password" class="form-control" aria-describedby="pass2Help" placeholder="Password verification" autocomplete="new-password" id="password2" name="password2" required>
+  <div class="invalid-feedback" id="feedback-pass2">
+
+  </div>
+  <div class="input_style">
     <input type="checkbox" class="form-check-input" id="s_pass">
     <label class="form-check-label" for="exampleCheck1">Show Password</label>
   </div>
-      <div class="col-12">
-        <button class="btn btn-primary" type="submit">Submit form</button>
-      </div>
+</div>
+<div>
+  <button class="btn btn-outline-light btn-sm" type="submit">Register</button>
+</div>
 
-<script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-  'use strict'
+<p id="p_style">Already has a account?. <a href="/login">Sign in</a></p>
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
+</div>
+</div>
 
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        };
-
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
-
-document.addEventListener('DOMContentLoaded',() => {
-
-    document.querySelector('#s_pass').onclick = () => {
-      if (document.querySelector('#password1').type === "password") {
-          document.querySelector('#password1').type = Text
-          document.querySelector('#password2').type = Text
-        }
-      else {
-          document.querySelector('#password1').type = "password"
-          document.querySelector('#password2').type = "password"
-      }
-    };
-  });
-
-</script>
+{% endblock %}
+{% block javascript %}
+{% load static %}
+<script src="{% static 'js/login/register.js' %}"></script>
 {% endblock %}

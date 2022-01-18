@@ -1,96 +1,71 @@
-{% extends "PTs/layout.html" %}
+{% extends "login/base.html" %}
 
 {% block title %} Login {% endblock %}
 
 {% block content %}
+<div class="blur" id="background_login_image">
+</div>
 
+<div class="background_content">
+<div class="style_content">
+  <h4 style="text-align:center">Login</h4>
 
-<div>
-<form action="/login" name="LoginForm" id="LoginForm" method="post" class="row g-3 needs-validation" novalidate >
+<form action="/login" name="LoginForm" id="LoginForm" method="post" class="needs-validation" novalidate >
   {% csrf_token %}
-    <div class="col-md-4">
+    <div class="input_style">
       <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control {{username_validation}}" placeholder="Username"  autocomplete="username" id="username" aria-describedby="inputGroupPrepend" name="username" required>
-        <div class="invalid-feedback">
-          {% if username_validation %}
+        <input type="text" required class="form-control {{validation_username}}" placeholder="Username"  autocomplete="username" id="username" aria-describedby="inputGroupPrepend" name="username" >
+        <div class="invalid-feedback" id="feedback-username">
+          {% if validation_username %}
               Username Doesn't exist!.
-          {% else %}
-              Username can not be blank!.
           {% endif %}
         </div>
         </div>
-        <div class="col-md-4">
+        <div class="input_style">
+
           <label for="password1" class="form-label">Password</label>
-          <input type="password" class="form-control {{password_validation}}" aria-describedby="pass1Help" placeholder="Password"  autocomplete="current-password" id="password1" name="password1" required>
-          <div class="invalid-feedback">
-            {% if password_validation %}
+          <input type="password" class="form-control {{validation_password}}" aria-describedby="pass1Help" placeholder="Password"  autocomplete="current-password" id="password1" name="password1" required>
+          <div class="invalid-feedback" id="feedback-pass1">
+            {% if validation_password %}
                 Password invalid!<br>
-                 <a href="/recover">Forgot password?</a>
-            {% else %}
-                Password can not be blank!.
+                <a href="/recover">Forgot password?</a>
             {% endif %}
           </div>
-          <input type="checkbox" class="form-check-input" id="s_pass">
-          <label class="form-check-label" for="exampleCheck1">Show Password</label>
-        </div>
-        <p>{{error}}</p>
-        <button class="g-recaptcha"
-                data-sitekey="6LfY6YwaAAAAABa3tnWetKPhDnVrz9Wqk6tWaBNd"
-                data-callback='onSubmit'
-                data-action='submit'>Submit</button>
-        <br>
-</form>
-<a href="reset_password/">Forgot your password?</a>
 
-<p><strong>-- OR --</strong></p>
-<a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
-<p><strong>-- OR --</strong></p>
-<a href="{% url "social:begin" "google-oauth2" %}">Google+</a>
+        </div>
+          <div class="input_style">
+          <input type="checkbox" class="form-check-input" id="s_pass">
+          <label class="form-check-label" for="s_pass">Show Password</label>
+          </div>
+        <div class="g-recaptcha" data-size="normal" data-theme="dark" data-sitekey="6LdPiu4dAAAAAKNt9s5XSL3pneuBO9M-5jQzjPb7"></div>
+        <p id="feedback-captcha" style="color:red; font-size:13px;">{{error}}</p>
+
+        <div class="input_style">
+          <button class="btn btn-outline-light btn-sm" type="submit">Sign in</button>
+        </div>
+</form>
+<button type="button" id="button_auth_style" class="btn btn-light btn-sm">
+  <a id="g_style" href="{% url 'social:begin' 'github' %}"><img width="20px" style="margin-bottom:3px; margin-right:5px" alt="GitHub sign-in" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" />
+        Login with GitHub</a>
+</button>
+<button type="button" id="button_auth_style" class="btn btn-light btn-sm">
+  <a id="g_style" href="{% url 'social:begin' 'google-oauth2' %}"><img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+        Login with Google</a>
+</button>
+<hr style="width:100%">
+
+<p id="p_style"><a href="reset_password/">Forgot your password?</a>
+ Or doesn't have a account? <a href="/register">Sign up</a></p>
+
+
+</div>
 </div>
 
-<script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-  'use strict'
+{% endblock %}
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
+{% block javascript %}
 
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        };
-
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
-
-document.addEventListener('DOMContentLoaded',() => {
-
-    document.querySelector('#s_pass').onclick = () => {
-      if (document.querySelector('#password1').type === "password") {
-          document.querySelector('#password1').type = Text
-        }
-      else {
-          document.querySelector('#password1').type = "password"
-      }
-    };
-  });
-
-
-
-</script>
+{% load static %}
+<script src="{% static 'js/login/login.js' %}"></script>
 <script src="https://www.google.com/recaptcha/api.js"></script>
-<script>
-  function onSubmit(token) {
-    document.getElementById("LoginForm").submit();
-  }
-</script>
-
 {% endblock %}

@@ -1,6 +1,136 @@
 body {
   background-color: black;
+  color:white;
 
+}
+
+#background_register_image {
+  position:fixed;
+  top:0;
+  z-index: 0;
+  overflow: hidden;
+  background: url(background/background-register.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+#background_login_image {
+  position:fixed;
+  top:0;
+  z-index: 0;
+  overflow: hidden;
+  background: url(background/background-login.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#background_home_image {
+  position:fixed;
+  top:0;
+  z-index: 0;
+  overflow: hidden;
+  background: url(background/background-home.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.input_style{
+  padding: 5px;
+}
+
+.style_content{
+  width: 90%;
+  margin-top: 3px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 15px
+}
+
+.background_content {
+  background-color: #121212;
+  border: 2px solid black;
+  width: 40%;
+  height: auto;
+  position:fixed;
+  left:0;
+  right:0;
+  margin:auto;
+  top:2%;
+  z-index: 2;
+
+}
+
+.navbar{
+  width: 100%;
+  text-align: center;
+}
+
+
+.navbar-brand{
+  margin-left:5px;
+  padding: 2px;
+  font-size: 22px;
+  font-weight:bold;
+  color:white !important;
+}
+
+#home_style{
+  width: 90%;
+  text-align: center;
+  height: 97%;
+}
+
+#home_style a{
+  color: #9e9e9e;
+}
+
+#home_style a:hover{
+  color: #493dfc;
+}
+
+#button_auth_style{
+  float:left;
+  margin:2px;
+  width: 120px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+
+}
+#button_auth_style :hover{
+  color:black;
+}
+
+.p_base_style{
+  width:80%;
+  margin:auto;
+  font-family: Serif;
+  font-size: 19px;
+  color: gray;
+}
+
+.blur {
+  width:100%;
+  height:100%;
+  pointer-events: none;
+  background-size:cover;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -ms-filter: blur(2px);
+  -o-filter: blur(2px);
+  filter: blur(2px);
+  }
+
+#g_style{
+  color:gray;
+  text-decoration: none;
+  font-size: 9px;
+}
+
+#p_style{
+  color:gray;
+  font-size: 15px;
 }
 
 #n_div {
@@ -21,6 +151,14 @@ body {
 
 
     }
+
+#t_style{
+  font-weight:bold;
+}
+
+#p_size {
+  font-size:27px !important;
+}
 
 #title_n {
     text-align:center;
@@ -125,8 +263,21 @@ body {
 @media screen and (max-width: 968px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+
 }
 
+@media screen and (max-width: 768px){
+  .input_style{padding: 2px}
+  .background_content {width: 92%; top:0}
+  .style_content {font-size:11px;}
+  .p_base_style {font-size: 15px !important;}
+  .navbar{font-size:13px}
+  .navbar-brand{font-size:17px;}
+  #t_style{font-size: 20px}
+
+
+
+}
 
 /* width */
 ::-webkit-scrollbar {

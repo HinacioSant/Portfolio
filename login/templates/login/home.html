@@ -1,20 +1,50 @@
-{% extends "PTs/layout.html" %}
+{% extends "login/base.html" %}
 
-{% block title %} Main Page {% endblock %}
+{% block title %} Home Page {% endblock %}
 
 {% block content %}
-<h1>{{msg}}</h1>
-
-<div style="text-align: center;">
-  <h1>Main {{user.username}}</h1>
-  <a href="/login">login</a>
-  <a href="/register">register</a>
-  <a href="/logout">logout</a>
+<div class="blur" id="background_home_image">
 </div>
 
-{% if request.user.is_authenticated %}
-<div style="text-align: center;">
-  <a href="/password_change">Change Password</a>
+<div class="background_content" id="home_style">
+
+  <nav class="navbar navbar-dark bg-dark">
+    <ul class="nav justify-content-center">
+      <a class="navbar-brand" href="/home">Home</a>
+      <div class="vr"></div>
+      {% if request.user.is_authenticated %}
+        {% if not request.user.social_auth.get %}
+          <li class="nav-item">
+            <a class="nav-link" href="/password_change">Change Password</a>
+          </li>
+        {% endif %}
+        <li class="nav-item" style="position:absolute; right:0;">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+
+<h1 id="t_style">Hello There {{user.username}}!</h1>
+<p class="p_base_style" style="font-size:27px"> This is the homepage for my login application!.</p>
+<p class="p_base_style">This is a base page for redirections throughout the application,
+   this application features login/register/change password/recover password and logout.
+   All made by me with my own validation logics and authentication. The css and layout
+   are all made by me as well.</p>
+<p class="p_base_style">Every other application in this portfolio uses this login
+   application at some level, therefore signing in this application will let you use every
+   other application in this portfolio to their fullest.</p>
+<p class="p_base_style">The other applications will have a login form when needed.
+  to see the other applications please go to <a href="/projects">projects.</a></p>
+
+
+
 </div>
-{% endif %}
 {% endblock %}

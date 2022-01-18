@@ -38,9 +38,19 @@ note litewrite better
   }}
 
 Login:
-1 {}
+1 {
+  redo the captcha thing- set to 2 - done
+  set every thing inside usermanagement.py - done
+  create the validators - done
+  figure out the email shit . - kindad done just set to deployment
+  https://djcheckup.com/pony/
+  https://docs.djangoproject.com/en/4.0/topics/security/
+  i dont know what else to do so i come back to this late i guess
+}
 Chat:
-2 {}
+2 {
+  cryptograph the messages
+}
 Notes:
 3 {
   do error messages and stop access propl through template
@@ -50,4 +60,7 @@ Gallery:
   TEST THAT IMAGE !!!!!!!!!!!!!!!!!!
   DOWNLOAD BUTTON AS WELL !!!!!!!!!
   maybe set stuff to cache as well for performance
+  stylesheet
 }
+
+TEST OTHER BROWSERS
