@@ -22,60 +22,69 @@ class user_g: # User Creation
             add = User(username=self.name, is_active=self.status) # Create User
             add.save()
 
+
+
 class user_m:
     def __init__(self, form):
         self.form = form
 
-    def username_check(self):
-        try:
+    def username_check(self): # This method checks the validity of the username within the database.
+        try:                  # This method is used both in the login and in register authentication.
             user = User.objects.get(username=self.form['username'])  # Checks if the username already exist
 
-            if user:  # Checks if the username already exist
-                response = {"409": True, "context": "User name exists", "user": user}
+            if user:  # If so return a 409 code and the context that can be use to identificate which is which.
+                response = {"409": True, "context": "User name exists", "user": user} # In this case also returns the user.
                 return response
-        except ObjectDoesNotExist:              # if not, return true.
+
+        except ObjectDoesNotExist: # if not, return a 409 code and the context that can be use to identificate which is which.
             return {"409": False, "context": "User doesn't exists"}
 
-    def email_check(self):
+
+
+    def email_check(self): # This method does basically the same thing with email.
         try:
-            email = User.objects.get(email=self.form['email'])
-            if email:  # Checks if the username already exist
+            email = User.objects.get(email=self.form['email']) # Checks if the email already exist
+
+            if email:  # If so return a 409 code and the context that can be use to identificate which is which.
                 response = {"409": True, "context": "Email exists", "email": email}
                 return response
-        except ObjectDoesNotExist:              # if not, just continue.
+
+        except ObjectDoesNotExist:
             return {"409": False, "context": "Email doesn't exists"}
 
 
-    def register(self):
+
+    def register(self): # This is the registration method, all logic behind registration is within this method.
         username = self.form['username']
         email = self.form['email']
         password1 = self.form['password1']
         password2 = self.form['password2']
 
-        response = self.username_check()
+        response = self.username_check() # Use the username_check method to check the validity.
+        if response['409']: # If 409 error
+            return response['context'] # return the context.
+
+        response = self.email_check() # Same in here but with the email_check method.
         if response['409']:
             return response['context']
-
-        response = self.email_check()
-        if response['409']:
-            return response['context']
-
-
-
 
         hash = make_password(password1) # Hashes the password using django base hash that can be changed on settings.
 
 
         add = User(email = email, username = username, password = hash) # Adds and
-        add.save()
+        add.save()   # save to the database.
 
-        response = "redirect"                                                                   # save to the database.
+        response = "redirect"
         return response   # Then redirects to the login page.
 
-    def login(self, request_login):
+
+
+    def login(self, request_login): # This is the login method, all logic behind login is within this method.
+        # request_login variable is added to login using django sign_in method.
         # Google captcha verification
 
-        captcha_token = self.form['g-recaptcha-response']                    #setting the google Recaptcha api.
+        # Setting the google Recaptcha api.
+        captcha_token = self.form['g-recaptcha-response']
         captcha_url = "https://www.google.com/recaptcha/api/siteverify"
         captcha_secret = "6LdPiu4dAAAAAPdZtj52eCTYW4ayOnLb_kBSO9rL"
         data = {"secret":captcha_secret,"response":captcha_token}
@@ -87,11 +96,11 @@ class user_m:
             response = "captcha error!"
             return response
 
-        response = self.username_check()
+        response = self.username_check() # Use the username_check method to check the validity.
         if not response['409']:
             return response['context']
 
-        verification = response['user']
+        verification = response['user'] # Set to a variable to easier use.
 
         if check_password(self.form['password1'], verification.password):  # Using the django check_password to se if the passwords match
             sign_in(request_login, verification, backend='django.contrib.auth.backends.ModelBackend') # if so, sign in
@@ -99,17 +108,18 @@ class user_m:
         else:                                                                                   # if not
             return "invalid password"   # error message  (message on the html side)
 
-    def change_password(self, user):
+
+
+    def change_password(self, user): # Change password method.
         verification = User.objects.get(username=user)  # Setting the User object to a variable to easier use.
-                                                                            # To change the password the old one must be input
-        if check_password(self.form['old_password'], verification.password):     # checks if the old pássword is right.
+        # Django check_password method.                                  # To change the password the old one must be input
+        if check_password(self.form['old_password'], verification.password):    # checks if the old password is right.
 
                                                                                             # If all requirements set above are met
             User.objects.filter(username=user).update(password=make_password(self.form['password1'])) # update the password to the new one.
-            response = "continue"
+            response = "continue" # And continue.
             return response
 
-        else:
+        else: # If not
             response = "invalid"
-            return response # render the password change done page.
-                                                        
+            return response # Return error.

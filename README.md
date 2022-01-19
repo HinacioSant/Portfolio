@@ -46,6 +46,7 @@ Login:
   https://djcheckup.com/pony/
   https://docs.djangoproject.com/en/4.0/topics/security/
   i dont know what else to do so i come back to this late i guess
+  hide secret codes.
 }
 Chat:
 2 {
