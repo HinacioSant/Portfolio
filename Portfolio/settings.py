@@ -140,6 +140,8 @@ SOCIAL_AUTH_GITHUB_SECRET = '4f411f6b53e5afe32ac51999fa80592a4ce07feb'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '945179667763-h7m4q8oee5qaeqpordsagt6bjgd8nmbe.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'JWm77bYR5movFZo9x2WyJsxA'
 
+ENCRYPT_KEY = b'i-9YA9JlNy_HVNsYSJ5ne-lq3EyM1VnxK5HW9HGeAVM='
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 

@@ -7,23 +7,6 @@ import json
 
 
 
-
-class user_g: # User Creation
-    def __init__(self, name, status):
-        self.name = name
-        self.status = status
-
-    def add(self): # Add temporary  user function
-        try: # Checks if the user already exists
-            User.objects.get(username=self.name)
-            response = 'User already exists' # If so
-            return response # Return response
-        except ObjectDoesNotExist: # If not
-            add = User(username=self.name, is_active=self.status) # Create User
-            add.save()
-
-
-
 class user_m:
     def __init__(self, form):
         self.form = form
@@ -123,3 +106,13 @@ class user_m:
         else: # If not
             response = "invalid"
             return response # Return error.
+
+
+
+    def temporary_user(self):
+        response = self.username_check()
+        if response['409']:
+            return response['context']
+
+        add = User(username=self.form['username'], is_active=self.form['status']) # Create User
+        add.save()

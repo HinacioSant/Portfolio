@@ -50,7 +50,21 @@ Login:
 }
 Chat:
 2 {
-  cryptograph the messages
+  encryp the messages, legit users add. -done
+  remake the room creation, set to a smaller window. -done
+  some math on better way to gather the messages. -done
+  set requests to a alert of sort, so people can accept/deny.- kinda droped this
+  better way to see who you can chat with- kinda droped this
+  notifications on new msgs-
+  keep tabs who were open still open of refresh or just refresh the userlist/friendlist-
+  accept or deny friend request, - kinda droped this
+  set refresh on accept of the request-
+  maybe drop the online thing who bloody knows-
+  search maybe on the userlist-
+  set labels to every thing-
+  way to keep titles while scrolling.
+  minimaze and maximaze buttons-
+  things are kinda scrachi on refresh and add/unfriend user, checkout later-
 }
 Notes:
 3 {

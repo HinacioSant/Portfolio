@@ -1,75 +1,127 @@
-{% extends "PTs/layout.html" %}
-
-{% block title %}Index{% endblock %}
-
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-
 {% block content %}
+<p id="style_user_t">{{user2}}</p>
+<div id="add_style_button"><button type="button" onclick="remove_element{{room}}('chat{{room}}')"><span class="material-icons md-18">close</span></button>
+<button type="button" onclick="maximize('chat{{room}}')"><span class="material-icons md-18">crop_square</span></button>
+<button type="button" onclick="minimize('chat{{room}}')"><span class="material-icons md-18">minimize</span></button></div>
 
-<h1>Chat{{id1}}{{id2}}</h1>
-<form id='form1' action="" method="post" class="row g-3">
+<div class="style_content">
+<div>
+
+<div id="display{{room}}"></div>
+
+<hr style="width:100%">
+<form id='form{{room}}' action="" method="post">
   {% csrf_token %}
-    <div class="col-md-4">
-      <label for="iname" class="form-label">Name</label>
-      <input type="text" class="form-control" placeholder="Name" id="content" aria-describedby="inputGroupPrepend" name="content" required>
-      <input type="hidden" id="time" name="time" value="{{time}}">
-      <input type="hidden" id="name" name="name" value="{{name}}">
-      <input type="submit" >
+    <div>
+      <input type="text" class="form-control focus" style="float:left; margin:5px; width:61%" placeholder="Message" id="content{{room}}" aria-describedby="inputGroupPrepend" name="content" required>
+      <input type="hidden" id="time{{room}}" name="time" value="{% now () %}">
+      <input type="hidden" id="name{{room}}" name="name" value="{{name}}">
+      <button class="btn btn-outline-light btn-sm" style="margin:5px" type="submit">Submit</button>
     </div>
 
 </form>
-
-<div id="display"></div>
-
-
+</div>
+</div>
 
 {% endblock %}
 
 {% block javascript %}
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script> // Post the form and display the message
-  $(document).on('submit','#form1',function(e){
+  $(document).on('submit','#form{{room}}',function(e){
     e.preventDefault();
+    var name = $('#name{{room}}').val()
+    var content = $('#content{{room}}').val()
+    var csrf = $('input[name=csrfmiddlewaretoken]').val()
+    var time = $("#time{{room}}").val()
+    if (content != ""){
 
-          $.ajax({
-              type: 'POST',
-              url: '/messages/{{id1}}/{{id2}}',
-              data: {
-                      name:$('#name').val(),
-                      content:$('#content').val(),
-                      csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-                      time:$('#time').val(),
-                    }
-          });
-          var name= document.getElementById('name').value
-          var content= document.getElementById('content').value
-          var time= document.getElementById('time').value
-          const li = document.createElement('h1')
-          li.innerHTML = name+": "+content+" -"+time
-          document.querySelector('#display').append(li)
-        document.getElementById('content').value = ''
+      setTimeout(function(){
+            $.ajax({
+                type: 'POST',
+                url: '/messages/{{id1}}/{{id2}}',
+                data: {
+                        name:name,
+                        content:content,
+                        csrfmiddlewaretoken:csrf,
+                      }
+            });
+          }, 1000)
 
+        var p_msg = document.createElement("p")
+        p_msg.setAttribute("class", "p_msg")
+        p_msg.innerHTML = content
+
+        var p_time = document.createElement("p")
+        p_time.setAttribute("class", "p_time")
+        p_time.innerHTML = time
+
+
+        document.querySelector('#display{{room}}').append(p_msg, p_time)
+        document.getElementById('content{{room}}').value = ''
+
+        }
       });
 
+$(document).ready(function(){
+  $("#chat_div").attr("id", "chat{{room}}") // The chat display must have a
+  msg_r{{room}}()                                    // unique id, so I add it here.
+});
 
 // Query for new messages every 4 seconds
-$(document).ready(function(){
-setInterval(function(){
+var m_timer{{room}} = setInterval(new_messages, 4000)
+
+function new_messages(){
+    $.ajax({
+        type: 'GET',
+        url : "/check/{{room}}",
+        success: function(response){
+            if (response.new_messages == "yes" && document.getElementById(response.time) == null ){
+              msg_r{{room}}()
+            }
+            }
+        })
+};
+
+
+function msg_r{{room}}(){
     $.ajax({
         type: 'GET',
         url : "/messages/{{id1}}/{{id2}}",
         success: function(response){
-
-            $("#display").empty();
+            $("#display{{room}}").empty();
             for (var key in response.messages)
             {
-                var temp="<div class='container darker'><b>"+response.messages[key].user+": "+response.messages[key].content+" -"+response.messages[key].time+"</div>";
+                var p_msg = document.createElement("p")
+                if (response.messages[key].user == "{{user2}}"){
+                  p_msg.setAttribute("class", "p_msg2")
+                }
+                else{
+                  p_msg.setAttribute("class", "p_msg")
+                }
 
-                $("#display").append(temp);
+                var p_time = document.createElement("p")
+                p_time.setAttribute("class", "p_time")
+                p_time.setAttribute("id", response.messages[key].time)
+
+
+                p_msg.innerHTML = response.messages[key].content
+                p_time.innerHTML = response.messages[key].time
+
+                $("#display{{room}}").append(p_msg, p_time);
             }
         },
     });
-},4000);
-})
+};
+
+
+function remove_element{{room}}(element){
+  $("#" + element).remove()
+  clearInterval(m_timer{{room}})
+
+  $("button[name="+{{id2}}+"]").attr("disabled", false) // re-enable the button.
+}
 </script>
+
 
 {% endblock %}

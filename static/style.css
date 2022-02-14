@@ -76,6 +76,30 @@ body {
   color:white !important;
 }
 
+
+.p_base_style{
+  width:80%;
+  margin:auto;
+  font-family: Serif;
+  font-size: 19px;
+  color: gray;
+}
+
+
+.blur {
+  width:100%;
+  height:100%;
+  pointer-events: none;
+  background-size:cover;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -ms-filter: blur(2px);
+  -o-filter: blur(2px);
+  filter: blur(2px);
+  }
+
+
+
 #home_style{
   width: 90%;
   text-align: center;
@@ -101,26 +125,6 @@ body {
 #button_auth_style :hover{
   color:black;
 }
-
-.p_base_style{
-  width:80%;
-  margin:auto;
-  font-family: Serif;
-  font-size: 19px;
-  color: gray;
-}
-
-.blur {
-  width:100%;
-  height:100%;
-  pointer-events: none;
-  background-size:cover;
-  -webkit-filter: blur(2px);
-  -moz-filter: blur(2px);
-  -ms-filter: blur(2px);
-  -o-filter: blur(2px);
-  filter: blur(2px);
-  }
 
 #g_style{
   color:gray;
@@ -170,6 +174,19 @@ body {
   right:0;
 
 }
+
+#add_style_button{
+  background-color: transparent;
+  color:white;
+  border: black;
+  float:right;
+}
+
+#add_style_button :hover{
+  color:blue;
+
+}
+
 
 #b_style {
   background-color: transparent;

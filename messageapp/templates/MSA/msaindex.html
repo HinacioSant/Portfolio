@@ -1,6 +1,6 @@
 {% extends "PTs/layout.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}MSA{% endblock %}
 
 {% block content %}
 
@@ -10,7 +10,8 @@
   {% csrf_token %}
     <div class="col-md-4">
       <label for="iname" class="form-label">Name</label>
-      <input type="text" class="form-control" placeholder="Name" id="iname" aria-describedby="inputGroupPrepend" name="iname" required>
+      <input type="text" class="form-control" placeholder="Name" id="username" aria-describedby="inputGroupPrepend" name="username" required>
+      <input type="hidden" name="status" id="status" value="False">
     </div>
     <div class="col-12">
       <button class="btn btn-primary" type="submit">Submit</button>

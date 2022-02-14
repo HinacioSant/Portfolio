@@ -1,15 +1,15 @@
-{% extends "PTs/layout.html" %}
+{% extends "MSA/base.html" %}
 
 {% block title %}Index{% endblock %}
 
 {% block content %}
-
 <h1>Hello {{user1}}!</h1>
 <h4> Room requests:<h4>
 <div id="rooms"></div>
 <h4>--------</h4>
-
+<p id="msg"></p>
 <h3> Search for a user!</h3>
+<div style="width:40%; float:left;">
 <form action="/search" method="post" name="list_users">
   {% csrf_token %}
   <div class="form-group mt-3">
@@ -23,31 +23,63 @@
     <button type="submit" class="mt-1 btn btn-lg btn-secondary"> Start Chat! </button>
   </div>
 </form>
+</div>
+
+<div id="all_tables">
+
+<div id="userlist">
+<table class="table table-dark table-hover" id="table1">
+  <thead>
+    <tr>
+      <th scope="col">User List</th>
+    </tr>
+  </thead>
+  <tbody id="userlist_tbody">
+      {% csrf_token %}
+      {% for u in list %}
+        <tr>
+          {% if u != user1 %}
+            <td >{{u}} <div id="add_style_button"><button type="submit"  name="{{u.id}}" onclick="msg_user({{user1.id}}, {{u.id}})"><span class="material-icons md-18">chat</span></button>
+                      <button type="submit" id="{{u.id}}" onclick="add_user({{u.id}})"><span class="material-icons md-18">person_add</span></button></div></td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% if request.user.is_authenticated %}
+<div id="friendlist">
+
+<table class="table table-dark table-hover" id="table2">
+  <thead>
+    <tr>
+      <th scope="col">Friend List</th>
+    </tr>
+  </thead>
+  <tbody id="friendlist_tbody">
+    {% for f in friendlist %}
+    <tr name="{{f.id}}">
+      <td>{{f.friend}} <div id="add_style_button"><button type="submit"  name="{{f.friend.id}}" onclick="msg_user({{user1.id}}, {{f.friend.id}})"><span class="material-icons md-18">chat</span></button>
+        <button type="submit" id="{{f.id}}" onclick="unfriend_user({{f.id}})"><span class="material-icons md-18">person_remove</span></button></div></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+</div>
+</div>
+
+
+<div class="chat">
+
+</div>
 
 
 {% endblock %}
 
+
 {% block javascript %}
-<script> // Every 4 seconds query for new room invites 
-
-$(document).ready(function(){
-setInterval(function(){
-    $.ajax({
-        type: 'GET',
-        url : "/room_request",
-        success: function(response){
-
-            $("#rooms").empty();
-            for (var key in response.requests)
-            {
-                var temp="<a href=/chat/"+response.requests[key].request_from+"/"+response.requests[key].request_to+">Room:"+response.requests[key].room+" </a>";
-
-                $("#rooms").append(temp);
-            }
-        },
-    });
-},4000);
-})
-
-</script>
+{% load static %}
+<script src="{% static 'js/MSA/msa_menu.js' %}"></script>
 {% endblock %}
