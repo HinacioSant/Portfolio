@@ -1,5 +1,10 @@
+var minimized = false
+var maximized = false
+
+
+
 $(document).ready(function(){
-  rooms_r()
+  new_rooms()
 
 })
 function rooms_r(){
@@ -9,9 +14,8 @@ function rooms_r(){
             success: function(response){
 
                 $("#rooms").empty();
-                for (var key in response.requests)
-                {
-                  var temp="<a href=/chat/"+response.requests[key].request_from+"/"+response.requests[key].request_to+">Room:"+response.requests[key].room+"</a> <button type='submit' id="+response.requests[key].request_from+" onclick=msg_user("+response.requests[key].request_to +","+ response.requests[key].request_from +")><span class='material-icons md-18'>chat</span></button>";
+                for (var key in response.requests){
+                  var temp="<p class='p_new'>You have "+response.requests[key].new_msgs+" new messages from: "+response.requests[key].msg_from+"</p> <button type='submit' id=m_"+response.requests[key].request_from+" onclick=msg_user("+response.requests[key].request_to +","+ response.requests[key].request_from +")><span class='material-icons md-18'>chat</span></button>";
 
                     $("#rooms").append(temp);
                 }
@@ -26,10 +30,13 @@ function new_rooms(){
         type: 'GET',
         url : "/check/room",
         success: function(response){
-
-            if (response.new_requests == "yes" && $("#"+response.room).length == 0){
+            if (response.new_requests == "yes" && $("#m_"+response.room).length == 0){
               rooms_r()
-            }
+              }
+
+            else if (response.new_requests != "yes" && $(".p_new").length > 0){
+              $("#rooms").empty();
+              }
             }
         })
 };
@@ -90,18 +97,50 @@ function unfriend_user(friend_id){
     $("#all_tables").load(window.location.href + " #all_tables")
 }
 
+$(document).on('submit','#search_form',function(e){
+  e.preventDefault();
+
+  var id1 = $("#id1").val()
+  var id2 = $("#id2").val()
+  console.log(id1 + "-" +id2)
+
+  msg_user(id1, id2)
+
+})
+
+
 
 function minimize(element){
-  $("#"+element).css("height", "35px")
-  $("#"+element).css("overflow", "hidden")
 
+  if (maximized){
+    $(".chat_maximized").attr("class", "chat_div")
+    $(".style_content").css("max-height", "400px")
+    $(".chat").css("max-height", "80%")
 
+    maximized = false
+  }
+  else {
+    $("#"+element).css("height", "35px")
+    $("#"+element).css("overflow", "hidden")
 
+    minimized = true
+  }  
 }
 
 function maximize(element){
   $("#"+element).css("height", "auto")
   $("#"+element).css("overflow", "auto")
+
+
+  if (!minimized){
+    $(".chat_div").attr("class", "chat_maximized")
+
+    maximized = true
+  }
+  minimized = false
+
+  $("#m_not").html("")
+  document.title = "MSA Menu"
 
 
 }

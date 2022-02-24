@@ -12,7 +12,7 @@ class chat_m: # Message creation
 
         check = Msa.objects.filter(room = room) # Variable added to easie use
 
-        if len(check) >= 5: # Checks if there are more than/or 5 messages
+        if len(check) >= 10: # Checks if there are more than/or 5 messages
             d = Msa.objects.filter(room = room)[:1].get() # If so
             d.delete() # Delete the oldest message
 
@@ -93,7 +93,6 @@ def error_check(**kwargs):
         id2 = kwargs.get("id2")
 
     if error == "401":
-
         try: # Checks if the user is in session
             if request.session['name']: # If it is
                 pass
@@ -119,9 +118,8 @@ def error_check(**kwargs):
                 return response
 
         except KeyError: # If not
-            if request.user.is_authenticated:
+         if request.user.is_authenticated:
                 request.session['name'] = request.user.username
-
                 response = "redirect" # Redirect
                 return response
 
@@ -136,7 +134,7 @@ def error_check(**kwargs):
 
         try: # Checks if the user is on the database
 
-            user = User.objects.get(id=id1)
+            user = User.objects.get(username=request.session['name'])
             user2 = User.objects.get(id=id2)
 
             if str(user.id) != id1 and str(user.id) != id2: # Checks if user is one of the user on the room.

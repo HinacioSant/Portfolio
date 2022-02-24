@@ -87,6 +87,9 @@ class user_m:
 
         if check_password(self.form['password1'], verification.password):  # Using the django check_password to se if the passwords match
             sign_in(request_login, verification, backend='django.contrib.auth.backends.ModelBackend') # if so, sign in
+
+            request_login.session["name"] = request_login.user.username
+
             return "redirect"                                                            # and redirect to the home page
         else:                                                                                   # if not
             return "invalid password"   # error message  (message on the html side)

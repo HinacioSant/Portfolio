@@ -34,11 +34,13 @@ def msaindex(request): # MSA index page
 def msa_menu(request): # User/Overall menu
     response = error_check(request=request, error="401")
 
+
     if response == "redirect":
         return redirect('msa')
 
     friendlist = Friend.objects.filter(user=response)
     userlist =  User.objects.filter(is_active=False).exclude(Friend_friendlist__in=friendlist) # list of temporary users that you can chat with.
+    userlist2 =  User.objects.filter(is_active=True).exclude(Friend_friendlist__in=friendlist) # list of non-temporary users that you can chat with.
 
 
     if request.method == "POST":
@@ -60,6 +62,7 @@ def msa_menu(request): # User/Overall menu
         "user1": response,
         "list": userlist,
         "friendlist": friendlist,
+        "list2": userlist2,
     }
 
     return render(request, "MSA/msa_menu.html",context) # Render template
@@ -87,7 +90,7 @@ def chat(request, id1, id2): # Chat page (id variable to room creation)
     context ={
         "id1":id1,
         "id2":id2,
-        "name": user.username,
+        "user":user,
         "user2": user2,
         "room": room,
     }
@@ -108,7 +111,12 @@ def messages(request, id1, id2): # Message page(add/query and deploy of messages
         room_r = id1+id2 # Variable added to easier use.
         room = r_request.objects.get(room=room_r)
 
-        data = Msa.objects.filter(room = room) # Messages query.
+        user = User.objects.get(username=request.session['name'])
+
+        data = Msa.objects.filter(room = room) # Messages query
+        seen_msgs = Msa.objects.filter(room = room, seen=False).exclude(user=user)
+
+        seen_msgs.update(seen=True)
 
         messages_dict = {"messages":[]}
         for a in data:                                               # Decrypt content before showing the message to the user. Check(encryption_ultil.py for more info)
@@ -124,10 +132,21 @@ def room_request(request): # Room query page (handle the invite to enter a room)
         user = User.objects.get(username=request.session['name'])
 
         data = r_request.objects.filter(request_to=user.id) # Room request query
+        if not data:
+            data = r_request.objects.filter(request_from=user.id)
 
-        requests_dict = {"requests":[]}
-        for a in data:
-            requests_dict['requests'].append({"request_from": a.request_from.id, "request_to": a.request_to.id, "room": a.room})
+            requests_dict = {"requests":[]}
+            for a in data:
+                seen_msgs = Msa.objects.filter(room = a, seen=False).exclude(user=user)
+                if seen_msgs:
+                    requests_dict['requests'].append({"request_from": a.request_to.id, "request_to": a.request_from.id, "room": a.room, "new_msgs": len(seen_msgs), "msg_from": a.request_to.username})
+
+        else:
+            requests_dict = {"requests":[]}
+            for a in data:
+                seen_msgs = Msa.objects.filter(room = a, seen=False).exclude(user=user)
+                if seen_msgs:
+                    requests_dict['requests'].append({"request_from": a.request_from.id, "request_to": a.request_to.id, "room": a.room, "new_msgs": len(seen_msgs), "msg_from": a.request_from.username})
 
     except ObjectDoesNotExist: # If not
         return redirect('msa') # Redirect
@@ -135,23 +154,24 @@ def room_request(request): # Room query page (handle the invite to enter a room)
     return JsonResponse(requests_dict) # Return a serialized list of the rooms that the user was invited to in json response.
 
 
-def search(request): # Search for user (redirection to room creation)
-    if request.method == 'POST': # Only handle POST requests
-        id1 = request.POST['id1'] # Variable added to easier use
-        id2 = request.POST['id2'] # Variable added to easier use
-        room = id1 + "/"+ id2 # Variable added to easier use
-
-        return redirect('chat/'+room) # Redirect to the room
-    else:
-        return redirect('msa') # If not a POST request redirect to the index page
 
 def check(request, new_check): # Page to check if there is new rooms/messages to be added to the user.
     user = User.objects.get(username=request.session['name'])
     response = {}
     if new_check == "room": # Room
         try:
-            rooms = r_request.objects.filter(request_to=user).latest("request_from")
-            response = {"new_requests": "yes", "room": rooms.request_from.id}
+            data = r_request.objects.filter(request_to=user.id)
+            if not data:
+                data = r_request.objects.filter(request_from=user.id)
+
+
+            for a in data:
+                seen_msgs = Msa.objects.filter(room = a, seen=False).exclude(user=user)
+
+                if len(seen_msgs) > 0:
+                    response = {"new_requests": "yes", "room": a.request_from.id}
+                    break
+
         except ObjectDoesNotExist:
             pass
 
@@ -162,5 +182,10 @@ def check(request, new_check): # Page to check if there is new rooms/messages to
             response = {"new_messages": "yes", "time": chat.created_time.strftime("%H:%M:%S")}
         except ObjectDoesNotExist:
             pass
+
+        except ValueError:
+            pass
+
+
 
     return JsonResponse(response)

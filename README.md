@@ -55,16 +55,20 @@ Chat:
   some math on better way to gather the messages. -done
   set requests to a alert of sort, so people can accept/deny.- kinda droped this
   better way to see who you can chat with- kinda droped this
-  notifications on new msgs-
-  keep tabs who were open still open of refresh or just refresh the userlist/friendlist-
+  notifications on new msgs-Done
+  keep tabs who were open still open of refresh or just refresh the userlist/friendlist-done
   accept or deny friend request, - kinda droped this
-  set refresh on accept of the request-
-  maybe drop the online thing who bloody knows-
+  set refresh on accept of the request-drop
+  maybe drop the online thing who bloody knows-yep
+
   search maybe on the userlist-
+
   set labels to every thing-
-  way to keep titles while scrolling.
-  minimaze and maximaze buttons-
+
+  way to keep titles while scrolling.-done
+  minimaze and maximaze buttons-done
   things are kinda scrachi on refresh and add/unfriend user, checkout later-
+  add for real users to the list-done
 }
 Notes:
 3 {

@@ -9,8 +9,7 @@ urlpatterns = [
     path("messages/<id1>/<id2>", views.messages, name="messages"),
     path("chat/<id1>/<id2>", views.chat, name="chat"),
     path("room_request", views.room_request, name="room_request"),
-    path("search", views.search, name="search"),
-    path("check/<new_check>", views.check, name="check")
+    path("check/<new_check>/", views.check, name="check")
 
 
 ]

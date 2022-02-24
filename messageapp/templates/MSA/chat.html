@@ -1,11 +1,13 @@
 {% block content %}
-<p id="style_user_t">{{user2}}</p>
+<p id="style_user_t">{{user2}}</p><p id="m_not"></p>
+
 <div id="add_style_button"><button type="button" onclick="remove_element{{room}}('chat{{room}}')"><span class="material-icons md-18">close</span></button>
 <button type="button" onclick="maximize('chat{{room}}')"><span class="material-icons md-18">crop_square</span></button>
 <button type="button" onclick="minimize('chat{{room}}')"><span class="material-icons md-18">minimize</span></button></div>
 
 <div class="style_content">
 <div>
+
 
 <div id="display{{room}}"></div>
 
@@ -15,7 +17,7 @@
     <div>
       <input type="text" class="form-control focus" style="float:left; margin:5px; width:61%" placeholder="Message" id="content{{room}}" aria-describedby="inputGroupPrepend" name="content" required>
       <input type="hidden" id="time{{room}}" name="time" value="{% now () %}">
-      <input type="hidden" id="name{{room}}" name="name" value="{{name}}">
+      <input type="hidden" id="name{{room}}" name="name" value="{{user.username}}">
       <button class="btn btn-outline-light btn-sm" style="margin:5px" type="submit">Submit</button>
     </div>
 
@@ -28,6 +30,7 @@
 {% block javascript %}
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script> // Post the form and display the message
+
   $(document).on('submit','#form{{room}}',function(e){
     e.preventDefault();
     var name = $('#name{{room}}').val()
@@ -66,6 +69,9 @@
 $(document).ready(function(){
   $("#chat_div").attr("id", "chat{{room}}") // The chat display must have a
   msg_r{{room}}()                                    // unique id, so I add it here.
+
+  $("#m_not").html("")
+  document.title = "MSA Menu"
 });
 
 // Query for new messages every 4 seconds
@@ -78,7 +84,12 @@ function new_messages(){
         success: function(response){
             if (response.new_messages == "yes" && document.getElementById(response.time) == null ){
               msg_r{{room}}()
-            }
+
+              if (minimized){
+                $("#m_not").html("(!)")
+                document.title = "MSA Menu (!)"
+                }
+              }
             }
         })
 };
@@ -93,20 +104,24 @@ function msg_r{{room}}(){
             for (var key in response.messages)
             {
                 var p_msg = document.createElement("p")
+                var p_time = document.createElement("p")
                 if (response.messages[key].user == "{{user2}}"){
                   p_msg.setAttribute("class", "p_msg2")
+                  p_time.setAttribute("class", "p_time2")
+
                 }
                 else{
                   p_msg.setAttribute("class", "p_msg")
+                  p_time.setAttribute("class", "p_time")
+
                 }
 
-                var p_time = document.createElement("p")
-                p_time.setAttribute("class", "p_time")
                 p_time.setAttribute("id", response.messages[key].time)
 
 
                 p_msg.innerHTML = response.messages[key].content
                 p_time.innerHTML = response.messages[key].time
+
 
                 $("#display{{room}}").append(p_msg, p_time);
             }
@@ -119,8 +134,18 @@ function remove_element{{room}}(element){
   $("#" + element).remove()
   clearInterval(m_timer{{room}})
 
-  $("button[name="+{{id2}}+"]").attr("disabled", false) // re-enable the button.
+  if ({{user.id}} == {{id2}}){
+    $("button[name="+{{id1}}+"]").attr("disabled", false) // re-enable the button.
+
+  }
+  else{
+    $("button[name="+{{id2}}+"]").attr("disabled", false) // re-enable the button.
+
+  }
 }
+
+
+
 </script>
 
 
