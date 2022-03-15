@@ -3,13 +3,25 @@
 {% block title %}MSA Menu{% endblock %}
 
 {% block content %}
-<h1>Hello {{user1}}!</h1>
-<h4>New messages<h4>
-<div id="rooms"></div>
-<h4>--------</h4>
+<div class="blur" id="background_msa_image">
+</div>
+
+<div class="text_center">
+<h1 id="font_h">Hello {{user1}}!</h1>
+
 <p id="msg"></p>
-<h3> Search for a user!</h3>
-<div style="width:40%; float:left;">
+{% if request.user.is_authenticated %}
+
+<div class="alert alert-dark alert-dismissible fade show" id="alert_div" role="alert">
+  <p>Welcome to MSA, interact and converse with any of the users on the userlist completely incognito and private, every message is encrypted, MSA also auto deletes messages and users(non registered) every 12 hours.
+  Users who are logged into MSA have exclusive features, like adding friends, and seeing on the userlist other registered users(red color names).</p>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+</div>
+
+<div class="search_div">
+<h3 id="font_h"> Search and start a chat with a specific user!</h3>
 <form action="#" method="post" id="search_form">
   {% csrf_token %}
   <div class="form-group mt-3">
@@ -20,14 +32,21 @@
         <option value="{{u.id}}">{{u}}</option>
       {% endfor %}
     </datalist>
-    <button type="submit" class="mt-1 btn btn-lg btn-secondary"> Start Chat! </button>
+    <button type="submit" class="mt-1 btn btn-sm btn-secondary"> Start Chat! </button>
   </div>
 </form>
 </div>
 
 <div id="all_tables">
 
+
+
 <div id="userlist">
+
+<div class="button_userlist sticky-top" style="z-index:9999;">
+  <div id="add_style_button"><button title="Open Userlist" onclick="collapse_element('table1')"><span class="material-icons">view_list</span></button></div>
+</div>
+
 <table class="table table-dark table-hover" id="table1">
   <thead class="sticky-top">
     <tr>
@@ -40,8 +59,8 @@
         {% for u in list2 %}
           <tr>
             {% if u != user1 %}
-              <td style="color:red">{{u}} <div id="add_style_button"><button type="submit"  name="{{u.id}}" onclick="msg_user({{user1.id}}, {{u.id}})"><span class="material-icons md-18">chat</span></button>
-                        <button type="submit" id="{{u.id}}" onclick="add_user({{u.id}})"><span class="material-icons md-18">person_add</span></button></div></td>
+              <td style="color:red">{{u}} <div id="add_style_button"><button title="Start Chat" type="submit"  name="{{u.id}}" onclick="msg_user({{user1.id}}, {{u.id}})"><span class="material-icons md-18">chat</span></button>
+                        <button title="Add Friend" type="submit" id="{{u.id}}" onclick="add_user({{u.id}})"><span class="material-icons md-18">person_add</span></button></div></td>
             {% endif %}
           </tr>
         {% endfor %}
@@ -49,8 +68,10 @@
       {% for u in list %}
         <tr>
           {% if u != user1 %}
-            <td >{{u}} <div id="add_style_button"><button type="submit" name="{{u.id}}" onclick="msg_user({{user1.id}}, {{u.id}})"><span class="material-icons md-18">chat</span></button>
-                      <button type="submit" id="{{u.id}}" onclick="add_user({{u.id}})"><span class="material-icons md-18">person_add</span></button></div></td>
+            <td >{{u}} <div id="add_style_button"><button title="Start Chat" type="submit" name="{{u.id}}" onclick="msg_user({{user1.id}}, {{u.id}})"><span class="material-icons md-18">chat</span></button>
+                {% if request.user.is_authenticated %}
+                      <button title="Add Friend" type="submit" id="{{u.id}}" onclick="add_user({{u.id}})"><span class="material-icons md-18">person_add</span></button></div></td>
+                {% endif %}
           {% endif %}
         </tr>
       {% endfor %}
@@ -58,20 +79,31 @@
 </table>
 </div>
 
-{% if request.user.is_authenticated %}
+
 <div id="friendlist">
+{% if request.user.is_authenticated %}
+<div class="button_friendlist sticky-top" style="z-index:9999;">
+  <div id="add_style_button" style="float:left;"><button title="Open Friendlist" onclick="collapse_element('table2')"><span class="material-icons">people</span></button></div>
+</div>
+{% endif %}
+<div class="button_not" style="z-index:9999;">
+  <div id="add_style_button" style="float:left;"><button title="Open Notifications" onclick="collapse_element('rooms')"><span class="material-icons">notifications</span><p id="number_notifications"></p></button></div>
+</div>
+<div id="rooms"></div>
+
+{% if request.user.is_authenticated %}
 
 <table class="table table-dark table-hover" id="table2">
   <thead class="sticky-top">
     <tr>
-      <th scope="col">Friend List</th>
+      <th id="jug2" scope="col">Friend List</th>
     </tr>
   </thead>
   <tbody id="friendlist_tbody">
     {% for f in friendlist %}
     <tr name="{{f.id}}">
-      <td>{{f.friend}} <div id="add_style_button"><button type="submit"  name="{{f.friend.id}}" onclick="msg_user({{user1.id}}, {{f.friend.id}})"><span class="material-icons md-18">chat</span></button>
-        <button type="submit" id="{{f.id}}" onclick="unfriend_user({{f.id}})"><span class="material-icons md-18">person_remove</span></button></div></td>
+      <td>{{f.friend}} <div id="add_style_button"><button title="Start Chat" type="submit"  name="{{f.friend.id}}" onclick="msg_user({{user1.id}}, {{f.friend.id}})"><span class="material-icons md-18">chat</span></button>
+        <button title="Unfriend" type="submit" id="{{f.id}}" onclick="unfriend_user({{f.id}})"><span class="material-icons md-18">person_remove</span></button></div></td>
     </tr>
     {% endfor %}
   </tbody>
@@ -84,7 +116,6 @@
 <div class="chat">
 
 </div>
-
 
 {% endblock %}
 

@@ -2,7 +2,7 @@
 <p id="style_user_t">{{user2}}</p><p id="m_not"></p>
 
 <div id="add_style_button"><button type="button" onclick="remove_element{{room}}('chat{{room}}')"><span class="material-icons md-18">close</span></button>
-<button type="button" onclick="maximize('chat{{room}}')"><span class="material-icons md-18">crop_square</span></button>
+<button type="button" id="maximize" onclick="maximize('chat{{room}}')"><span class="material-icons md-18">crop_square</span></button>
 <button type="button" onclick="minimize('chat{{room}}')"><span class="material-icons md-18">minimize</span></button></div>
 
 <div class="style_content">
@@ -17,7 +17,7 @@
     <div>
       <input type="text" class="form-control focus" style="float:left; margin:5px; width:61%" placeholder="Message" id="content{{room}}" aria-describedby="inputGroupPrepend" name="content" required>
       <input type="hidden" id="time{{room}}" name="time" value="{% now () %}">
-      <input type="hidden" id="name{{room}}" name="name" value="{{user.username}}">
+      <input type="hidden" id="name{{room}}" name="name" value="{{user}}">
       <button class="btn btn-outline-light btn-sm" style="margin:5px" type="submit">Submit</button>
     </div>
 
@@ -108,11 +108,14 @@ function msg_r{{room}}(){
                 if (response.messages[key].user == "{{user2}}"){
                   p_msg.setAttribute("class", "p_msg2")
                   p_time.setAttribute("class", "p_time2")
+                  console.log("2")
 
                 }
                 else{
                   p_msg.setAttribute("class", "p_msg")
                   p_time.setAttribute("class", "p_time")
+                  console.log("1")
+
 
                 }
 
@@ -145,7 +148,10 @@ function remove_element{{room}}(element){
 }
 
 
-
+if ($('body').width() < 1000){
+    $(".chat_div").css("width","100%")
+    $(".chat_div").css("max-width","100%")
+  }
 </script>
 
 

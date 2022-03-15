@@ -30,6 +30,8 @@ body {
   width: 90%;
   max-height: 80%;
   display: block;
+  z-index: 3;
+
 
 }
 
@@ -46,9 +48,11 @@ body {
   overflow: auto;
   width: 70%;
   position: fixed;
-  left: 4%;
+  left: 13%;
   bottom: 0;
   right: 25%;
+  z-index: 3;
+
 
 }
 
@@ -112,11 +116,72 @@ body {
 
 
 .p_new{
-  font-size: 16px ;
+  font-size: 12px;
   color:gray;
-  float:left;
+  margin: 5px;
+  padding: 5px;
+  border: 2px solid white;
+  background-color: black;
 }
 
+.search_div{
+  margin: auto;
+  width: 50%;
+  position:fixed;
+  left:0;
+  right:0;
+  top:30%;
+  z-index: 1;
+}
+
+.text_center{
+  text-align: center;
+  position:fixed;
+  left:0;
+  right:0;
+  margin:auto;
+  top:2%;
+}
+
+.alert-dark{
+  position: fixed;
+  bottom: 10px;
+  width: 50%;
+  overflow-wrap: break-word;
+  left:0;
+  right:0;
+  margin:auto;
+
+}
+
+.blur {
+  width:100%;
+  height:100%;
+  pointer-events: none;
+  background-size:cover;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -ms-filter: blur(2px);
+  -o-filter: blur(2px);
+  filter: blur(2px);
+  }
+
+.button_not{
+
+}
+
+
+#background_msa_image {
+  position:fixed;
+  top:0;
+  z-index: 0;
+  overflow: hidden;
+  background: url(/static/background/background-msa.png);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: right;
+
+}
 
 #userlist{
   position:absolute;
@@ -124,9 +189,9 @@ body {
   right:0;
   top:0;
   margin: 5px;
-  max-height: 65%;
+  max-height: 98%;
   overflow: auto;
-
+  z-index: 9;
 }
 
 #userlist th, tr{
@@ -137,16 +202,21 @@ body {
 #friendlist {
   position:absolute;
   width:20%;
-  right:0;
-  bottom:0;
+  left:0;
+  top:0;
   margin: 5px;
-  max-height: 30%;
+  max-height: 98%;
   overflow: auto;
-
+  z-index: 9;
 }
 
 #friendlist th, tr{
   text-align:center;
+}
+
+
+#table2 {
+  color: #6e7c97;
 }
 
 #style_user_t{
@@ -177,4 +247,64 @@ body {
   border: black;
   float:right;
 
+}
+
+#rooms{
+  display: none;
+  width: auto;
+  height: auto;
+}
+
+#rooms h4{
+  color:red;
+  font-size: 15px;
+}
+
+#number_notifications{
+  float:right;
+  color:red;
+  font-size:10px;
+  font-weight:bold
+}
+
+#index_style{
+  width: 50% ;
+}
+
+#index_style a{
+  color: #a5e6f9;
+}
+
+#index_style a:hover{
+  color: #52b6d3;
+}
+
+@media screen and (max-width: 968px) {
+  .alert-dark {font-size: 10px; width: 90%;}
+  .text_center {font-size: 10px !important;}
+  #index_style {width: 90%;}
+  #font_h{font-size: 15px;}
+
+}
+
+@media screen and (max-width: 768px){  
+}
+
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #80808000;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #80808000;
+  border-radius: 10px;
 }

@@ -60,11 +60,16 @@ Chat:
   accept or deny friend request, - kinda droped this
   set refresh on accept of the request-drop
   maybe drop the online thing who bloody knows-yep
-
-  search maybe on the userlist-
-
+  search maybe on the userlist- done
+  style friendlist
+  take add button awa6y7
   set labels to every thing-
+  
+  performance add/remove friend
 
+  maybe colapsse the tablers
+  make it work on phones and shit
+  do the msa index as WELL
   way to keep titles while scrolling.-done
   minimaze and maximaze buttons-done
   things are kinda scrachi on refresh and add/unfriend user, checkout later-

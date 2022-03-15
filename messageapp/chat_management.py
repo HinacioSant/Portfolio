@@ -8,7 +8,7 @@ class chat_m: # Message creation
     def __init__(self, data):
         self.data = data
 
-    def msg(self, room): # Add message function
+    def msg(self, room, nw): # Add message function
 
         check = Msa.objects.filter(room = room) # Variable added to easie use
 
@@ -24,9 +24,11 @@ class chat_m: # Message creation
         add = Msa(room = room, user=user, content=content) # Add a new message
         add.save()
 
+        nw.update(new_messages=True)
+
     def add_friend(self):
         try: # Check if the object already exist.
-            Friend.objects.get(friend=self.data["user2"])
+            Friend.objects.get(user=self.data["user"], friend=self.data["user2"])
             response = "object already exists"
 
             return response
@@ -79,7 +81,7 @@ class rooms_r: # Room creation
             add.save()
 
 
-def error_check(**kwargs):
+def error_check(**kwargs): # Error handler
     error = kwargs.get("error")
 
     if kwargs.get("request"):

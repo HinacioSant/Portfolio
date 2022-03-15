@@ -1,20 +1,32 @@
-{% extends "PTs/layout.html" %}
+{% extends "MSA/base.html" %}
 
 {% block title %}MSA{% endblock %}
 
 {% block content %}
+<div class="text_center" id="index_style">
 
-<h1>Index</h1>
+<h1>MSA</h1>
 
 <form action="/msa" name="InputName" id="InputName" method="post" class="row g-3">
   {% csrf_token %}
-    <div class="col-md-4">
-      <label for="iname" class="form-label">Name</label>
+      <label for="iname" class="form-label">Create a temporaty user:</label>
       <input type="text" class="form-control" placeholder="Name" id="username" aria-describedby="inputGroupPrepend" name="username" required>
       <input type="hidden" name="status" id="status" value="False">
-    </div>
-    <div class="col-12">
-      <button class="btn btn-primary" type="submit">Submit</button>
-    </div>
+
+      <div class="col-12">
+        <button class="btn btn-outline-light " type="submit">Create temporary user</button>
+      </div>
 </form>
+<br>
+<br>
+<p>If you already has a account in the application you can <a href="/login">login here</a>, or <a href="/register">register here.</a></p>
+
+<div class="alert alert-dark alert-dismissible fade show" role="alert">
+  <p>Welcome to MSA, interact and converse with any of the users on the userlist completely incognito and private, every message is encrypted, MSA also auto deletes messages and users(non registered) every 12 hours.
+  Users who are logged into MSA have exclusive features, like adding friends, and seeing on the userlist other registered users(red color names).</p>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+</div>
+
+
 {% endblock %}

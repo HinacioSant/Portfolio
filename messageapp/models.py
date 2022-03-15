@@ -9,6 +9,8 @@ class r_request(models.Model):
     created_time = models.DateTimeField(default=timezone.now, blank=True)
     request_from = models.ForeignKey(User, on_delete=models.CASCADE, related_name="User_request_form")
     request_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name="User_request_to")
+    new_messages = models.BooleanField(default=False)
+
 
     def __str__(self):
         return '{}'.format(self.room)
