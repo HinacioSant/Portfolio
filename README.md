@@ -61,15 +61,13 @@ Chat:
   set refresh on accept of the request-drop
   maybe drop the online thing who bloody knows-yep
   search maybe on the userlist- done
-  style friendlist
-  take add button awa6y7
-  set labels to every thing-
-  
-  performance add/remove friend
-
-  maybe colapsse the tablers
+  style friendlist done
+  take add button awa6y7 done
+  set labels to every thing- done
+  performance add/remove friend done
+  maybe colapsse the tablers done
   make it work on phones and shit
-  do the msa index as WELL
+  do the msa index as WELL done
   way to keep titles while scrolling.-done
   minimaze and maximaze buttons-done
   things are kinda scrachi on refresh and add/unfriend user, checkout later-
@@ -77,7 +75,15 @@ Chat:
 }
 Notes:
 3 {
-  do error messages and stop access propl through template
+  set add note and add bullet to a element inside the note/bullet page- done
+  put everything on a stylesheet and a specific js file and stuff - done
+  do error messages and stop access propl through template - done
+  use the error handler from msa to handle errors
+  prob use render to render error msgs
+  add fonts and resposiveness - done
+  maybe confirm delete
+  maybe add login to the page it self - done
+  style Add bulllet
 }
 Gallery:
 4 {

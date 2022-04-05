@@ -48,6 +48,10 @@ class notes_management: # Overall management.
                 # Then add them.
                 add = notes(user=self.user, title=self.form['title'], subject=self.form['subject'], type=self.form['type'], content=self.form['content'], finished=False)
                 add.save()
+
+                response = "redirect_notes" # Return reditect to notes page.
+
+                return response
         except KeyError:
             pass
 

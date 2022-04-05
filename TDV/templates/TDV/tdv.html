@@ -2,11 +2,40 @@
 
 {% block title %}TDV{% endblock %}
 
+{% block navlink %}
+<li class="nav-item">
+  <a class="nav-link" href="/TDV/notes_page">Notes</a>
+</li>
+{% endblock %}
+
 {% block content %}
-<div id="n_div">
+<div class="text_center">
   <h1>TDV</h1>
-  <h1>User: {{request.user}}</h1>
-  <a href="TDV/add_notes">Add</a><br>
-  <a href="TDV/notes_page">Notes</a>
+
+  {% if error %}
+  <p>You are not logged in please log-in <span onclick="login_element()"><a href="#">here</a></span></p>
+  <br>
+  <br>
+  {% endif %}
+
+
+  <h4 id="content_n">This is a note application, you can create/delete/edit notes and bullet elements.<br>
+    Click on the Notes link on the navbar to be redirected to the notes page.<br>
+    Every code and layout/css elements where made by me or heavly changed to fit the projects needs for more projects visit: <a href="/projects">www.hinacio.com/projects</a></h4>
+
+
+
+
 </div>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+
+function login_element(){
+  window.open("http://127.0.0.1:8000/login", "login", "toolbar=yes,scrollbars=yes,resizable=yes,width=500,height=600");
+}
+
+</script>
 {% endblock %}
