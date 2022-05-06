@@ -37,6 +37,11 @@ note litewrite better
   DOWNLOAD BUTTON AS WELL !!!!!!!!!
   }}
 
+
+
+ ------------------- Clean the stylesheets after TG2A ----------------------
+LOOK FOR MUILTPLE SUBMIT FORM  (onclick="this.disabled=true,this.form.submit();") client side fix(ifi)
+
 Login:
 1 {
   redo the captcha thing- set to 2 - done
@@ -88,9 +93,19 @@ Notes:
 Gallery:
 4 {
   TEST THAT IMAGE !!!!!!!!!!!!!!!!!!
+  stylesheet -CHECK IT-  
   DOWNLOAD BUTTON AS WELL !!!!!!!!!
-  maybe set stuff to cache as well for performance
-  stylesheet
+  maybe set stuff to cache as well for performance    
+  view profiles
+  do profile style - thumbnais in profile
+  stop access and shit
+  delete from media too and thumb
+  redirect on javascript
+  you can smash submit and upload infinite
+  add style
+  login to new window  
+  change icon unfavorite on profile
+
 }
 
 TEST OTHER BROWSERS

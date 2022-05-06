@@ -19,7 +19,7 @@ class gallery(models.Model):
 
 
     def get_thumbnail(self): # Get thumbnail method.
-        size = (720, 405)
+        size = (1920, 1080)
         image_name = "media/" + self.image.name
         image_thumbnail = "media/" + os.path.splitext(self.image.name)[0] + ".thumbnail"
 
@@ -32,19 +32,30 @@ class gallery(models.Model):
             with Image.open(image_name) as im:
                 width, height = im.size
                 gallery.objects.filter(id=self.id).update(thumbnail_url= "/" + image_thumbnail) # Add the url to the database.
+                if im.mode in ("RGBA", "P"):
+                     im = im.convert("RGB")
+
                 if width < height: # If is a portait type image
-                    size = (607,867) # Different dimensions
+
+                    size = (1080,1080) # Different dimensions
+
+                    if width < 1080: # Preventing image to be stretch out.
+                        size = (1080,width)
+
+
                     im.thumbnail(size, Image.LANCZOS, reducing_gap=1.0)
                     im = ImageEnhance.Contrast(im)
-
 
                     im.enhance(1.3).save(image_thumbnail, "JPEG") # Add contrast and save.
 
                     return "/" + image_thumbnail # return the url.
 
+                if height < 1080: # Preventing image to be stretch out.
+                    size = (1920,height)
+
+
                 im.thumbnail(size, Image.LANCZOS, reducing_gap=1.0)
                 im = ImageEnhance.Contrast(im)
-
 
                 im.enhance(1.3).save(image_thumbnail, "JPEG") # Add contrast and save.
 

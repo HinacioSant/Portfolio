@@ -3,31 +3,63 @@
 {% block title %}{{user_profile}} Profile's{% endblock %}
 
 {% block content %}
-<style>
-  .rounded{
-    height:150px;
-    width:200px;
-  }
-</style>
 
-<h1>Uploads</h1>
-<ul>
+<div class="text_center">
+  <h1>{{user_profile}}</h1>
+
+</div>
+
+<div id="all_tables">
+
+<h1>Uploads:</h1>
+<div class="column_p">
 {% for upload in all_uploads %}
-  <li><a href="{% url 'image_page' upload.id %}">{{upload.title}}</a></li>
-{% endfor %}
-</ul>
+<div class="up_style">
 
-<h1>Favorites</h1>
-<ul>
+  <img src="{{upload.get_thumbnail}}">
+  <div class="text_center">
+
+    <p class="p_base_style">{{upload.title}}</p>
+
+    <a href="{% url 'image_page' upload.id %}">Link</a>
+    {% if user_p %}
+    <div id="add_style_button"><button type="button" onclick="delete_img('{{upload.id}}')"><span class="material-symbols-outlined">delete</span></button></div>
+    {% endif %}
+  </div>
+
+</div>
+{% endfor %}
+</div>
+
+
+<h1>Favorites:</h1>
+<div class="column_p">
 {% for f in fav %}
-  <li><a href="{% url 'image_page' f.image.id %}">{{f.image.title}}</a></li>
+<div class="up_style">
+
+  <img src="{{f.image.get_thumbnail}}">
+  <div class="text_center">
+
+    <p class="p_base_style">{{f.image.title}}</p>
+
+    <a href="{% url 'image_page' f.image.id %}">Link</a>
+    {% if user_p %}
+    <div id="add_style_button"><button type="button" onclick="delete_fav('{{f.image.id}}')"><span class="material-symbols-outlined">delete</span></button></div>
+    {% endif %}
+
+  </div>
+
+</div>
 {% endfor %}
-</ul>
+</div>
+<br>
+</div>
+{% csrf_token %}
 
 
-<h1>{{user_profile}}</h1>
 {% endblock %}
 
 {% block javascript %}
-
+{% load static %}
+<script src="{% static 'js/TG2A/profile.js' %}"></script>
 {% endblock %}

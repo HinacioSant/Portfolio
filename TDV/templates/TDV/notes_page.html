@@ -32,7 +32,7 @@
             <textarea class="form-control" id="add_note" placeholder="Note" required name="content" cols="30"  rows="6"></textarea>
 
 
-          <button type="submit" class="btn btn-secondary">Submit</button>
+          <button type="submit" class="btn btn-secondary" onclick="this.disabled=true,this.form.submit();">Submit</button>
           </form>
 
         </div>
@@ -49,10 +49,10 @@
 
               <form action="/TDV/add_notes" method="post">
                 {% csrf_token %}
-                <input id="input_style" type="text" class="form-control" placeholder="Title" id="title" name="title" required>
-                <input id="input_style" type="text" class="form-control" placeholder="Subject" id="subject" name="subject" required>
+                <input id="input_style" required type="text" class="form-control" placeholder="Title" id="title" name="title">
+                <input id="input_style" required type="text" class="form-control" placeholder="Subject" id="subject" name="subject">
                 <input type="hidden" value="bullet" id="type" name="type">
-                <button type="submit" style="margin: 5px" class="btn btn-secondary btn-sm ">Submit</button>
+                <button type="submit" style="margin: 5px" class="btn btn-secondary btn-sm " onclick="this.disabled=true,this.form.submit();">Submit</button>
               </form>
 
           </div>
@@ -92,12 +92,12 @@
         <form action="/TDV/add_notes" id="delete_note_form" method="post">
           {% csrf_token %}
           <input type="hidden" name="del_n" value="{{content.id}}" >
-          <div id="add_style_button"><button onclick="return confirm('Are you sure you want to delete this item?');" type="submit"><i class="material-icons">delete</i></button></div>
+          <div id="add_style_button"><button onclick="return confirm('Are you sure you want to delete this item?');" title="Delete note" type="submit"><i class="material-icons">delete</i></button></div>
         </form>
         </div>
 
         <div id="style_p_addbuton" style="top: 31px; right:30px;">
-          <div id="add_style_button"><button onclick="edit_note({{content.id}})"><i class="material-icons">edit</i></button></div>
+          <div id="add_style_button"><button title="Edit note" onclick="edit_note({{content.id}})"><i class="material-icons">edit</i></button></div>
         </div>
 
       </div>
@@ -156,7 +156,7 @@
 
       {% endfor %}
       <div id="button_p" style="right:0">
-      <div id="add_style_button"><button type="submit"><i class="material-icons">save</i></button></div>
+      <div id="add_style_button"><button type="submit" title="Save bullet changes"><i class="material-icons">save</i></button></div>
       </div>
 
       </tbody>
@@ -166,12 +166,12 @@
       <form action="/TDV/notes_page" method="post">
         {% csrf_token %}
         <input type="hidden" name="del_b" value="delete_finished_bullets">
-        <div id="add_style_button"><button type="submit"><i class="material-icons">delete</i></button></div>
+        <div id="add_style_button"><button title="Delete finished bullets" type="submit" onclick="return confirm('Are you sure you want to delete every finished bullet?');"><i class="material-icons">delete</i></button></div>
       </form>
       </div>
 
       <div id="button_p" style="right:60px">
-        <div id="add_style_button"><button type="submit" onclick="Add_toggle('note_bullet_div')"><i class="material-icons">add</i></button></div>
+        <div id="add_style_button"><button type="submit" title="Add bullet" onclick="Add_toggle('note_bullet_div')"><i class="material-icons">add</i></button></div>
       </div>
 
       </table>

@@ -2,6 +2,10 @@ from .models import gallery, favorite
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .signals import my_callback
+from django.utils import timezone
+from datetime import datetime, timedelta
+
 
 class image_management:
     def __init__(self, user, form):
@@ -10,12 +14,32 @@ class image_management:
 
     # Add image method
     def add_image(self):
+
         if self.form.is_valid(): # Check validity of the form.
             # Add image to the database.
             add = gallery(user= self.user, title=self.form['title'].value(), image=self.form['image'].value())
+
+            # Limit one image upload per 3 sec window
+            obj_check = gallery.objects.filter(user=self.user).last()
+            if obj_check != None:
+                last_created_obj = obj_check.date
+                time_elapsed =  timezone.now() - last_created_obj
+                if time_elapsed < timedelta(seconds=3):
+                    return "ERROR: too many uploads in a small time window, wait before next upload."
+
+            if len(gallery.objects.all()) > 100:
+                return "Gallery full!"
+
+            if len(self.form['title'].value()) < 6:
+                return "Title too short!(Titles must have at least 6 characters)"
+
             add.save()
             # Save and call get_thumbnail method. Check models.py for more info.
             add.get_thumbnail()
+
+        else:
+            return self.form.errors
+
 
 
 
@@ -52,9 +76,18 @@ class image_management:
             return response
 
 
+    def delete_img(self):
+        try:
+            img_object = gallery.objects.get(id=self.form['image_id'], user=self.user)
+            img_object.delete()
+
+        except ObjectDoesNotExist:
+            response = "Object does not exist!"
+            return response
+
 
 def infinite_scroll(gallery_content, page): # Infinite scroll function.
-        paginator = Paginator(gallery_content, 10)
+        paginator = Paginator(gallery_content, 20)
 
         try:
             items = paginator.page(page)
