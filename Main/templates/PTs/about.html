@@ -1,9 +1,39 @@
 {% extends "PTs/layout.html" %}
 
-{% block title %}About{% endblock %}
+{% block title %}About - Hinacio Sant'{% endblock %}
+
+{% block nav %}
+<li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+<li class="breadcrumb-item"><a href="/projects">Projects</a></li>
+<li class="breadcrumb-item"><a href="/resume">Resume</a></li>
+<li class="breadcrumb-item active" aria-current="page">About</li>
+{% endblock %}
 
 {% block content %}
+<div class="text_center" id="tdv_index">
 
-<h1>About</h1>
+    <h1>About</h1>
+    <p class="desc">Hi!, My name is Hinacio, I'm a 22 years old Full Stack Developer from Brazil. I've been programming since 2019, I really enjoy problem solving, thats why I usually lean more towards back-end than front-end, but I do enjoy working front-end as well.
+      I'm well organised (a little methodical even), disciplined, independent, I also enjoy books, games and art.</p>
+
+    <br>
+
+    <p class="desc">Under <a href="/projects">Projects</a> you can find a selection of recent projects that I've build. You can also find my resume (online or downloadable version) under <a href="/resume">Resume.</a></p>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <h1>Links</h1>
+    <div class="title_r">
+
+      <a class="h1_r" href="mailto:me@hinacio.com">me@hinacio.com</a> |
+      <a class="h1_r" href="https://github.com/NeroSals">Github</a>
+    </div>
+
+
+
+</div>
 
 {% endblock %}

@@ -1,9 +1,124 @@
 {% extends "PTs/layout.html" %}
 
-{% block title %}Resume{% endblock %}
+{% block title %}Resume - Hinacio Sant'{% endblock %}
+
+{% block nav %}
+<li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+<li class="breadcrumb-item"><a href="/projects">Projects</a></li>
+<li class="breadcrumb-item active" aria-current="page">Resume</li>
+<li class="breadcrumb-item"><a href="/about">About</a></li>
+{% endblock %}
 
 {% block content %}
+<br>
+<div class="body_r">
 
-<h1>Resume</h1>
+<h1 class="h1_r">Hinacio Sant’Ana</h1>
+<p class="p_r" style="font-size:18px">Web Developer</p>
+
+<br>
+
+<div class="column_r">
+  <p class="title_r">Profile</p>
+  <p class="p_r">Self-Taught Web Developer knowledgeable in front-end,
+    back-end, and debugging processes. Able to effectively
+    self-manage during independent projects, as well as collaborate
+    in a team setting. With 3+ years of programming experience.
+  </p>
+  <br>
+
+  <p class="title_r">Courses</p>
+  <p class="subtitle_r">cs50, Harvard. <span class="p_r" style="font-weight: normal;">January 2020 – july 2020</span></p>
+
+  <br>
+
+  <p class="title_r">Technology Summary</p>
+  <p class="subtitle_r">Languages:</p>
+    <ul class="p_r">
+      <li>Python</li>
+      <li>JavaScript</li>
+      <li>CSS</li>
+      <li>Sass</li>
+      <li>HTML</li>
+    </ul>
+    <p class="subtitle_r">Tools:</p>
+      <ul class="p_r">
+        <li>AJAX</li>
+        <li>JSON</li>
+        <li>GIT</li>
+      </ul>
+    <p class="subtitle_r">Libraries:</p>
+      <ul class="p_r">
+        <li>jQuery</li>
+        <li>Bootstrap</li>
+      </ul>
+    <p class="subtitle_r">Other:</p>
+      <ul class="p_r">
+        <li>Responsive design skills</li>
+        <li>Analytical skills</li>
+        <li>Debugging skills</li>
+      </ul>
+</div>
+
+<div class="column_r">
+
+  <p class="title_r">Details</p>
+  <p class="p_r">Brazil</p>
+  <a href="mailto:me@hinacio.com">me@hinacio.com</a>
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <p class="title_r">Links</p>
+  <a href="http://www.hinacio.com/">My website</a><br>
+  <a href="https://github.com/NeroSals">Github</a>
+
+  <br>
+  <br>
+
+  <p class="title_r">Skills</p>
+  <p class="p_r">Ability to Work in a Team.</p>
+  <p class="p_r">Effective Time Management.</p>
+  <p class="p_r">Fast Learner.</p>
+  <p class="p_r">Adaptability</p>
+  <p class="p_r">Effective Communication Skills.</p>
+  <p class="p_r">Able to dictate the whole map of Dark Souls 3. (DLCs excluded)</p>
+
+  <br>
+  <br>
+
+  <p class="title_r">Languages</p>
+  <p class="p_r">Portuguese</p>
+  <p class="p_r">English</p>
+  <p class="p_r">Spanish (intermediate)</p>
+
+  <br>
+  <br>
+
+  <p class="title_r">Interests</p>
+  <p class="p_r">Berserk</p>
+  <p class="p_r">Dark Souls</p>
+  <p class="p_r">The Stormlight Archive</p>
+  <p class="p_r">How bad the end of HIMYM is</p>
+
+
+
+
+</div>
+<div>
+  <a href="/media/resume/Hinacio Sant'Ana.pdf" class="btn btn-outline-light" id="ktp_font">See resume online</a>
+  <a href="/media/resume/Hinacio Sant'Ana.pdf" download class="btn btn-outline-light" id="ktp_font">Download resume</a>
+
+</div>
+<br>
+<br>
+<br>
+
+</div>
+
+
 
 {% endblock %}

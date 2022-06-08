@@ -9,7 +9,7 @@ body {
   top:0;
   z-index: 0;
   overflow: hidden;
-  background: url(background/background-register.png);
+  background: url(/static/background/background-register.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -20,7 +20,7 @@ body {
   top:0;
   z-index: 0;
   overflow: hidden;
-  background: url(background/background-login.png);
+  background: url(/static/background/background-login.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -30,7 +30,7 @@ body {
   top:0;
   z-index: 0;
   overflow: hidden;
-  background: url(background/background-home.png);
+  background: url(/static/background/background-home.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -137,151 +137,10 @@ body {
   font-size: 15px;
 }
 
-#n_div {
-    position:relative;
-
-
-    top:0;
-    left:0;
-
-
-    height:100%;
-    width:auto;
-
-
-    transition: margin-left .5s;
-    padding: 16px;
-    color:white;
-
-
-    }
-
 #t_style{
   font-weight:bold;
 }
 
-#p_size {
-  font-size:27px !important;
-}
-
-#title_n {
-  text-align:center;
-}
-
-#bottom_p {
-  position:fixed;
-  bottom:0;
-  right:0;
-
-}
-
-#add_style_button{
-  background-color: transparent;
-  color:white;
-  border: black;
-  float:right;
-}
-
-#add_style_button :hover{
-  color:blue;
-
-}
-
-
-#b_style {
-  background-color: transparent;
-  border: black;
-
-
-}
-
-#b_style :hover{
-  color:blue;
-
-}
-
-
-#content_n {
-   font-family: karma;
-   line-height: 2em;
-   font-size: 21.3px;
-   text-align: center;
-   margin: 8px 20%;
-   color: white;
-
-}
-
-#title_s {
-  padding: 5px;
-  color:white;
-  padding-bottom: 17px;
-  font-family: 'Courier New', monospace;
-
-}
-
-#title_s h1:hover{
-  color:gray;
-}
-
-
-
-#button_p {
-  position:fixed;
-  bottom: 10px;
-  right:30px;
-  margin: 10px;
-
-
-}
-
-#top_nav {
-  width: 100%;
-  margin: auto;
-  border: 2px solid black;
-}
-
-#add_n {
-  position:fixed;
-  bottom: 10px;
-  width: 60%;
-}
-
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 58px;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 10px;
-
-
-
-}
-
-.sidenav a {
-  padding: 1px 1px 1px 12px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-
-
-@media screen and (max-width: 968px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-
-}
 
 @media screen and (max-width: 768px){
   .input_style{padding: 2px}
@@ -291,8 +150,6 @@ body {
   .navbar{font-size:13px}
   .navbar-brand{font-size:17px;}
   #t_style{font-size: 20px}
-
-
 
 }
 

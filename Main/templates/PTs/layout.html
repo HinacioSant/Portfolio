@@ -1,49 +1,40 @@
+{% load static %}
 <!DOCTYPE html>
 
 <html>
   <head>
     <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Main page(Portfolio) application, projects at 'https://www.hinacio.com/projects'">
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'icon/favicon.png' %}"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+
   </head>
   <style>
-      ul {
-        list-style-type: none;
-        margin-left: 10px;
-        padding: 0;
-          }
-      .nav-link {
-        margin: auto;
-        padding: auto;
-        color: white;
-      }
-
   </style>
   <body>
-    <nav class="navbar fixed-bottom navbar-dark bg-dark" style="width: 70%; margin: auto; border: 2px solid black">
-      <ul class="nav justify-content-center">
-        <a class="navbar-brand" style=" padding: 2px; font-size: 22px; font-weight:bold" href="/">Home</a>
-        <li class="nav-item">
-          <a class="nav-link" href="/projects">Projects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/resume">Resume</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/">Github</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
-        </li>
-      </ul>
+    <div class="text_center" id="nav_div">
+      <nav class="b_nav_styles" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        {% block nav %}
+
+        {% endblock %}
+      </ol>
     </nav>
-
-
+  </div>
 
     {% block content %}
     {% endblock %}
+
+
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Main/styles.css' %}">
+
     {% block javascript %}{% endblock %}
   </body>
 </html>

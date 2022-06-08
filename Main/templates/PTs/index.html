@@ -1,12 +1,23 @@
 {% extends "PTs/layout.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Home - Hinacio Sant'{% endblock %}
+
+{% block nav %}
+<li class="breadcrumb-item active" aria-current="page">Home</li>
+<li class="breadcrumb-item"><a href="/projects">Projects</a></li>
+<li class="breadcrumb-item"><a href="/resume">Resume</a></li>
+<li class="breadcrumb-item"><a href="/about">About</a></li>
+{% endblock %}
 
 {% block content %}
+<div class="text_center" id="tdv_index">
 
-<h1>Index</h1>
-<a href="/home">Login</a>
-<a href="/msa">MSA</a>
-<a href="/TDV">TDV</a>
-<a href="/TG2A">TG2A</a>
+  <h1 style="font-size:80px;">Hello,<br>
+     My name is Hinacio</h1>
+  <p id="p_desc">I'm a Full Stack Developer and this is my website.</p>
+  <br>
+  <br>
+  <h4 class="d-grid gap-2 col-4 mx-auto" id="ktp_font"><a class="btn btn-info btn-lg" href="/about">Contact Me!</a></h4>
+
+</div>
 {% endblock %}

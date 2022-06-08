@@ -18,9 +18,8 @@ def msaindex(request): # MSA index page
     if request.method == "POST": # Creating a Temporay user
 
         response = user_m(form=request.POST).temporary_user() # (Temporay user creation) Class outside views, see: User_management.py to more info.
-
-        if response == 'User already exists': # If the user already exist
-            return redirect('msa')# Redirect
+        if response == 'User name exists': # If the user already exist
+            return render(request, "MSA/msaindex.html", {"error": response})# Redirect
 
         request.session.set_expiry(3600) # Set the cookie to expire in one hour.
         request.session['name'] = request.POST['username'] # add the user to session.

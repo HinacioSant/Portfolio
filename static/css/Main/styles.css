@@ -1,0 +1,209 @@
+body {
+  background-color: black;
+  color:white;
+
+}
+
+.text_center{
+  text-align: center;
+  overflow-wrap: break-word;
+  margin: auto;
+
+}
+
+.card-body{
+  background-color:black;
+  color:white;
+  border-color:white;
+  margin-top: 10px;
+}
+
+.column_p{
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 5px;
+  justify-content: center;
+}
+
+.column_r{
+  width:50%;
+  margin-left:auto;
+  margin-right:auto;
+  float:left;
+  overflow-x:hidden;
+}
+
+.h1_r{
+  font-weight: bold;
+  font-family: Merriweather;
+}
+
+.p_r{
+  color:gray;
+  max-width: 70%;
+  font-size: 15px;
+
+}
+
+.title_r{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.subtitle_r{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.body_r{
+  width: 90%;
+  margin:auto;
+}
+
+.up_style{
+  border: 1px solid white;
+  max-width: auto;
+  margin: 5px;
+  float: left;
+}
+
+.up_style img{
+  max-height:200px;
+  max-width: auto;
+
+}
+
+.up_style img:hover{
+  opacity: 0.7;
+}
+
+.up_style p{
+  overflow-wrap: break-word;
+  margin: 10px;
+  font-size: 13px;
+
+}
+
+.img_style img{
+  max-height:200px;
+  max-width: auto;
+}
+
+.offcanvas-body{
+  overflow-x: hidden;
+}
+
+.offcanvas-start{
+  background-color:black;
+}
+
+.desc{
+  color:gray;
+  overflow-wrap: break-word;
+  width: 70%;
+  margin: auto;
+}
+
+.b_nav_styles{
+  --bs-breadcrumb-divider: '|';
+}
+
+.b_nav_styles a{
+  color:#0dcaf0;
+  text-decoration: none;
+}
+
+.b_nav_styles a:hover{
+  color:#6be6ff;
+}
+
+.btn-info{
+  color: #fff;
+  background-color: #06c8ef4d;
+  border-color: #0dcaf0;
+}
+
+
+#p_title{
+  font-weight: bold;
+  font-family: Kdam Thmor Pro;
+}
+
+#p_desc{
+  color:gray;
+}
+
+#tdv_index{
+  margin-top:5%;
+  width:80%;
+  margin-left:auto;
+  margin-right:auto
+}
+
+#tdv_index h1{
+  font-family: Kdam Thmor Pro;
+  font-weight:bold;
+  font-size:60px;
+}
+
+#nav_div{
+  margin-top:1%;
+  width:95%;
+  margin-left:auto;
+  margin-right:auto
+}
+
+#ktp_font{
+  font-family: Kdam Thmor Pro;
+}
+
+@media screen and (min-width: 1145px) {
+  .up_style img{max-height:300px;}
+
+}
+
+@media screen and (max-width: 1145px){
+  .up_style img{max-height:180px;}
+
+}
+
+@media screen and (max-width: 424px){
+  .img_style img{max-height:181px;}
+  .desc{font-size: 13px;}
+  #tdv_index h1{font-size: 50px !important;}
+
+}
+
+@media screen and (max-width: 374px){
+  .up_style img{max-height:150px;}
+  .nav-item{font-size: 12px;}
+  .navbar-brand{font-size: 18px !important;}
+  .img_style img{max-height:155px;}
+  .img_style p{font-size: 14px;}
+
+}
+
+
+
+/* width */
+::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px inherit;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: white;
+}

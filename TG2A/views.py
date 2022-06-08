@@ -75,8 +75,8 @@ def profile(request, user):
 
     # Query's for the profile page.
     user_1 = User.objects.get(username=user)
-    fav = favorite.objects.filter(user=user_1, favorite = True)
-    all_uploads = gallery.objects.filter(user=user_1)
+    fav = favorite.objects.filter(user=user_1, favorite = True).order_by('-id')
+    all_uploads = gallery.objects.filter(user=user_1).order_by('-date')
 
     if request.user != user_1:
         user_p = False

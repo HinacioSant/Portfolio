@@ -42,6 +42,13 @@ note litewrite better
  ------------------- Clean the stylesheets after TG2A ----------------------
 LOOK FOR MUILTPLE SUBMIT FORM  (onclick="this.disabled=true,this.form.submit();") client side fix(ifi)
 
+-Set notes when you click notes to be informative/ change tdv main page -done
+-reverse how is shown images on profile TG2A -done
+-make it work phone forgot word(responsive) -MAIN -done
+-maybe on hover more info/tecniqualites and shit -done
+-rename shit for admin  -done
+
+
 Login:
 1 {
   redo the captcha thing- set to 2 - done

@@ -1,9 +1,196 @@
 {% extends "PTs/layout.html" %}
 
-{% block title %}Projects{% endblock %}
+{% block title %}Projects - Hinacio Sant'{% endblock %}
+
+{% block nav %}
+<li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+<li class="breadcrumb-item active" aria-current="page">Projects</li>
+<li class="breadcrumb-item"><a href="/resume">Resume</a></li>
+<li class="breadcrumb-item"><a href="/about">About</a></li>
+{% endblock %}
+
 
 {% block content %}
 
-<h1>Projects</h1>
+<!-- Off canvas element begin -->
 
+<!-- Login off canvas -->
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="login_description" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="text_center" id="offcanvasExampleLabel">Login</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <hr>
+
+  <div class="offcanvas-body">
+
+    <div class="img_style">
+      <img src="/static/Projects_thumbs/Login.thumbnail">
+      <hr>
+      <p>This is a fairly complete login environment users can use their respectives Google or Github accounts to log-in or register a brand new account.
+        Users can also change password. Users who have forgotten their password can recover their account using the email for the respective account, the user will recive a email with the instructions to create a new password.</p>
+      <p>In this application I use as base the django login system with my own validation methods, Google reCAPTCHA and a few other methods to increase security. I also use <a href="https://github.com/omab/django-social-auth">django-social-auth</a> for dealing with oauth. This application also serves as base to dealing with users within the portfolio.</p>
+      <p>For more infomation you can check this application in my Github page <a href="https://github.com/NeroSals/Portfolio/tree/master/login">here.</a></p>
+      <div class="d-grid gap-2">
+      <a href="/login" id="ktp_font" class="btn btn-outline-light">Click here to go to Login</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MSA off canvas -->
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="MSA_description" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="text_center" id="offcanvasExampleLabel">MSA</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <hr>
+
+  <div class="offcanvas-body">
+
+    <div class="img_style">
+      <img src="/static/Projects_thumbs/MSA.thumbnail">
+      <hr>
+      <p>MSA is a full blown chat application. It offers a fully encrypted experience, users can make temporary accounts and chat with other users. Every chat message and temporary accounts are deleted every X amount of hours.</p>
+      <p>MSA counts with a user to user chat system, notifications when users messages each other, friend/unfriend system, a userlist or search and start chat with a specific user, all in real time.</p>
+      <p>Besides <a href="https://pypi.org/project/django-apscheduler/">Django APScheduler</a> (Periodical user/messages deletion). MSA doesn't make use of any other 3rd party application. All of MSA is built using python and javascript, I do recognize that it can be perceived as a archaic method to build a chat application. But this way does allow me to display a more in depth knowledge, thats why the choice of building this application using these tools.</p>
+      <p>For more infomation you can check this application in my Github page <a href="https://github.com/NeroSals/Portfolio/tree/master/messageapp">here.</a></p>
+      <div class="d-grid gap-2">
+      <a href="/msa" id="ktp_font" class="btn btn-outline-light">Click here to go to MSA</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TDV off canvas -->
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="TDV_description" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="text_center" id="offcanvasExampleLabel">TDV</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <hr>
+
+  <div class="offcanvas-body">
+
+    <div class="img_style">
+      <img src="/static/Projects_thumbs/TDV.thumbnail">
+      <hr>
+      <p>TDV is a note taking application. Users can create, edit or delete notes or bullets elements. Users can also use Markdown to style their notes.</p>
+      <p>TDV is a fairly simple note taking application, like every other application on this portfolio every element is made by me or heavily changed to fit the purpose of the application, in TDV I use a few <a href="https://getbootstrap.com/docs/5.1/getting-started/introduction/">Bootstrap</a> elements like <a href="https://getbootstrap.com/docs/5.1/components/navs-tabs/#tabs">tabs</a> present on the sidebar,
+        however this element is used quite distinctively from the original Bootstrap element.</p>
+      <p>In this application I use <a href="https://pypi.org/project/markdown2/">Markdown2</a> so users can use markdown to style their notes. </p>
+      <p>For more infomation you can check this application in my Github page <a href="https://github.com/NeroSals/Portfolio/tree/master/TDV">here.</a></p>
+
+      <div class="d-grid gap-2">
+      <a href="/TDV" id="ktp_font" class="btn btn-outline-light">Click here to go to TDV</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TG2A off canvas -->
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="TG2A_description" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="text_center" id="offcanvasExampleLabel">TG2A</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <hr>
+
+  <div class="offcanvas-body">
+
+    <div class="img_style">
+      <img src="/static/Projects_thumbs/TG2A.thumbnail">
+      <hr>
+      <p>TG2A is a gallery application. On the main page users will find a amalgamation of images uploaded by other users. On profile users will find every image they have uploaded and every favorited images.</p>
+      <p>TG2A functions as a real time gallery users can add images, those images will appear at the main page of TG2A, users can also favorite and download images.</p>
+      <p>In this application I use <a href="https://pillow.readthedocs.io/en/stable/">Pillow</a> for processing the images and creating thumbnails (see <a href="https://github.com/NeroSals/Portfolio/blob/master/TG2A/models.py">models</a> for more in-depth information). I also use <a href="http://imakewebthings.com/waypoints/">Waypoints</a> to create a infinite scroll that fitted the needs of TG2A
+        (see <a href="https://github.com/NeroSals/Portfolio/blob/master/TG2A/gallery_management.py">Gallery_management/infinite_scroll</a> and <a href="https://github.com/NeroSals/Portfolio/blob/master/static/js/TG2A/tg2a.js">TG2A.js</a> for more in-depth information)</p>
+
+      <div class="d-grid gap-2">
+      <a href="/TG2A" id="ktp_font" class="btn btn-outline-light">Click here to go to TG2A</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<!-- Off canvas element end -->
+
+<div class="text_center">
+  <h2 id="p_title">Projects</h2>
+  <p class="desc">This is a selection of my projects, all of which have been made by me, including all the design/css and logic behind applications, I do use a few specific 3rd parties(Ex: I use <a href="https://pillow.readthedocs.io/en/stable/">Pillow</a> to deal with image processing on TG2A), applications who use 3rd parties will have specified on their description. </p>
+</div>
+<br>
+
+<div class="column_p">
+
+<div class="up_style">
+
+  <a data-bs-toggle="offcanvas" href="#login_description" role="button" aria-controls="offcanvasExample">
+  <img src="/static/Projects_thumbs/Login.thumbnail">
+  </a>
+
+  <div class="text_center">
+    <p id="p_title">Login application.</p>
+    <p id="p_desc">Click on the image for more information.</p>
+  </div>
+
+</div>
+
+<div class="up_style">
+
+  <a data-bs-toggle="offcanvas" href="#MSA_description" role="button" aria-controls="offcanvasExample">
+  <img src="/static/Projects_thumbs/MSA.thumbnail">
+  </a>
+
+  <div class="text_center">
+    <p id="p_title">MSA - Chat application.</p>
+    <p id="p_desc">Click on the image for more information.</p>
+  </div>
+
+</div>
+</div>
+
+
+<div class="column_p">
+
+<div class="up_style">
+
+  <a data-bs-toggle="offcanvas" href="#TDV_description" role="button" aria-controls="offcanvasExample">
+  <img src="/static/Projects_thumbs/TDV.thumbnail">
+  </a>
+  <div class="text_center">
+    <p id="p_title">TDV - Notes application.</p>
+    <p id="p_desc">Click on the image for more information.</p>
+  </div>
+
+</div>
+
+<div class="up_style" style="float:none;">
+
+  <a data-bs-toggle="offcanvas" href="#TG2A_description" role="button" aria-controls="offcanvasExample">
+  <img src="/static/Projects_thumbs/TG2A.thumbnail">
+  </a>
+  <div class="text_center">
+    <p id="p_title">TG2A - Gallery application.</p>
+    <p id="p_desc">Click on the image for more information.</p>
+
+  </div>
+
+</div>
+
+</div>
+<br>
+<br>
+<br>
 {% endblock %}

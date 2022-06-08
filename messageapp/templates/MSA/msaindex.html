@@ -3,13 +3,14 @@
 {% block title %}MSA{% endblock %}
 
 {% block content %}
+<div class="blur" id="background_msa_image">
+</div>
 <div class="text_center" id="index_style">
 
 <h1>MSA</h1>
-
 <form action="/msa" name="InputName" id="InputName" method="post" class="row g-3">
   {% csrf_token %}
-      <label for="iname" class="form-label">Create a temporaty user:</label>
+      <label for="iname" class="form-label">Create a temporary user:</label>
       <input type="text" class="form-control" placeholder="Name" id="username" aria-describedby="inputGroupPrepend" name="username" required>
       <input type="hidden" name="status" id="status" value="False">
 
@@ -17,8 +18,11 @@
         <button class="btn btn-outline-light " type="submit">Create temporary user</button>
       </div>
 </form>
+
 <br>
 <br>
+<p class="error_style">{{error}}</p>
+
 <p>If you already has a account in the application you can <a href="/login">login here</a>, or <a href="/register">register here.</a></p>
 
 <div class="alert alert-dark alert-dismissible fade show" role="alert">

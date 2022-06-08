@@ -116,6 +116,6 @@ class user_m:
         response = self.username_check()
         if response['409']:
             return response['context']
-
+            
         add = User(username=self.form['username'], is_active=self.form['status']) # Create User
         add.save()

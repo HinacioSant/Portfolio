@@ -15,7 +15,7 @@ class gallery(models.Model):
 
 
     def __str__(self):
-        return 'Title: {} | Posted by {} at {}'.format(self.title, self.user, self.date)
+        return 'Title: {} | Posted by {} at {}'.format(self.title, self.user, self.date.strftime('%d/%m/%Y %H:%M'))
 
 
     def get_thumbnail(self): # Get thumbnail method.
@@ -68,4 +68,4 @@ class favorite(models.Model):
     favorite = models.BooleanField(default=False, null=True)
 
     def __str__(self):
-        return 'Is this item favorite by user: {} | {}'.format(self.user, self.favorite)
+        return '{} Favorited by {} | {}'.format(self.image.title, self.user, self.favorite)

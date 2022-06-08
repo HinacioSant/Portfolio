@@ -9,23 +9,22 @@
 {% endblock %}
 
 {% block content %}
-<div class="text_center">
-  <h1>TDV</h1>
+<div class="text_center" id="tdv_index">
+  <h1>Welcome to TDV!</h1>
 
   {% if error %}
-  <p>You are not logged in please log-in <span onclick="login_element()"><a href="#">here</a></span></p>
-  <br>
-  <br>
+  <p id="log_link">You are not logged in please log-in <span onclick="login_element()"><a href="#">here</a></span></p>
+
   {% endif %}
 
+  <br>
+  <p class="subject_style">This is a note application, you can create/delete/edit notes and bullet elements.</p>
+  <p class="subject_style">On TDV you can use <a href="https://www.markdownguide.org/getting-started/">Markdown</a> to style your notes.<br> You can learn more about how to use Markdown <a href="https://www.markdownguide.org/basic-syntax/">here.</a><br></p>
 
-  <h4 id="content_n">This is a note application, you can create/delete/edit notes and bullet elements.<br>
-    Click on the Notes link on the navbar to be redirected to the notes page.<br>
-    Every code and layout/css elements where made by me or heavly changed to fit the projects needs for more projects visit: <a href="/projects">www.hinacio.com/projects</a></h4>
-
-
-
-
+  <br>
+  <h4 id="n_button" class="d-grid gap-2 col-6 mx-auto"><a class="btn btn-outline-info btn-lg" href="TDV/notes_page">Click here to go to the notes page!</a></h4>
+  <br>
+  <p class="subject_style">for more projects visit: <a href="/projects">www.hinacio.com/projects</a></p>
 </div>
 
 {% endblock %}
@@ -35,6 +34,11 @@
 
 function login_element(){
   window.open("http://127.0.0.1:8000/login", "login", "toolbar=yes,scrollbars=yes,resizable=yes,width=500,height=600");
+}
+
+
+if ($('body').width() < 768){
+  $("#n_button").removeClass("col-6")
 }
 
 </script>

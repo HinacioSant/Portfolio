@@ -3,12 +3,18 @@
 
 {% block title %}Notes{% endblock %}
 
-{% block sidebutton %}
-<span style="font-size:20px; cursor:pointer; color:white; margin:auto; padding:6px" onclick="openNav()">&#9776;</span>
-{% endblock %}
-
 {% block content %}
+<nav class="navbar sticky-top navbar-dark bg-dark" id="top_nav" style="width:100%">
+  <ul class="nav justify-content-center">
+    <span style="font-size:20px; cursor:pointer; color:white; margin:auto; padding:6px" onclick="openNav()">&#9776;</span>
 
+
+    <a class="navbar-brand" style="padding: 2px; font-size: 22px; font-weight:bold" href="/TDV">TDV</a>
+
+  </ul>
+
+
+</nav>
 
 <div id="n_div">
   <!-- begin of add elements  -->
@@ -24,8 +30,8 @@
           <form action="/TDV/add_notes" method="post">
           {% csrf_token %}
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Title" id="title" name="title" required>
-            <input type="text" class="form-control" placeholder="Subject" id="subject" name="subject" required>
+            <input type="text" minlength="3" maxlength="45" class="form-control" placeholder="Title" id="title" name="title" required>
+            <input type="text" minlength="3" maxlength="45" class="form-control" placeholder="Subject" id="subject" name="subject" required>
             <input type="hidden" value="note" id="type" name="type">
 
           </div>
@@ -49,8 +55,8 @@
 
               <form action="/TDV/add_notes" method="post">
                 {% csrf_token %}
-                <input id="input_style" required type="text" class="form-control" placeholder="Title" id="title" name="title">
-                <input id="input_style" required type="text" class="form-control" placeholder="Subject" id="subject" name="subject">
+                <input id="input_style" minlength="3" maxlength="45" required type="text" class="form-control" placeholder="Title" id="title" name="title">
+                <input id="input_style" minlength="3" maxlength="45" required type="text" class="form-control" placeholder="Subject" id="subject" name="subject">
                 <input type="hidden" value="bullet" id="type" name="type">
                 <button type="submit" style="margin: 5px" class="btn btn-secondary btn-sm " onclick="this.disabled=true,this.form.submit();">Submit</button>
               </form>
@@ -65,7 +71,31 @@
 <!-- begin of the Notes elements  -->
 
   <div class="tab-content" id="tabs-list">
-    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+
+    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab" >
+      <h1 class="text_center" style="font-weight:bold">Add Note</h1>
+
+      <div class="style_content">
+
+        <form action="/TDV/add_notes" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="text" minlength="3" maxlength="45" class="form-control" style="margin:8px;" placeholder="Title" id="title" name="title" required>
+          <input type="text" minlength="3" maxlength="45" class="form-control" style="margin:8px;" placeholder="Subject" id="subject" name="subject" required>
+          <input type="hidden" value="note" id="type" name="type">
+
+        </div>
+          <textarea class="form-control" style="resize: vertical" id="add_note" placeholder="Note" required name="content" cols="30"  rows="13"></textarea>
+
+
+        <button type="submit" class="btn btn-outline-light" onclick="this.disabled=true,this.form.submit();">Add note</button>
+        </form>
+
+      </div>
+
+    </div>
+
+
     {% for content in notes_list %}
     <div class="tab-pane fade" id="n{{content.id}}" role="tabpanel" aria-labelledby="n{{content.id}}-tab">
       <div id="title_n">
@@ -88,7 +118,7 @@
         <br>
         </div>
 
-        <div id="style_p_addbuton" style="top: 31px;">
+        <div id="style_p_addbuton">
         <form action="/TDV/add_notes" id="delete_note_form" method="post">
           {% csrf_token %}
           <input type="hidden" name="del_n" value="{{content.id}}" >
@@ -96,7 +126,7 @@
         </form>
         </div>
 
-        <div id="style_p_addbuton" style="top: 31px; right:30px;">
+        <div id="style_p_addbuton" style="right:30px;">
           <div id="add_style_button"><button title="Edit note" onclick="edit_note({{content.id}})"><i class="material-icons">edit</i></button></div>
         </div>
 
@@ -107,8 +137,8 @@
 
 <!-- begin of the bullets elements  -->
 
-    <div class="tab-pane fade" id="bullet" role="tabpanel" aria-labelledby="bullet-tab">
-      <div class="main col-lg-10 col-md-9" style="padding-bottom: 100px;">
+    <div class="tab-pane fade" id="bullet" role="tabpanel" aria-labelledby="bullet-tab" style="margin-left:5%;">
+      <div class="main col-lg-10 col-md-9" style="padding-bottom: 100px; ">
 
 
       <br>
@@ -116,10 +146,10 @@
       <table class="table table-dark table-hover">
         <thead>
         <tr>
-          <th>Title</th>
-          <th>Subject</th>
-          <th>Finished</th>
-          <th>Time</th>
+          <th id="th_size">Title</th>
+          <th id="th_size">Subject</th>
+          <th id="th_size">Finished</th>
+          <th id="th_size">Time</th>
         </tr>
         </thead>
       <form action="/TDV/notes_page" method="post">
@@ -130,8 +160,8 @@
         <tr>
           {% if item.finished %}
 
-          <td style="color:gray">{{item.title}}</td>
-          <td style="color:gray">{{item.subject}}</td>
+          <td id="td_size" style="color:gray">{{item.title}}</td>
+          <td id="td_size" style="color:gray">{{item.subject}}</td>
 
           <td>
             <div class="form-check form-switch">
@@ -140,8 +170,8 @@
               </div>
             </td>
               {% else %}
-                <td>{{item.title}}</td>
-                <td>{{item.subject}}</td>
+                <td id="td_size">{{item.title}}</td>
+                <td id="td_size">{{item.subject}}</td>
 
                 <td>
                   <div class="form-check form-switch">
@@ -151,18 +181,19 @@
               {% endif %}
 
 
-          <td>{{item.time}}</td>
+          <td id="td_size">{{item.time}}</td>
         </tr>
 
+
       {% endfor %}
-      <div id="button_p" style="right:0">
+      <div>
       <div id="add_style_button"><button type="submit" title="Save bullet changes"><i class="material-icons">save</i></button></div>
       </div>
 
       </tbody>
       </form>
 
-      <div id="button_p">
+      <div>
       <form action="/TDV/notes_page" method="post">
         {% csrf_token %}
         <input type="hidden" name="del_b" value="delete_finished_bullets">
@@ -170,11 +201,20 @@
       </form>
       </div>
 
-      <div id="button_p" style="right:60px">
-        <div id="add_style_button"><button type="submit" title="Add bullet" onclick="Add_toggle('note_bullet_div')"><i class="material-icons">add</i></button></div>
-      </div>
-
       </table>
+
+      <hr>
+      <div class="style_content" style="float:left;">
+
+          <form action="/TDV/add_notes" method="post">
+            {% csrf_token %}
+            <input id="input_style" minlength="3" maxlength="45" required type="text" class="form-control" placeholder="Title" id="title" name="title">
+            <input id="input_style" minlength="3" maxlength="45" required type="text" class="form-control" placeholder="Subject" id="subject" name="subject">
+            <input type="hidden" value="bullet" id="type" name="type">
+            <button type="submit" style="margin: 5px" class="btn btn-outline-light" onclick="this.disabled=true,this.form.submit();">Add Bullet</button>
+          </form>
+
+      </div>
 
 
     </div>
@@ -195,10 +235,9 @@
       <div class="nav flex-column " id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
         <li><h4 class="nav-link" style=" float:left;" id="bullet" name="notes" data-bs-toggle="tab" data-bs-target="#bullet" type="button" role="tab" aria-controls="bullet" aria-selected="false"><i class="bi bi-card-checklist"></i> Bullet</h4>
-            <div id="add_style_button"><button type="submit" style="color:gray" onclick="Add_toggle('note_bullet_div')"><i class="material-icons">add</i></button></div>
           </li>
 
-        <p id="style_desc">Use the save button to save alterations  and the delete button to delete finished bullets. </p>
+        <p id="style_desc">Click to see bullets. Use the save button to save alterations  and the delete button to delete finished bullets. </p>
 
         </div>
         </div>
