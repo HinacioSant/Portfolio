@@ -39,7 +39,7 @@ function add_form() { // Set the visuals of add form.
 
   else {
     $(".background_add").hide()
-    $(".background_add").hide()
+    
 
     $("#page_content").removeClass("blur")
 

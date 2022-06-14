@@ -121,7 +121,7 @@ body {
   margin: 5px;
   padding: 5px;
   border: 2px solid white;
-  background-color: black;
+  background-color: #000000d4;
 }
 
 .search_div{
@@ -172,7 +172,7 @@ body {
 
 .error_style{
   text-align: center;
-  color: red;  
+  color: red;
 }
 
 
@@ -184,7 +184,8 @@ body {
   background: url(/static/background/background-msa.png);
   background-repeat: no-repeat;
   background-size: auto;
-  background-position: right;
+  background-position: left;
+  background-size: cover;
 
 }
 

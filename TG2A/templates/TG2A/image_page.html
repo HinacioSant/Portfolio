@@ -7,6 +7,27 @@
   <h1>{{image.title}}</h1>
 </div>
 
+<div class="background_add">
+  <div class="style_content">
+
+  <div id="add_style_button"><button type="button" onclick="report_form()"><span class="material-icons md-18">close</span></button></div>
+  <h2>Report Image</h2>
+
+  <form action="" id="report_form" method="post">
+    {% csrf_token %}
+    <p>Use this form to report inappropriate images or DMCA claims (Please include your email under "More information" for a follow up email.)</p>
+    <input type="hidden" name="asas" value="asas">
+    <input class="form-control" required minlength="4" style="margin:5px;" type="text" id="reason" placeholder="Reason">
+    <textarea class="form-control" required minlength="4" style="margin:5px;" type="text" id="m_info" placeholder="More information"></textarea>
+
+    <button style="margin:5px;" class="btn btn-secondary">Submit</button>
+  </form>
+
+</div>
+</div>
+
+
+
 <div style="margin-left:auto; margin-right:auto; width:99%;">
 <p style="color:gray">Posted by: <a href="{% url 'profile' image.user %}">{{image.user}}</a></p>
 
@@ -28,6 +49,8 @@
 
 <div>
   <a href="{{ image.image.url }}" download class="btn btn-outline-light">Download</a>
+  <button type="button" class="btn btn-outline-danger" onclick="report_form()">Report</button>
+
 </div>
 
 <br>

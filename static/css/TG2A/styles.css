@@ -37,6 +37,7 @@ body {
 }
 
 .p_base_style{
+  border: 1px solid white;
   margin: 5px;
   width: 97%;
 }
@@ -76,11 +77,12 @@ body {
   flex-wrap: nowrap;
   overflow-x: scroll;
   margin-left: 5px;
+  border: 1px solid #8181819e;
 }
 
 
 .up_style{
-  border: 2px solid white;
+  border: 1px solid #818181;
   width: auto;
   margin: 5px;
   float: left;

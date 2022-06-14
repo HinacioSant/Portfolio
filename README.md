@@ -48,6 +48,12 @@ LOOK FOR MUILTPLE SUBMIT FORM  (onclick="this.disabled=true,this.form.submit();"
 -maybe on hover more info/tecniqualites and shit -done
 -rename shit for admin  -done
 
+change some pictures projects -done
+background MSA -done
+report button TG2A - done
+tg2a profile style
+
+
 
 Login:
 1 {

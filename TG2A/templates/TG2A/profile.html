@@ -11,14 +11,13 @@
 
 <div id="all_tables">
 
-<h1>Uploads:</h1>
+<h1 style="margin-left:5px">Uploads:</h1>
 <div class="column_p">
 {% for upload in all_uploads %}
 <div class="up_style">
 
   <img src="{{upload.get_thumbnail}}">
   <div class="text_center">
-
     <p class="p_base_style">{{upload.title}}</p>
 
     <a href="{% url 'image_page' upload.id %}">Link</a>
@@ -30,9 +29,10 @@
 </div>
 {% endfor %}
 </div>
+<br>
+<br>
 
-
-<h1>Favorites:</h1>
+<h1 style="margin-left:5px">Favorites:</h1>
 <div class="column_p">
 {% for f in fav %}
 <div class="up_style">

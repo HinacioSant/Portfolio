@@ -69,3 +69,12 @@ class favorite(models.Model):
 
     def __str__(self):
         return '{} Favorited by {} | {}'.format(self.image.title, self.user, self.favorite)
+
+
+class reports(models.Model):
+    image_id = models.CharField(max_length=64)
+    reason = models.CharField(max_length=64)
+    more_info = models.CharField(max_length=64)
+
+    def __str__(self):
+        return '{} Reported for {}'.format(self.image_id, self.reason)

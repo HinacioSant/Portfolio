@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from .forms import ImageForm
-from .models import gallery, favorite
-from django.http import JsonResponse
+from .models import gallery, favorite, reports
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.models import User
 from .gallery_management import image_management, infinite_scroll
 from django.utils.datastructures import MultiValueDictKeyError
+
 # Create your views here.
 
 def tg2a(request):
@@ -53,7 +54,6 @@ def image_page(request, img_id):
 
     if request.method == "POST":
         # Management of the favorite function. Check gallery_management.py for more info.
-
         image_management(user=request.user, form= img).fav(fav_form=request.POST['fav'])
 
     context = {
@@ -70,6 +70,14 @@ def gallery_items(request, page_num):
 
     return JsonResponse({"items": list(response["items"].object_list.values()), "page": response["page_num"]})
 
+def report(request):
+
+    if request.method == "POST":
+        form = request.POST
+        add = reports(image_id = form['img_id'], reason = form['reason'], more_info = form['m_info'])
+        add.save()
+
+    return HttpResponse("200")
 
 def profile(request, user):
 
