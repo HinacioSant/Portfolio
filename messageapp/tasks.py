@@ -21,8 +21,7 @@ def delete_object():
 
     for users in User.objects.filter(is_active='False'):
         time_elapsed = timezone.now() - users.date_joined
-        if time_elapsed > timedelta(hours=1):
-            print(users)
+        if time_elapsed > timedelta(hours=1):            
             users.delete()
 
     for rooms in r_request.objects.all():
