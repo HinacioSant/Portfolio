@@ -136,12 +136,17 @@ AUTHENTICATION_BACKENDS = (
 
 
 SOCIAL_AUTH_GITHUB_KEY = '66635515d763aef57209'
-SOCIAL_AUTH_GITHUB_SECRET = '4f411f6b53e5afe32ac51999fa80592a4ce07feb'
+with open('etc/secret_key_git.txt') as f:
+    SOCIAL_AUTH_GITHUB_SECRET = f.read().strip()
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '945179667763-h7m4q8oee5qaeqpordsagt6bjgd8nmbe.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'JWm77bYR5movFZo9x2WyJsxA'
+with open('etc/secret_key_google.txt') as f:
+    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = f.read().strip()
 
-ENCRYPT_KEY = b'i-9YA9JlNy_HVNsYSJ5ne-lq3EyM1VnxK5HW9HGeAVM='
+
+with open('etc/secret_key_encrypt.txt') as f:
+    ENCRYPT_KEY = f.read().strip()
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -163,6 +168,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static2")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
