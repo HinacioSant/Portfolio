@@ -112,6 +112,9 @@ body {
   color:#0dcaf0;
   text-decoration: none;
 }
+.b_nav_styles li{
+  font-size: 20px
+}
 
 .b_nav_styles a:hover{
   color:#6be6ff;
@@ -123,6 +126,23 @@ body {
   border-color: #0dcaf0;
 }
 
+.fa-github{
+  font-size:28px;
+  color:gray;
+  float: right;
+  text-decoration: none;
+
+}
+
+.fa-github:hover {
+  color:white;
+}
+
+.offcanvas-header{
+  padding: 10px;
+  padding-bottom:5px;
+
+}
 
 #p_title{
   font-weight: bold;
@@ -153,17 +173,22 @@ body {
   margin-right:auto
 }
 
-#ktp_font{
+#ktp_font, #offcanvasExampleLabel{
   font-family: Kdam Thmor Pro;
+}
+
+
+@media screen and (min-width: 1800px) {
+  .b_nav_styles li{font-size: 25px}
 }
 
 @media screen and (min-width: 1145px) {
   .up_style img{max-height:300px;}
-
 }
 
 @media screen and (max-width: 1145px){
   .up_style img{max-height:180px;}
+  .b_nav_styles li{font-size: 15px}
 
 }
 
