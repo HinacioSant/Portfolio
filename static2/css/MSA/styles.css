@@ -1,0 +1,316 @@
+body {
+  background-color: black;
+  color:white;
+
+}
+
+
+.style_content{
+  width: 90%;
+  margin-left: 4%;
+  margin-right: auto;
+  padding: 10px;
+  margin-top: 28px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  border: 2px solid black;
+  background-color: #17243b;
+  overflow-y: scroll;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column-reverse;
+
+
+}
+
+.chat {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 90%;
+  max-height: 80%;
+  display: block;
+  z-index: 3;
+
+
+}
+
+.chat_maximized{
+  display: block;
+  max-width:100%;
+  background-color: #1c1c1c;
+  float: left;
+  overflow-wrap: break-word;
+  margin: 10px;
+  border: 2px solid black;
+
+  height: auto;
+  overflow: auto;
+  width: 70%;
+  position: fixed;
+  left: 13%;
+  bottom: 0;
+  right: 25%;
+  z-index: 3;
+
+
+}
+
+.chat_div{
+  display: block;
+  max-width:30%;
+  background-color: #1c1c1c;
+  float: left;
+  overflow-wrap: break-word;
+  margin: 10px;
+  border: 2px solid black;
+
+
+}
+
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.p_msg2{
+  display: table;
+  font-size: 15px;
+  margin:0;
+  margin-top: 5px;
+  margin-right: auto;
+  background-color: #636363;
+  box-shadow: 1px 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 30px;
+
+}
+
+.p_msg{
+  display: table;
+  font-size: 15px;
+  margin:0;
+  margin-top: 5px;
+  margin-left: auto;
+  background-color: #52476b;
+  text-align: right;
+  line-height: 30px;
+  box-shadow: 1px 1px;
+  padding-right: 10px;
+  padding-left: 10px;
+
+}
+
+.p_time2{
+  font-size: 8px !important;
+  color:white;
+
+}
+
+.p_time{
+  font-size: 8px !important;
+  color:white;
+  text-align: right;
+}
+
+
+.p_new{
+  font-size: 12px;
+  color:gray;
+  margin: 5px;
+  padding: 5px;
+  border: 2px solid white;
+  background-color: #000000d4;
+}
+
+.search_div{
+  margin: auto;
+  width: 50%;
+  position:fixed;
+  left:0;
+  right:0;
+  top:30%;
+  z-index: 1;
+}
+
+.text_center{
+  text-align: center;
+  position:fixed;
+  left:0;
+  right:0;
+  margin:auto;
+  top:2%;
+}
+
+.alert-dark{
+  position: fixed;
+  bottom: 10px;
+  width: 50%;
+  overflow-wrap: break-word;
+  left:0;
+  right:0;
+  margin:auto;
+
+}
+
+.blur {
+  width:100%;
+  height:100%;
+  pointer-events: none;
+  background-size:cover;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -ms-filter: blur(2px);
+  -o-filter: blur(2px);
+  filter: blur(2px);
+  }
+
+.button_not{
+
+}
+
+.error_style{
+  text-align: center;
+  color: red;
+}
+
+
+#background_msa_image {
+  position:fixed;
+  top:0;
+  z-index: 0;
+  overflow: hidden;
+  background: url(/static/background/background-msa.png);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: left;
+  background-size: cover;
+
+}
+
+#userlist{
+  position:absolute;
+  width:20%;
+  right:0;
+  top:0;
+  margin: 5px;
+  max-height: 98%;
+  overflow: auto;
+  z-index: 9;
+}
+
+#userlist th, tr{
+  text-align:center;
+}
+
+
+#friendlist {
+  position:absolute;
+  width:20%;
+  left:0;
+  top:0;
+  margin: 5px;
+  max-height: 98%;
+  overflow: auto;
+  z-index: 9;
+}
+
+#friendlist th, tr{
+  text-align:center;
+}
+
+
+#table2 {
+  color: #6e7c97;
+}
+
+#style_user_t{
+  float:left;
+  margin-left: 8px;
+  font-weight: bold;
+  width: auto;
+}
+
+#m_not{
+  float:left;
+  font-size: 15px;
+  color:red;
+}
+
+#add_style_button{
+  display: inline;
+}
+
+#add_style_button :hover{
+  color:blue;
+
+}
+
+#add_style_button button{
+  background-color: transparent;
+  color:white;
+  border: black;
+  float:right;
+
+}
+
+#rooms{
+  display: none;
+  width: auto;
+  height: auto;
+}
+
+#rooms h4{
+  color:red;
+  font-size: 15px;
+}
+
+#number_notifications{
+  float:right;
+  color:red;
+  font-size:10px;
+  font-weight:bold
+}
+
+#index_style{
+  width: 50% ;
+}
+
+#index_style a{
+  color: #a5e6f9;
+}
+
+#index_style a:hover{
+  color: #52b6d3;
+}
+
+@media screen and (max-width: 968px) {
+  .alert-dark {font-size: 10px; width: 90%;}
+  .text_center {font-size: 10px !important;}
+  #index_style {width: 90%;}
+  #font_h{font-size: 15px;}
+
+}
+
+@media screen and (max-width: 768px){
+}
+
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #80808000;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #80808000;
+  border-radius: 10px;
+}

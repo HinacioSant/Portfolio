@@ -1,0 +1,314 @@
+body {
+  background-color: black;
+  color:white;
+
+}
+
+
+.style_content{
+  width: 95%;
+  margin-top: 3px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+  font-size: 15px
+}
+
+
+.background_add2 {
+  background-color: #121212;
+  border: 2px solid white;
+  width: auto;
+  height: auto;
+  position:fixed;
+  left: 10px;
+  bottom: 10px;
+  z-index: 2;
+
+}
+
+
+.background_add {
+  background-color: #121212;
+  border: 2px solid black;
+  width: 40%;
+  height: auto;
+  position:fixed;
+  left:0;
+  right:0;
+  margin:auto;
+  top:20%;
+  z-index: 9999;
+
+}
+
+.background_add input, textarea, button{
+  margin: 8px;
+
+}
+
+
+.text_center{
+  text-align: center;
+  overflow-wrap: break-word;
+
+
+}
+
+
+textarea{
+  height: 50%;
+  resize: none;
+}
+
+.note_add_div{
+  display: none;
+}
+
+.note_bullet_div{
+  display: none;
+}
+
+.navbar{
+  width: 100%;
+  text-align: center;
+}
+
+
+.navbar-brand{
+  margin-left:5px;
+  padding: 2px;
+  font-size: 22px;
+  font-weight:bold;
+  color:white !important;
+}
+
+
+.p_base_style{
+  width:80%;
+  margin:auto;
+  font-family: Serif;
+  font-size: 19px;
+  color: gray;
+}
+
+.subject_style{
+  color:gray;
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 58px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 10px;
+
+
+
+}
+
+.sidenav a {
+  padding: 1px 1px 1px 12px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+#tdv_index{
+  margin-top:5%;
+  width:80%;
+  margin-left:auto;
+  margin-right:auto
+}
+
+#tdv_index h1{
+  font-family: karma;
+  font-weight:bold;
+  font-size:60px;
+}
+
+#n_div {
+    position:relative;
+
+
+    top:0;
+    left:0;
+
+
+    height:100%;
+    width:auto;
+
+
+    transition: margin-left .5s;
+    padding: 16px;
+    color:white;
+    overflow-x: hidden;
+
+
+    }
+
+
+#title_n h1{
+  text-align:center;
+  font-weight: bold;
+}
+
+#style_p_addbuton {
+  position:absolute;
+  top: 31px;
+  bottom:0;
+  right:0;
+
+}
+
+
+#bottom_p_time {
+  float:right;
+
+}
+
+
+#add_style_button{
+  display: inline;
+}
+
+#add_style_button :hover{
+  color:blue;
+
+}
+
+#add_style_button button{
+  background-color: transparent;
+  color:white;
+  border: black;
+  float:right;
+
+}
+
+#content_n {
+   font-family: karma;
+   line-height: 2em;
+   font-size: 21.3px;
+   text-align: center;
+   margin: 8px 3%;
+   color: white;
+
+}
+
+#title_s {
+  padding: 5px;
+  color:white;
+  padding-bottom: 17px;
+  font-family: 'Courier New', monospace;
+
+}
+
+#title_s h1:hover{
+  color:gray;
+}
+
+
+#top_nav {
+  width: 100%;
+  margin: auto;
+  border: 2px solid black;
+}
+
+#style_desc{
+  color:gray !important;
+  font-size: 12px;
+}
+
+
+#input_style{
+  width: 38%;
+  float: left;
+  margin: 5px;
+}
+
+#th_size{
+  overflow-wrap: break-word;
+
+}
+
+#td_size{
+  overflow-wrap: break-word;
+
+}
+
+#log_link{
+  color:#ff0000bf
+}
+
+@media screen and (max-width: 968px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 13px;}
+  .nav-link {font-size: 16px}
+  .subject_style{font-size: 12px !important;}
+  .background_add{width: 60% ;}
+
+  #style_desc {font-size: 8px;}
+  #title_n h1{font-size: 25px !important;}
+  #content_n{font-size: 15px}
+  #th_size{font-size: 12px;}
+  #td_size{font-size: 10px;}
+  #style_p_addbuton{top:19px !important;}
+
+
+}
+
+@media screen and (max-width: 765px){
+  .style_content {font-size:11px; margin-bottom: 5px !important;}
+  .navbar{font-size:13px}
+  .navbar-brand{font-size:17px;}
+  .background_add{width: 80% ;padding-right: 10px;}
+  .background_add2{padding-right: 10px;}
+
+  .style_content h4 {font-size:15px;}
+
+
+  #input_style{width: auto; float: none;}
+  #title_n h1{font-size: 18px !important;}
+  #tdv_index h1{font-size: 33px;}
+  #log_link {font-size: 12px}
+  #n_button a{font-size: 15px}
+
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px inherit;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: white;
+}
