@@ -69,7 +69,7 @@ class user_m:
         # Setting the google Recaptcha api.
         captcha_token = self.form['g-recaptcha-response']
         captcha_url = "https://www.google.com/recaptcha/api/siteverify"
-        captcha_secret = "6LdPiu4dAAAAAPdZtj52eCTYW4ayOnLb_kBSO9rL"
+        captcha_secret = "6Lc8tAshAAAAAElWtrjAuV8zMnrv_i2JBA-8h3Mi"
         data = {"secret":captcha_secret,"response":captcha_token}
         csr = requests.post(url=captcha_url,data=data) # Catptcha server response
 
@@ -116,6 +116,6 @@ class user_m:
         response = self.username_check()
         if response['409']:
             return response['context']
-            
+
         add = User(username=self.form['username'], is_active=self.form['status']) # Create User
         add.save()
