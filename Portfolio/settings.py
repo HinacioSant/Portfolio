@@ -98,10 +98,20 @@ ASGI_APPLICATION = 'Portfolio.asgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
+    #'default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #}
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd2a6gq1476lcg3',
+        'USER': 'mabznlithopzud',
+        'PASSWORD': 'e6cc6a29e429563c9dc4020f63f0bd8835ec7130ab54d4ea6656155c5ba98e51',
+        'HOST': 'ec2-34-235-198-25.compute-1.amazonaws.com',
+        'PORT': '5432',
+        }
+
 }
 
 
