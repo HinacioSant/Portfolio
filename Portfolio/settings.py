@@ -144,9 +144,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '945179667763-h7m4q8oee5qaeqpordsagt6bjgd8nmbe.a
 with open('etc/secret_key_google.txt') as f:
     SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = f.read().strip()
 
+ENCRYPT_KEY = b'i-9YA9JlNy_HVNsYSJ5ne-lq3EyM1VnxK5HW9HGeAVM='
 
-with open('etc/secret_key_encrypt.txt') as f:
-    ENCRYPT_KEY = f.read().strip()
 
 
 # Internationalization
