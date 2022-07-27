@@ -20,9 +20,9 @@ class gallery(models.Model):
 
     def get_thumbnail(self): # Get thumbnail method.
         size = (1920, 1080)
-        image_name = "media/" + self.image.name
+        image_name = "res.cloudinary.com/htmz79u9f/image/upload/v1/" + self.image.name
         print(image_name)
-        image_thumbnail = "media/" + os.path.splitext(self.image.name)[0] + ".thumbnail"
+        image_thumbnail = "res.cloudinary.com/htmz79u9f/image/upload/v1/" + os.path.splitext(self.image.name)[0] + ".thumbnail"
         print(image_thumbnail)
 
 
