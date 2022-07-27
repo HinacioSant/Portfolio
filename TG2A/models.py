@@ -43,7 +43,7 @@ class gallery(models.Model):
                      im = im.convert("RGB")
 
                 if width < height: # If is a portait type image
-                print("4")
+                    print("4")
 
                     size = (1080,1080) # Different dimensions
 
@@ -59,7 +59,7 @@ class gallery(models.Model):
                     return "/" + image_thumbnail # return the url.
 
                 if height < 1080: # Preventing image to be stretch out.
-                print("5")
+                    print("5")
 
                     size = (1920,height)
 
