@@ -46,8 +46,17 @@ INSTALLED_APPS = [
     'crispy_forms',
     'social_django',
     'django_apscheduler',
+    'cloudinary_storage',
+    'cloudinary',
 
 ]
+
+CLOUDINARY_STORAGE = {
+             'CLOUD_NAME': 'htmz79u9f',
+             'API_KEY': '569142699516489',
+             'API_SECRET': 'k3BCg1y6nuO3aw4hig1mjWfrh1k'
+            }
+
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 
@@ -182,6 +191,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+DEFAULT_FILE_STORAGE='cloudinary_storage.storage.MediaCloudinaryStorage'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
