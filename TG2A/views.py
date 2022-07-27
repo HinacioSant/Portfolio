@@ -24,21 +24,31 @@ def add_image(request):
 
     if request.method == 'POST':
         # Image add class/method. Check gallery_management.py for more info.
+        print("a")
         try:
+            print("b")
             if request.POST['action'] == "delete_img":
                 response = image_management(user=request.user, form=request.POST).delete_img()
 
+            print("c")
 
         except MultiValueDictKeyError:
+            print("d")
+
             response = image_management(user=request.user, form=ImageForm(request.POST, request.FILES)).add_image()
 
         if response:
+            print("e")
+
             context = {
                 "form": ImageForm(), # Form load for the add image element.
                 "error": response,
             }
+            print("f")
+
             return render(request, "TG2A/tg2a.html", context)
 
+    print("g")
 
     return redirect("TG2A")
 
