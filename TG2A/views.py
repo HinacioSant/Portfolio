@@ -30,10 +30,9 @@ def add_image(request):
             if request.POST['action'] == "delete_img":
                 response = image_management(user=request.user, form=request.POST).delete_img()
 
-            print("c")
 
         except MultiValueDictKeyError:
-            print("d")
+            print("c")
 
             response = image_management(user=request.user, form=ImageForm(request.POST, request.FILES)).add_image()
 
