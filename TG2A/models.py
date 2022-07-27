@@ -27,17 +27,23 @@ class gallery(models.Model):
 
 
         try:
+            print("1")
             with Image.open(image_thumbnail): # If the thumbnail already exist
+                print("2")
+
                 return "/" + image_thumbnail  # return the url of it.
 
         except FileNotFoundError: # Else create one.
             with Image.open(image_name) as im:
+                print("3")
+
                 width, height = im.size
                 gallery.objects.filter(id=self.id).update(thumbnail_url= "/" + image_thumbnail) # Add the url to the database.
                 if im.mode in ("RGBA", "P"):
                      im = im.convert("RGB")
 
                 if width < height: # If is a portait type image
+                print("4")
 
                     size = (1080,1080) # Different dimensions
 
@@ -53,6 +59,8 @@ class gallery(models.Model):
                     return "/" + image_thumbnail # return the url.
 
                 if height < 1080: # Preventing image to be stretch out.
+                print("5")
+
                     size = (1920,height)
 
 
