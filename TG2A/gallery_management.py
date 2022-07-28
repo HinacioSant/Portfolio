@@ -35,7 +35,7 @@ class image_management:
 
             add.save()
             # Save and call get_thumbnail method. Check models.py for more info.
-            add.get_thumbnail()
+            add.test()
 
         else:
             return self.form.errors

@@ -17,6 +17,10 @@ class gallery(models.Model):
     def __str__(self):
         return 'Title: {} | Posted by {} at {}'.format(self.title, self.user, self.date.strftime('%d/%m/%Y %H:%M'))
 
+    def test(self):
+        Image.open(self.image)
+        
+
 
     def get_thumbnail(self): # Get thumbnail method.
         size = (1920, 1080)
