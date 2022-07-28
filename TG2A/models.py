@@ -18,8 +18,11 @@ class gallery(models.Model):
         return 'Title: {} | Posted by {} at {}'.format(self.title, self.user, self.date.strftime('%d/%m/%Y %H:%M'))
 
     def test(self):
-        Image.open(self.image)
-        
+        try:
+            Image.open(self.image)
+        except Exception as e:
+            print(e)
+
 
 
     def get_thumbnail(self): # Get thumbnail method.
