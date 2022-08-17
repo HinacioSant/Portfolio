@@ -39,7 +39,7 @@ function add_form() { // Set the visuals of add form.
 
   else {
     $(".background_add").hide()
-    
+
 
     $("#page_content").removeClass("blur")
 
@@ -57,7 +57,8 @@ function next_page(num){ // Infinite scroll function. num variable is presented 
     success: function(response){
 
       for (var key in response.items){
-        var temp ="<div> <a id='image_link' href='gallery/"+ response.items[key].id +"'><img id='images' class='rounded d-block' src="
+
+        var temp ="<div> <a id='image_link' href='/gallery/"+ response.items[key].id +"'><img id='images' class='rounded d-block' src="
                    + response.items[key].thumbnail_url +"></a></div>"
 
       // turn this into a function later

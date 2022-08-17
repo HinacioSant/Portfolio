@@ -10,7 +10,7 @@ class gallery(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
     image = models.ImageField(null=True, blank=True, upload_to="gallery_images/", validators=[validate_file_size])
-    thumbnail_url = models.CharField(max_length=128, blank=True)
+    thumbnail_url = models.ImageField(null=True, blank=True, upload_to="gallery_images/", validators=[validate_file_size])
     date = models.DateTimeField(default=timezone.now, blank=True)
 
 
@@ -23,62 +23,54 @@ class gallery(models.Model):
         except Exception as e:
             print(e)
 
-
+    def get_url(self):
+        return self.thumbnail_url.url
 
     def get_thumbnail(self): # Get thumbnail method.
         size = (1920, 1080)
-        image_name = "res.cloudinary.com/htmz79u9f/image/upload/v1/" + self.image.name
-        print(image_name)
-        image_thumbnail = "res.cloudinary.com/htmz79u9f/image/upload/v1/" + os.path.splitext(self.image.name)[0] + ".thumbnail"
-        print(image_thumbnail)
+        image_name = self.image
 
 
-        try:
-            print("1")
-            with Image.open(image_thumbnail): # If the thumbnail already exist
-                print("2")
 
-                return "/" + image_thumbnail  # return the url of it.
+        with Image.open(image_name) as im:
 
-        except FileNotFoundError: # Else create one.
-            print("11")
-            with Image.open(image_name) as im:
-                print("3")
+            width, height = im.size
+            if im.mode in ("RGBA", "P"):
+                 im = im.convert("RGB")
 
-                width, height = im.size
-                gallery.objects.filter(id=self.id).update(thumbnail_url= "/" + image_thumbnail) # Add the url to the database.
-                if im.mode in ("RGBA", "P"):
-                     im = im.convert("RGB")
+            if width < height: # If is a portait type image
 
-                if width < height: # If is a portait type image
-                    print("4")
+                size = (1080,1080) # Different dimensions
 
-                    size = (1080,1080) # Different dimensions
-
-                    if width < 1080: # Preventing image to be stretch out.
-                        size = (1080,width)
-
-
-                    im.thumbnail(size, Image.LANCZOS, reducing_gap=1.0)
-                    im = ImageEnhance.Contrast(im)
-
-                    im.enhance(1.3).save(image_thumbnail, "JPEG") # Add contrast and save.
-
-                    return "/" + image_thumbnail # return the url.
-
-                if height < 1080: # Preventing image to be stretch out.
-                    print("5")
-
-                    size = (1920,height)
+                if width < 1080: # Preventing image to be stretch out.
+                    size = (1080,width)
 
 
                 im.thumbnail(size, Image.LANCZOS, reducing_gap=1.0)
                 im = ImageEnhance.Contrast(im)
 
-                im.enhance(1.3).save(image_thumbnail, "JPEG") # Add contrast and save.
+                t = BytesIO()
+                im.enhance(1.3).save(t, "JPEG")
+                t.seek(0)
+                self.thumbnail_url.save("thumb", ContentFile(t.read()))
+                t.close()
 
-                return "/" + image_thumbnail # return url.
 
+                return "200"
+            if height < 1080: # Preventing image to be stretch out.
+
+                size = (1920,height)
+
+
+            im.thumbnail(size, Image.LANCZOS, reducing_gap=1.0)
+            im = ImageEnhance.Contrast(im)
+
+            t = BytesIO()
+            im.enhance(1.3).save(t, "JPEG")
+            t.seek(0)
+            self.thumbnail_url.save("thumb", ContentFile(t.read()))
+            t.close()
+            return "200"
 
 class favorite(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

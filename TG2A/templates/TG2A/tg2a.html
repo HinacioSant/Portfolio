@@ -14,6 +14,7 @@
 
 {% if error %}
   <div class="error_style">
+    <div id="add_style_button"><button type="button" onclick="$('.error_style').hide()"><span class="material-icons md-18">close</span></button></div>
     <p >A error has occour on field:</p>
     {{error}}
   </div>
@@ -56,7 +57,7 @@
     {% csrf_token %}
     {{ form.as_p }}
     {{ form.media }}
-    <button type="submit" class="btn btn-secondary" onclick="this.disabled=true,this.form.submit();">Submit</button>
+    <button type="submit" class="btn btn-secondary" onclick="this.disabled=true,this.form.submit(),add_form();">Submit</button>
   </form>
 
 </div>

@@ -12,7 +12,7 @@ class image_management:
         self.user = user
         self.form = form
 
-    # Add image method
+        # Add image method
     def add_image(self):
 
         if self.form.is_valid(): # Check validity of the form.
@@ -27,20 +27,18 @@ class image_management:
                 if time_elapsed < timedelta(seconds=3):
                     return "ERROR: too many uploads in a small time window, wait before next upload."
 
-            if len(gallery.objects.all()) > 100:
+            if len(gallery.objects.all()) >= 50:
                 return "Gallery full!"
 
-            if len(self.form['title'].value()) < 6:
-                return "Title too short!(Titles must have at least 6 characters)"
+            if len(self.form['title'].value()) < 3:
+                return "Title too short!(Titles must have at least 3 characters)"
 
             add.save()
             # Save and call get_thumbnail method. Check models.py for more info.
-            add.test()
+            add.get_thumbnail()
 
         else:
             return self.form.errors
-
-
 
 
     def fav(self, fav_form):
