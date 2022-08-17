@@ -12,7 +12,7 @@ class image_management:
         self.user = user
         self.form = form
 
-        # Add image method
+    # Add image method
     def add_image(self):
 
         if self.form.is_valid(): # Check validity of the form.
@@ -39,6 +39,8 @@ class image_management:
 
         else:
             return self.form.errors
+
+
 
 
     def fav(self, fav_form):
@@ -85,7 +87,11 @@ class image_management:
 
 
 def infinite_scroll(gallery_content, page): # Infinite scroll function.
-        paginator = Paginator(gallery_content, 20)
+        lias = []
+        for i in gallery_content:
+            a = {"id":i.id, "thumbnail_url":i.thumbnail_url.url}
+            lias.append(a)
+        paginator = Paginator(lias, 20)
 
         try:
             items = paginator.page(page)

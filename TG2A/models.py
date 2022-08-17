@@ -19,7 +19,7 @@ class gallery(models.Model):
         return 'Title: {} | Posted by {} at {}'.format(self.title, self.user, self.date.strftime('%d/%m/%Y %H:%M'))
 
     def get_url(self):
-        return "1"
+        return self.thumbnail_url.url
 
     def get_thumbnail(self): # Get thumbnail method.
         size = (1920, 1080)
