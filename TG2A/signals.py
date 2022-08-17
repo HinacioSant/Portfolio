@@ -9,5 +9,6 @@ import os
 def my_callback(sender, instance, **kwargs):
     if instance.image:
         instance.image.delete(save=False)
-    elif instance.thumbnail_url:    
+    elif instance.thumbnail_url:
+        print("S")    
         instance.thumbnail_url.delete(save=False)
