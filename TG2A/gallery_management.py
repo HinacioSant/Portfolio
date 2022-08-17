@@ -27,15 +27,15 @@ class image_management:
                 if time_elapsed < timedelta(seconds=3):
                     return "ERROR: too many uploads in a small time window, wait before next upload."
 
-            if len(gallery.objects.all()) > 100:
+            if len(gallery.objects.all()) >= 50:
                 return "Gallery full!"
 
-            if len(self.form['title'].value()) < 6:
-                return "Title too short!(Titles must have at least 6 characters)"
+            if len(self.form['title'].value()) < 3:
+                return "Title too short!(Titles must have at least 3 characters)"
 
             add.save()
             # Save and call get_thumbnail method. Check models.py for more info.
-            add.test()
+            add.get_thumbnail()
 
         else:
             return self.form.errors
@@ -87,7 +87,11 @@ class image_management:
 
 
 def infinite_scroll(gallery_content, page): # Infinite scroll function.
-        paginator = Paginator(gallery_content, 20)
+        lias = []
+        for i in gallery_content:
+            a = {"id":i.id, "thumbnail_url":i.thumbnail_url.url}
+            lias.append(a)
+        paginator = Paginator(lias, 20)
 
         try:
             items = paginator.page(page)

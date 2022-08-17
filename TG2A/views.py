@@ -71,7 +71,7 @@ def gallery_items(request, page_num):
     # Management of the pagination/infinite scroll. Check gallery_management.py for more info.
     response = infinite_scroll(gallery_content = gallery.objects.only("id", "thumbnail_url").order_by('-date'), page = request.GET.get('page', page_num))
 
-    return JsonResponse({"items": list(response["items"].object_list.values()), "page": response["page_num"]})
+    return JsonResponse({"items": response["items"].object_list, "page": response["page_num"]})
 
 def report(request):
 

@@ -56,9 +56,20 @@ body {
   }
 
 .error_style{
+  font-weight: bold;
+  width: 50%;
+  margin:auto;
+  color: #e5e5e5;
+  border: 2px solid #700303;
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  background-color: #101010db;
+  z-index: 11;
+}
+
+.error_style p {
   text-align: center;
-  color: red;
-  border: 2px solid white;
 }
 
 
