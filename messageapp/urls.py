@@ -13,5 +13,4 @@ urlpatterns = [
 
 
 ]
-# ads
 #scheduler.start() # Check tasks.py for more info
