@@ -46,10 +46,20 @@ class gallery(models.Model):
                 im = ImageEnhance.Contrast(im)
                 print("4")
                 t = BytesIO()
+                print("4!")
+
                 im.enhance(1.3).save(t, "JPEG")
+                print("5!")
+
                 t.seek(0)
+                print("6!")
+
                 self.thumbnail_url.save("thumb", ContentFile(t.read()))
+                print("7!")
+
                 t.close()
+                print("8!")
+
 
 
                 return "200"
