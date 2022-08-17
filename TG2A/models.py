@@ -1,10 +1,11 @@
 from django.db import models
+from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
 from .validators import validate_file_size
 from PIL import Image, ImageEnhance
 from django.utils import timezone
 import os
-
+from io import BytesIO
 # Create your models here.
 class gallery(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -23,18 +24,16 @@ class gallery(models.Model):
     def get_thumbnail(self): # Get thumbnail method.
         size = (1920, 1080)
         image_name = self.image
-        print("1")
+
+
 
         with Image.open(image_name) as im:
-            print("2")
-
 
             width, height = im.size
             if im.mode in ("RGBA", "P"):
                  im = im.convert("RGB")
 
             if width < height: # If is a portait type image
-                print("3")
 
                 size = (1080,1080) # Different dimensions
 
@@ -44,22 +43,12 @@ class gallery(models.Model):
 
                 im.thumbnail(size, Image.LANCZOS, reducing_gap=1.0)
                 im = ImageEnhance.Contrast(im)
-                print("4")
+
                 t = BytesIO()
-                print("4!")
-
                 im.enhance(1.3).save(t, "JPEG")
-                print("5!")
-
                 t.seek(0)
-                print("6!")
-
                 self.thumbnail_url.save("thumb", ContentFile(t.read()))
-                print("7!")
-
                 t.close()
-                print("8!")
-
 
 
                 return "200"
@@ -67,10 +56,10 @@ class gallery(models.Model):
 
                 size = (1920,height)
 
-            print("5")
+
             im.thumbnail(size, Image.LANCZOS, reducing_gap=1.0)
             im = ImageEnhance.Contrast(im)
-            print("6")
+
             t = BytesIO()
             im.enhance(1.3).save(t, "JPEG")
             t.seek(0)
