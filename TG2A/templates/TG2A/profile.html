@@ -16,7 +16,7 @@
 {% for upload in all_uploads %}
 <div class="up_style">
 
-  <img src="{{upload.get_url}}">
+  <img src="{{upload.get_thumbnail}}">
   <div class="text_center">
     <p class="p_base_style">{{upload.title}}</p>
 
@@ -37,7 +37,7 @@
 {% for f in fav %}
 <div class="up_style">
 
-  <img src="{{f.image.get_thumbnail}}">
+  <img src="{{f.image.get_url}}">
   <div class="text_center">
 
     <p class="p_base_style">{{f.image.title}}</p>
