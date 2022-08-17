@@ -9,8 +9,5 @@ import os
 def my_callback(sender, instance, **kwargs):
     if instance.image:
         instance.image.delete(save=False)
-
-    try:
-        os.remove(instance.thumbnail_url[1:]) # Has to be a relative path.
-    except OSError as error:
-        print(error)
+    elif instance.thumbnail_url:    
+        instance.thumbnail_url.delete(save=False)
