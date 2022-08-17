@@ -17,28 +17,24 @@ class gallery(models.Model):
     def __str__(self):
         return 'Title: {} | Posted by {} at {}'.format(self.title, self.user, self.date.strftime('%d/%m/%Y %H:%M'))
 
-    def test(self):
-        try:
-            Image.open(self.image)
-        except Exception as e:
-            print(e)
-
     def get_url(self):
         return self.thumbnail_url.url
 
     def get_thumbnail(self): # Get thumbnail method.
         size = (1920, 1080)
         image_name = self.image
-
-
+        print("1")
 
         with Image.open(image_name) as im:
+            print("2")
+
 
             width, height = im.size
             if im.mode in ("RGBA", "P"):
                  im = im.convert("RGB")
 
             if width < height: # If is a portait type image
+                print("3")
 
                 size = (1080,1080) # Different dimensions
 
@@ -48,7 +44,7 @@ class gallery(models.Model):
 
                 im.thumbnail(size, Image.LANCZOS, reducing_gap=1.0)
                 im = ImageEnhance.Contrast(im)
-
+                print("4")
                 t = BytesIO()
                 im.enhance(1.3).save(t, "JPEG")
                 t.seek(0)
@@ -61,10 +57,10 @@ class gallery(models.Model):
 
                 size = (1920,height)
 
-
+            print("5")
             im.thumbnail(size, Image.LANCZOS, reducing_gap=1.0)
             im = ImageEnhance.Contrast(im)
-
+            print("6")
             t = BytesIO()
             im.enhance(1.3).save(t, "JPEG")
             t.seek(0)
