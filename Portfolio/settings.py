@@ -26,7 +26,7 @@ with open('etc/secret_key.txt') as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["hinacio-port.herokuapp.com"]
+ALLOWED_HOSTS = ["hinacio.com", "www.hinacio.com"]
 
 
 # Application definition

@@ -13,4 +13,4 @@ urlpatterns = [
 
 
 ]
-#scheduler.start() # Check tasks.py for more info
+scheduler.start() # Check tasks.py for more info
