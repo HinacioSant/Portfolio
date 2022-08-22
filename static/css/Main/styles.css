@@ -144,6 +144,11 @@ body {
 
 }
 
+.breadcrumb-item active{
+  color:gray;
+  
+}
+
 #p_title{
   font-weight: bold;
   font-family: Kdam Thmor Pro;
