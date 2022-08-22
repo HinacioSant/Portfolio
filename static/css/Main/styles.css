@@ -144,9 +144,9 @@ body {
 
 }
 
-.breadcrumb-item active{
+.breadcrumb-item.active{
   color:gray;
-  
+
 }
 
 #p_title{
