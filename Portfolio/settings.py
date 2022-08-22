@@ -28,6 +28,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["https://hinacio.com", "https://www.hinacio.com", "hinacio.com", "www.hinacio.com"]
 
+CSRF_TRUSTED_ORIGINS = ["https://hinacio.com", "https://www.hinacio.com", "hinacio.com", "www.hinacio.com"]
+
 
 # Application definition
 
