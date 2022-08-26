@@ -143,6 +143,9 @@ body {
   padding-bottom:5px;
 
 }
+.breadcrumb-item {
+  font-family: Kdam Thmor Pro;
+}
 
 .breadcrumb-item.active{
   color:gray;

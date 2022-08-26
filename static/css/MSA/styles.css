@@ -159,11 +159,11 @@ body {
   height:100%;
   pointer-events: none;
   background-size:cover;
-  -webkit-filter: blur(2px);
-  -moz-filter: blur(2px);
-  -ms-filter: blur(2px);
-  -o-filter: blur(2px);
-  filter: blur(2px);
+  -webkit-filter: blur(4px);
+  -moz-filter: blur(4px);
+  -ms-filter: blur(4px);
+  -o-filter: blur(4px);
+  filter: blur(4px);
   }
 
 .button_not{
@@ -283,6 +283,10 @@ body {
 
 #index_style a:hover{
   color: #52b6d3;
+}
+
+#font_h{
+  font-family: Kdam Thmor Pro;
 }
 
 @media screen and (max-width: 968px) {

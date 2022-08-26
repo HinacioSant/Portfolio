@@ -9,7 +9,7 @@
 <div class="background_content" id="home_style">
 
   <nav class="navbar navbar-dark bg-dark">
-    <ul class="nav justify-content-center">
+    <ul class="nav justify-content-center" id="t_style">
       <a class="navbar-brand" href="/">Home</a>
       <div class="vr"></div>
       {% if request.user.is_authenticated %}
@@ -35,10 +35,7 @@
 <h1 id="t_style">Hello There {{user.username}}!</h1>
 <br>
 
-<p class="p_base_style">This application features login/register/change password/recover password and logout.
-   All made by me with my own validation logic and authentication. The css and layout
-   are all made by me as well.
-Every other application in this portfolio uses this login
+<p class="p_base_style">Every other application in this portfolio uses this login
    application at some level, therefore signing in this application will let you use every
    other application in this portfolio to their fullest.
 The other applications will have a login form when needed.
