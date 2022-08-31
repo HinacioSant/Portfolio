@@ -126,6 +126,10 @@ body {
   border-color: #0dcaf0;
 }
 
+.btn-outline-light{
+  border-color: #0481fe;
+}
+
 .fa-github{
   font-size:28px;
   color:gray;
@@ -150,6 +154,11 @@ body {
 .breadcrumb-item.active{
   color:gray;
 
+}
+
+#pa_style{
+  color: white;
+  text-decoration: none;
 }
 
 #p_title{
