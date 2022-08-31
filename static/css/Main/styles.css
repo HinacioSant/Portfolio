@@ -161,6 +161,10 @@ body {
   text-decoration: none;
 }
 
+#pa_style:hover{
+  color: gray;
+}
+
 #p_title{
   font-weight: bold;
   font-family: Kdam Thmor Pro;
