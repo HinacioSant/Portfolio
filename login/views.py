@@ -29,7 +29,6 @@ def register(request): # Register page
 
 
 def login(request): # Login page
-    send_mail('Subject here', 'Here is the message.', 'me@hinacio.com', ['nerosals@hotmail.com'], fail_silently=False)
     if request.method == "POST":
         response = user_m(form=request.POST).login(request_login=request) # Use the login method inside user_management.py to login.(Check user_management.py for more info.)
 
