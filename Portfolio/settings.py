@@ -182,7 +182,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+SENDGRID_API_KEY = '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'
 
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_USE_TLS = True
 
 # Static files (CSS, Javgcript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -209,12 +215,3 @@ APSCHEDULER_RUN_NOW_TIMEOUT = 25
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
-
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-else:
-    EMAIL_HOST = 'smtp.sendgrid.net'
-    EMAIL_PORT = 465
-    EMAIL_HOST_USER = 'apikey'
-    EMAIL_HOST_PASSWORD = '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'
-    EMAIL_USE_TLS = True
