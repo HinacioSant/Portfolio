@@ -4,6 +4,8 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import login as sign_in        # Set to custom name to easier and non conflictual use
 import requests
 import json
+from etc import keys
+
 
 
 
@@ -69,7 +71,7 @@ class user_m:
         # Setting the google Recaptcha api.
         captcha_token = self.form['g-recaptcha-response']
         captcha_url = "https://www.google.com/recaptcha/api/siteverify"
-        captcha_secret = "6Lc8tAshAAAAAElWtrjAuV8zMnrv_i2JBA-8h3Mi"
+        captcha_secret = keys.CAPTCHA_SECRET
         data = {"secret":captcha_secret,"response":captcha_token}
         csr = requests.post(url=captcha_url,data=data) # Catptcha server response
 

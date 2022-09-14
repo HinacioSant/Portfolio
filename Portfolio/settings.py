@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from etc import keys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,8 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open('etc/secret_key.txt') as f:
-    SECRET_KEY = f.read().strip()
+SECRET_KEY = keys.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -56,7 +56,7 @@ INSTALLED_APPS = [
 CLOUDINARY_STORAGE = {
              'CLOUD_NAME': 'htmz79u9f',
              'API_KEY': '569142699516489',
-             'API_SECRET': 'k3BCg1y6nuO3aw4hig1mjWfrh1k'
+             'API_SECRET': keys.CLOUDINARY_API_KEY
             }
 
 
@@ -118,7 +118,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'd2a6gq1476lcg3',
         'USER': 'mabznlithopzud',
-        'PASSWORD': 'e6cc6a29e429563c9dc4020f63f0bd8835ec7130ab54d4ea6656155c5ba98e51',
+        'PASSWORD': keys.DATABASE_PASS,
         'HOST': 'ec2-34-235-198-25.compute-1.amazonaws.com',
         'PORT': 5432,
         }
@@ -158,14 +158,13 @@ AUTHENTICATION_BACKENDS = (
 
 
 SOCIAL_AUTH_GITHUB_KEY = '66635515d763aef57209'
-with open('etc/secret_key_git.txt') as f:
-    SOCIAL_AUTH_GITHUB_SECRET = f.read().strip()
+SOCIAL_AUTH_GITHUB_SECRET = keys.GIT_KEY
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '945179667763-h7m4q8oee5qaeqpordsagt6bjgd8nmbe.apps.googleusercontent.com'
-with open('etc/secret_key_google.txt') as f:
-    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = f.read().strip()
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = keys.GOOGLE_KEY
 
-ENCRYPT_KEY = b'i-9YA9JlNy_HVNsYSJ5ne-lq3EyM1VnxK5HW9HGeAVM='
+ENCRYPT_KEY = keys.ENCRYPT_KEY
+
 
 
 
@@ -184,12 +183,12 @@ USE_TZ = True
 
 SENDGRID_API_KEY = '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'
 DEFAULT_FROM_EMAIL = 'me@hinacio.com'
-SERVER_EMAIL = 'nerosals@hotmail.com'
+SERVER_EMAIL = 'hinaciosant@gmail.com'
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_PASSWORD = keys.EMAIL_PASS
 EMAIL_USE_TLS = True
 
 # Static files (CSS, Javgcript, Images)
