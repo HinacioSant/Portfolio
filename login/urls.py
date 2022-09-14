@@ -12,7 +12,6 @@ urlpatterns = [
     path("password_change", views.password_change, name="password_change"),
     re_path(r'^oauth/', include('social_django.urls', namespace='social')),
 
-
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name="recover/password_reset.html"), name="reset_password"),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="recover/password_reset_sent.html"), name="password_reset_done"),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="recover/password_reset_form.html"), name="password_reset_confirm"),
