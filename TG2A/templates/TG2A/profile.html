@@ -21,7 +21,7 @@
 {% for upload in all_uploads %}
 <div class="up_style">
 
-  <img src="{{upload.thumbnail_url}}">
+  <img src="{{upload.get_url}}">
   <div class="text_center">
     {% if user_p %}
       <div id="add_style_button"><button type="button" onclick="delete_img('{{upload.id}}')"><span class="material-symbols-outlined">delete</span></button></div>
