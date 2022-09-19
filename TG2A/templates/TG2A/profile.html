@@ -4,40 +4,48 @@
 
 {% block content %}
 
-<div class="text_center">
+<div class="text_center" style="font-family: Kdam Thmor Pro;">
   <h1>{{user_profile}}</h1>
 
 </div>
 
 <div id="all_tables">
+{% if not all_uploads and not fav %}
+<h1 class="text_center" style="font-family: Kdam Thmor Pro;">You don't have any uploads or favorite images.</h1>
+{% endif %}
 
+
+{% if all_uploads %}
 <h1 style="margin-left:5px">Uploads:</h1>
 <div class="column_p">
 {% for upload in all_uploads %}
 <div class="up_style">
 
-  <img src="{{upload.get_url}}">
+  <img src="{{upload.thumbnail_url}}">
   <div class="text_center">
-    <p class="p_base_style">{{upload.title}}</p>
-
-    <a href="{% url 'image_page' upload.id %}">Link</a>
     {% if user_p %}
-    <div id="add_style_button"><button type="button" onclick="delete_img('{{upload.id}}')"><span class="material-symbols-outlined">delete</span></button></div>
+      <div id="add_style_button"><button type="button" onclick="delete_img('{{upload.id}}')"><span class="material-symbols-outlined">delete</span></button></div>
     {% endif %}
+    <p class="p_base_style"><a href="{% url 'image_page' upload.id %}">{{upload.title}}</a></p>
+
+
   </div>
 
 </div>
 {% endfor %}
 </div>
+{% endif %}
 <br>
 <br>
 
+{% if fav %}
 <h1 style="margin-left:5px">Favorites:</h1>
+
 <div class="column_p">
 {% for f in fav %}
 <div class="up_style">
 
-  <img src="{{f.image.get_url}}">
+  <img src="{{f.image.get_thumbnail}}">
   <div class="text_center">
 
     <p class="p_base_style">{{f.image.title}}</p>
@@ -52,6 +60,7 @@
 </div>
 {% endfor %}
 </div>
+{% endif %}
 <br>
 </div>
 {% csrf_token %}
