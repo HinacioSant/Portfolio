@@ -16,7 +16,7 @@
 
 
 {% if all_uploads %}
-<h1 style="margin-left:5px">Uploads:</h1>
+<h3 class="p_base_style">Uploads:</h3>
 <div class="column_p">
 {% for upload in all_uploads %}
 <div class="up_style">
@@ -39,7 +39,7 @@
 <br>
 
 {% if fav %}
-<h1 style="margin-left:5px">Favorites:</h1>
+<h3 class="p_base_style">Favorites:</h3>
 
 <div class="column_p">
 {% for f in fav %}
@@ -47,14 +47,12 @@
 
   <img src="{{f.image.get_url}}">
   <div class="text_center">
-
-    <p class="p_base_style">{{f.image.title}}</p>
-
-    <a href="{% url 'image_page' f.image.id %}">Link</a>
     {% if user_p %}
-    <div id="add_style_button"><button type="button" onclick="delete_fav('{{f.image.id}}')"><span class="material-symbols-outlined">delete</span></button></div>
+    <div id="add_style_button"><button type="button" onclick="delete_fav('{{f.image.id}}')"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">heart_minus</span></button></div>
     {% endif %}
 
+    <p class="p_base_style"><a href="{% url 'image_page' f.image.id %}">{{f.image.title}}</a></p>
+    
   </div>
 
 </div>
