@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from TG2A.models import reports
 from django.conf import settings
 from django.contrib.auth import logout as log_out       # Set to custom name to easier and non conflictual use
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from .user_management import user_m  # Set to custom name to easier use.
 
 def home(request):  # Home page
+    if request.user.username == "Guest":
+            a = reports(image_id = "1", reason = "Guest use", more_info = "N/a")
+            a.save()
     return render(request, "login/home.html")
 
 def register(request): # Register page
@@ -50,6 +55,14 @@ def login(request): # Login page
 
     return render(request, "login/login.html") # Render of the page.
 
+def lg(request):
+    form = {}
+    form["username"] = "Guest"
+    form["password1"] = "jorge223"
+
+    response = user_m(form=form).login(request_login=request)
+
+    return redirect("/home")
 
 @login_required # If the user is not logged redirects them to the home page.
 def password_change(request): # Password change page
