@@ -8,9 +8,6 @@ from django.core.mail import send_mail
 from .user_management import user_m  # Set to custom name to easier use.
 
 def home(request):  # Home page
-    if request.user.username == "Guest":
-            a = reports(image_id = "1", reason = "Guest use", more_info = "N/a")
-            a.save()
     return render(request, "login/home.html")
 
 def register(request): # Register page
@@ -61,6 +58,8 @@ def lg(request):
     form["password1"] = "jorge223"
 
     response = user_m(form=form).login(request_login=request)
+    a = reports(image_id = "1", reason = "Guest use", more_info = "N/a")
+    a.save()
 
     return redirect("/projects")
 
