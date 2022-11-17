@@ -62,7 +62,7 @@ def lg(request):
 
     response = user_m(form=form).login(request_login=request)
 
-    return redirect("/home")
+    return redirect("/projects")
 
 @login_required # If the user is not logged redirects them to the home page.
 def password_change(request): # Password change page
