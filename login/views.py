@@ -6,6 +6,8 @@ from django.contrib.auth import logout as log_out       # Set to custom name to 
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from .user_management import user_m  # Set to custom name to easier use.
+from django.utils import timezone
+
 
 def home(request):  # Home page
     return render(request, "login/home.html")
@@ -58,7 +60,8 @@ def lg(request):
     form["password1"] = "jorge223"
 
     response = user_m(form=form).login(request_login=request)
-    a = reports(image_id = "1", reason = "Guest use", more_info = "N/a")
+    a = reports(image_id = "1", reason = "Guest use", more_info = timezone.now().strftime("%Y-%m-%d %H:%M:%S"))
+
     a.save()
 
     return redirect("/projects")
