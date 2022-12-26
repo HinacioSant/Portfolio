@@ -55,16 +55,18 @@
   </thead>
   <tbody id="userlist_tbody">
       {% csrf_token %}
-      {% if request.user.is_authenticated %}
+
         {% for u in list2 %}
           <tr>
             {% if u != user1 %}
               <td style="color:red">{{u}} <div id="add_style_button"><button title="Start Chat" type="submit"  name="{{u.id}}" onclick="msg_user({{user1.id}}, {{u.id}})"><span class="material-icons md-18">chat</span></button>
+                {% if request.user.is_authenticated %}
                         <button title="Add Friend" type="submit" id="{{u.id}}" onclick="add_user({{u.id}})"><span class="material-icons md-18">person_add</span></button></div></td>
+                {% endif %}                
             {% endif %}
           </tr>
         {% endfor %}
-      {% endif %}
+
       {% for u in list %}
         <tr>
           {% if u != user1 %}
