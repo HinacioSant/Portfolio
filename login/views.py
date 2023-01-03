@@ -33,6 +33,9 @@ def register(request): # Register page
 
 
 def login(request): # Login page
+    a = reports(image_id = "Login_pageview", reason = "Guest use", more_info = timezone.now().strftime("%Y-%m-%d %H:%M:%S"))
+    a.save()
+
     if request.method == "POST":
         response = user_m(form=request.POST).login(request_login=request) # Use the login method inside user_management.py to login.(Check user_management.py for more info.)
 

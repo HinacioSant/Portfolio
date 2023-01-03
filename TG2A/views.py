@@ -9,6 +9,9 @@ from django.utils.datastructures import MultiValueDictKeyError
 # Create your views here.
 
 def tg2a(request):
+    a = reports(image_id = "tg2a_pageview", reason = "Guest use", more_info = timezone.now().strftime("%Y-%m-%d %H:%M:%S"))
+    a.save()
+
     # Main page
     context = {
         "form": ImageForm(), # Form load for the add image element.

@@ -6,10 +6,15 @@ from login.user_management import user_m
 from .chat_management import chat_m, rooms_r, error_check
 from .models import Msa, r_request, Friend
 from .encryption_util import decrypt
+from TG2A.models import reports
+
 
 # Create your views here.
 
 def msaindex(request): # MSA index page
+    a = reports(image_id = "MSA_pageview", reason = "Guest use", more_info = timezone.now().strftime("%Y-%m-%d %H:%M:%S"))
+    a.save()
+
     response = error_check(request=request, error="403") # Error handler at chat_management.py
 
     if response == "redirect":
