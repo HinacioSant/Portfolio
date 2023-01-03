@@ -7,6 +7,7 @@ from .chat_management import chat_m, rooms_r, error_check
 from .models import Msa, r_request, Friend
 from .encryption_util import decrypt
 from TG2A.models import reports
+from django.utils import timezone
 
 
 # Create your views here.

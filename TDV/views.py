@@ -4,6 +4,7 @@ from .models import notes
 from .notes_management import notes_management
 from django.http import HttpResponse
 from TG2A.models import reports
+from django.utils import timezone
 
 
 
