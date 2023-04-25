@@ -21,13 +21,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
 SECRET_KEY = keys.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://hinacio.com", "https://www.hinacio.com", "hinacio.com", "www.hinacio.com"]
+
+CSRF_TRUSTED_ORIGINS = ["https://hinacio.com", "https://www.hinacio.com", "hinacio.com", "www.hinacio.com"]
 
 
 # Application definition
@@ -109,9 +110,14 @@ ASGI_APPLICATION = 'Portfolio.asgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd7941p3qc5b9h2',
+        'USER': 'zxwbythdzyoiij',
+        'PASSWORD': keys.DATABASE_PASS,
+        'HOST': 'ec2-18-214-35-70.compute-1.amazonaws.com',
+        'PORT': 5432,
+        }
+
 }
 
 
@@ -157,6 +163,7 @@ ENCRYPT_KEY = keys.ENCRYPT_KEY
 
 
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -170,7 +177,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+SENDGRID_API_KEY = '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'
+DEFAULT_FROM_EMAIL = 'me@hinacio.com'
+SERVER_EMAIL = 'hinaciosant@gmail.com'
 
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = keys.EMAIL_PASS
+EMAIL_USE_TLS = True
 
 # Static files (CSS, Javgcript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -197,6 +212,3 @@ APSCHEDULER_RUN_NOW_TIMEOUT = 25
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
-
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

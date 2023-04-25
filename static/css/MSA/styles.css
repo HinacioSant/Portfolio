@@ -181,7 +181,7 @@ body {
   top:0;
   z-index: 0;
   overflow: hidden;
-  background: url(/static/background/background-msa.png);
+  background: url(/static/background/background-msa.jpg);
   background-repeat: no-repeat;
   background-size: auto;
   background-position: left;
@@ -286,7 +286,7 @@ body {
 }
 
 #font_h{
-  font-family: Kdam Thmor Pro;  
+  font-family: Kdam Thmor Pro;
 }
 
 @media screen and (max-width: 968px) {

@@ -5,10 +5,15 @@ from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.models import User
 from .gallery_management import image_management, infinite_scroll
 from django.utils.datastructures import MultiValueDictKeyError
+from django.utils import timezone
+
 
 # Create your views here.
 
 def tg2a(request):
+    a = reports(image_id = "tg2a_pageview", reason = "Guest use", more_info = timezone.now().strftime("%Y-%m-%d %H:%M:%S"))
+    a.save()
+
     # Main page
     context = {
         "form": ImageForm(), # Form load for the add image element.

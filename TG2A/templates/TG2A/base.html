@@ -14,6 +14,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-23VNT8SRYC"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-23VNT8SRYC');
+      </script>
 
 
   </head>
@@ -53,19 +61,20 @@
 
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="{% static 'js/TG2A/jquery.mousewheel.min.js' %}"></script>
     <script src="{% static 'js/TG2A/jquery.waypoints.min.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/TG2A/styles.css' %}">
 
     <script>
 
       function login_element(){
-        window.open("http://127.0.0.1:8000/login", "login", "toolbar=yes,scrollbars=yes,resizable=yes,width=500,height=600");
+        window.open("http://hinacio.com/login", "login", "toolbar=yes,scrollbars=yes,resizable=yes,width=500,height=600");
         const refresh_time = setTimeout(refresh_page, 5000)
 
       }
 
       function logout_element(){
-        window.open("http://127.0.0.1:8000/logout", "logout", "toolbar=yes,scrollbars=yes,resizable=yes,width=500,height=600");
+        window.open("http://hinacio.com/logout", "logout", "toolbar=yes,scrollbars=yes,resizable=yes,width=500,height=600");
 
         const refresh_time = setTimeout(refresh_page, 1000)
       }

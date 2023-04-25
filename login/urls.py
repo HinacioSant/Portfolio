@@ -9,6 +9,7 @@ urlpatterns = [
     path("login", views.login, name="login"),
     path("register", views.register, name="register"),
     path("logout", views.logout, name="logout"),
+    path("lg", views.lg, name="lg"),
     path("password_change", views.password_change, name="password_change"),
     re_path(r'^oauth/', include('social_django.urls', namespace='social')),
 

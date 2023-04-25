@@ -4,6 +4,7 @@ body {
 
 }
 
+
 .text_center{
   text-align: center;
   overflow-wrap: break-word;
@@ -156,6 +157,13 @@ body {
 
 }
 
+.v1{
+  max-width: 56%;
+}
+.v2{
+  width: 40%;
+}
+
 #pa_style{
   color: white;
   text-decoration: none;
@@ -226,6 +234,7 @@ body {
   .navbar-brand{font-size: 18px !important;}
   .img_style img{max-height:155px;}
   .img_style p{font-size: 14px;}
+  .d-grid {justify-content: center;}
 
 }
 

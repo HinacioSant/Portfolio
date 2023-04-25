@@ -67,6 +67,22 @@ class user_m:
         # request_login variable is added to login using django sign_in method.
         # Google captcha verification
 
+        if self.form["username"] == "Guest":
+            response = self.username_check() # Use the username_check method to check the validity.
+            if not response['409']:
+                return response['context']
+
+            verification = response['user']
+            if check_password(self.form['password1'], verification.password):  # Using the django check_password to se if the passwords match
+                sign_in(request_login, verification, backend='django.contrib.auth.backends.ModelBackend') # if so, sign in
+
+                request_login.session["name"] = request_login.user.username
+
+                return "redirect"                                                            # and redirect to the home page
+            else:                                                                                   # if not
+                return "invalid password"   # error message  (message on the html side)
+
+
         # Setting the google Recaptcha api.
         captcha_token = self.form['g-recaptcha-response']
         captcha_url = "https://www.google.com/recaptcha/api/siteverify"

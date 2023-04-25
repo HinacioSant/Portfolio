@@ -3,12 +3,18 @@ from django.contrib.auth.models import User
 from .models import notes
 from .notes_management import notes_management
 from django.http import HttpResponse
+from TG2A.models import reports
+from django.utils import timezone
+
 
 
 
 # Create your views here.
 
 def tdv(request): # Index page.
+    a = reports(image_id = "TDV_pageview", reason = "Guest use", more_info = timezone.now().strftime("%Y-%m-%d %H:%M:%S"))
+    a.save()
+
     return render(request, "TDV/tdv.html")
 
 
@@ -36,7 +42,7 @@ def notes_page(request): # Note page (management of bullets(delete/if is finishe
 
 def add_notes(request): # Add notes page (management of notes(add/delete) and bullets(add)).
     if request.method == 'POST':# If post request.
-        
+
         # Notes management.
         response = notes_management(form=request.POST, user=request.user).notes_add() # Outside views check notes_management.py for more info.
         if response == "redirect_notes": # If response comes back "redirect_notes"

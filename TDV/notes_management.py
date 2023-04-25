@@ -45,9 +45,16 @@ class notes_management: # Overall management.
 
         try:
             if self.form['type'] == 'note': # Check for respective type.
-                # Then add them.                
+                # Then add them.
+                title = self.form['title']
+                subject = self.form['subject']
+                if title == "":
+                    title = "-"
 
-                add = notes(user=self.user, title=self.form['title'], subject=self.form['subject'], type=self.form['type'], content=self.form['content'], finished=False)
+                if subject == "":
+                    subject = "-"
+
+                add = notes(user=self.user, title=title, subject=subject, type=self.form['type'], content=self.form['content'], finished=False)
                 add.save()
 
                 response = "redirect_notes" # Return reditect to notes page.
@@ -59,10 +66,18 @@ class notes_management: # Overall management.
         try:
             if self.form['type'] == 'bullet': # Check for respective type.
                 # Then add them.
-                if self.form['title'] == "" or self.form['subject'] == "":
+                title = self.form['title']
+                subject = self.form['subject']
+                if title == "":
+                    title = ""
+
+                if subject == "":
+                    subject = ""
+
+                if self.form['title'] == "" and self.form['subject'] == "":
                     return "redirect_notes"
 
-                add = notes(user=self.user, title=self.form['title'], subject=self.form['subject'], type=self.form['type'], finished=False)
+                add = notes(user=self.user, title=title, subject=subject, type=self.form['type'], finished=False)
                 add.save()
                 response = "redirect_notes" # Return reditect to notes page.
 

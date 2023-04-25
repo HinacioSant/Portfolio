@@ -57,7 +57,11 @@ function delete_fav(fav_id){
 }
 
 
-scrollContainer.addEventListener("wheel", (evt) => {
-    evt.preventDefault();
-    scrollContainer.scrollLeft += evt.deltaY;
-});
+
+ $(".column_p").mousewheel(function(event, delta) {
+
+    this.scrollLeft -= (delta * 30);
+
+    event.preventDefault();
+
+ });

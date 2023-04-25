@@ -2,10 +2,11 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
+  <head lang="en">
     <title>{% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Main page(Portfolio) application, projects at 'https://www.hinacio.com/projects'">
+    <meta name="description" content="Portfolio of Hinacio Sant', projects at 'https://www.hinacio.com/projects'">
+    <meta name="theme-color" content="Black">
 
     <link rel="shortcut icon" type="image/png" href="{% static 'icon/favicon.png' %}"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
@@ -14,6 +15,15 @@
     <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-23VNT8SRYC"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-23VNT8SRYC');
+      </script>
 
   </head>
   <style>

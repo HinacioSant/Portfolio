@@ -1,9 +1,9 @@
 $("#f_button").on("click", function() {
-  if( $('.material-icons').html() === "favorite_border"){ // Change the icon on click.
-    $('.material-icons').html("favorite")
+  if( $('#fav_id').html() === "favorite_border"){ // Change the icon on click.
+    $('#fav_id').html("favorite")
   }
   else {
-    $('.material-icons').html("favorite_border")
+    $('#fav_id').html("favorite_border")
   }
 
 })
