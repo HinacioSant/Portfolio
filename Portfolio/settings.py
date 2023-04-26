@@ -71,7 +71,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
-
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Portfolio.urls'
@@ -109,6 +109,11 @@ ASGI_APPLICATION = 'Portfolio.asgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
+    #'default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #}
+
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'd7941p3qc5b9h2',
@@ -152,7 +157,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-
 SOCIAL_AUTH_GITHUB_KEY = '66635515d763aef57209'
 SOCIAL_AUTH_GITHUB_SECRET = keys.GIT_KEY
 
@@ -193,7 +197,7 @@ EMAIL_USE_TLS = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
