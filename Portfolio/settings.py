@@ -26,11 +26,11 @@ SECRET_KEY = keys.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = '*'
+ALLOWED_HOSTS =['*']
 #ALLOWED_HOSTS = ["https://hinacio.com", "https://www.hinacio.com", "hinacio.com", "www.hinacio.com", "https://portfolio-g0ri.onrender.com/", "https://www.portfolio-g0ri.onrender.com/"]
 
 #CSRF_TRUSTED_ORIGINS = ["https://hinacio.com", "https://www.hinacio.com", "hinacio.com", "www.hinacio.com", "https://portfolio-g0ri.onrender.com/", "https://www.portfolio-g0ri.onrender.com/"]
-CSRF_TRUSTED_ORIGINS = '*'
+CSRF_TRUSTED_ORIGINS = ['*']
 
 # Application definition
 
