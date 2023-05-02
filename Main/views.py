@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 def index(request):
+    print(request.META['HTTP_HOST'])
     return render(request, "PTs/index.html")
 
 def projects(request):
