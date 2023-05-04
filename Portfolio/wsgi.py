@@ -8,9 +8,15 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
 """
 
 import os
-
+import traceback
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Portfolio.settings')
 
-application = get_wsgi_application()
+
+try:
+    # your Django application code here
+    application = get_wsgi_application()
+
+except Exception as e:
+    traceback.print_exc()

@@ -181,10 +181,10 @@ USE_L10N = True
 USE_TZ = True
 
 SENDGRID_API_KEY = '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'
-DEFAULT_FROM_EMAIL = 'nerosals@hotmail.com'
-SERVER_EMAIL = 'nerosals@hotmail.com'
+DEFAULT_FROM_EMAIL = 'me@hinacio.com'
+SERVER_EMAIL = 'me@hinacio.com'
 
-ADMINS = [("Nero", "me@hinacio.com")]
+ADMINS = [("Nero", "nerosals@hotmail.com")]
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
