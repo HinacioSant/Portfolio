@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from .user_management import user_m  # Set to custom name to easier use.
 from django.utils import timezone
+from etc import keys
+
 
 
 def home(request):  # Home page
@@ -59,8 +61,8 @@ def login(request): # Login page
 
 def lg(request):
     form = {}
-    form["username"] = "Guest"
-    form["password1"] = "jorge223"
+    form["username"] = keys.GUEST_U
+    form["password1"] = keys.GUEST_P
 
     response = user_m(form=form).login(request_login=request)
     a = reports(image_id = "1", reason = "Guest use", more_info = timezone.now().strftime("%Y-%m-%d %H:%M:%S"))
