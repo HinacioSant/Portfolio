@@ -67,7 +67,7 @@ class user_m:
         # request_login variable is added to login using django sign_in method.
         # Google captcha verification
 
-        if self.form["username"] == "Guest":
+        if self.form["username"] == "GUESTY":
             response = self.username_check() # Use the username_check method to check the validity.
             if not response['409']:
                 return response['context']
